@@ -3,6 +3,13 @@ logs
 *.log
 npm-debug.log*
 
+#other
+public/videos/users/*
+public/files/users/*
+public/images/users/*
+.idea/
+.vscode/
+
 # Runtime data
 pids
 *.pid
