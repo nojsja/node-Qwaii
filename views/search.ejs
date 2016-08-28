@@ -1,0 +1,122 @@
+<!--搜索详情页-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <script type="text/javascript" src="/javascripts/lib/jquery-2.1.4.js"></script>
+    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
+    <link rel='stylesheet' href='/stylesheets/search.css' />
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <script type="text/javascript" src="/javascripts/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="/javascripts/search.js"></script>
+
+</head>
+<body>
+<!--背景-->
+<div id="backgroundImg" class="opacityHalf blur"></div>
+<%- include header%>
+
+<div class="container total opacityAlmost">
+    <!--搜索栏-->
+    <div class="row">
+        <div class="col-md-9 col-md-offset-1 searchDiv">
+            <input type="text" class="form-control" placeholder="请输入要搜索的内容">
+        </div>
+        <div class="col-md-1 searchDiv">
+            <button type="button" class="btn btn-default">搜索 <span class="glyphicon glyphicon-search"></span></button>
+        </div>
+    </div>
+
+    <!--内容tabs-->
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 typeTabs">
+            <ul class="nav nav-tabs">
+                <li><a href="#">图片</a></li>
+                <li><a href="#">视频</a></li>
+                <li class="active"><a href="#">Cosplay</a></li>
+                <li><a href="#">音乐</a></li>
+                <li><a href="#">番剧</a></li>
+                <li><a href="#">贴文</a></li>
+                <li><a href="#">萌物</a></li>
+                <li><a href="#">漫画</a></li>
+                <li><a href="#">其它</a></li>
+            </ul>
+            <div class="col-md-10 col-md-offset-1 tabContent">
+                <div class="col-md-6 articleView">
+                    <div class="col-md-12">
+                        <div class="col-md-12"><p class="articleTitle">标题<p/></div>
+                        <div class="col-md-6"><p class="articleAuthor">作者</p></div>
+                        <div class="col-md-6"><p class="articleTime">时间</p></div>
+                        <div class="col-md-12"><p class="articleAbstract">sdf水电费sdf水电费sdf水电费</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 articleRead">
+                        <div class="col-md-4 col-md-offset-2">阅读:9999</div>
+                        <div class="col-md-4">评论:9999</div>
+                    </div>
+                </div>
+                <div class="col-md-6 articleView">
+                    <div class="col-md-12">
+                        <div class="col-md-12"><p class="articleTitle">标题<p/></div>
+                        <div class="col-md-6"><p class="articleAuthor">作者</p></div>
+                        <div class="col-md-6"><p class="articleTime">时间</p></div>
+                        <div class="col-md-12"><p class="articleAbstract">sdf水电费sdf水电费sdf水电费</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 articleRead">
+                        <div class="col-md-4 col-md-offset-2">阅读:9999</div>
+                        <div class="col-md-4">评论:9999</div>
+                    </div>
+                </div>
+                <div class="col-md-6 articleView">
+                    <div class="col-md-12">
+                        <div class="col-md-12"><p class="articleTitle">标题<p/></div>
+                        <div class="col-md-6"><p class="articleAuthor">作者</p></div>
+                        <div class="col-md-6"><p class="articleTime">时间</p></div>
+                        <div class="col-md-12"><p class="articleAbstract">sdf水电费sdf水电费sdf水电费</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 articleRead">
+                        <div class="col-md-4 col-md-offset-2">阅读:9999</div>
+                        <div class="col-md-4">评论:9999</div>
+                    </div>
+                </div>
+                <div class="col-md-6 articleView">
+                    <div class="col-md-12">
+                        <div class="col-md-12"><p class="articleTitle">标题<p/></div>
+                        <div class="col-md-6"><p class="articleAuthor">作者</p></div>
+                        <div class="col-md-6"><p class="articleTime">时间</p></div>
+                        <div class="col-md-12"><p class="articleAbstract">sdf水电费sdf水电费sdf水电费</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 articleRead">
+                        <div class="col-md-4 col-md-offset-2">阅读:9999</div>
+                        <div class="col-md-4">评论:9999</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--分页导航-->
+    <div class="row" >
+        <div class="col-md-10 col-md-offset-1">
+            <ul class="pagination" id="pageNav">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">末页</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<%- include footer%>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!--发表贴文页-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <script type="text/javascript" src="/javascripts/lib/jquery-2.1.4.js"></script>
+    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
+    <link rel='stylesheet' href='/stylesheets/post.css' />
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <script type="text/javascript" src="/javascripts/lib/bootstrap.js"></script>
+
+    <!--加载Uditor-->
+    <script type="text/javascript" src="/Ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/Ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" src="/Ueditor/lang/zh-cn/zh-cn.js"> </script>
+
+    <script type="text/javascript" src="/javascripts/post.js"></script>
+    <script type="text/javascript" src="/javascripts/header.js"></script>
+
+</head>
+<body>
+<!--背景-->
+<div id="backgroundImg" class="opacityHalf"></div>
+<%- include header%>
+
+<div class="container total opacityAlmost">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5 postTitle">我要投稿</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1 title border">标题</div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <input id="articleTitle" class="shadow" type="text" placeholder="请输入标题">
+        </div>
+    </div>
+
+    <!--分类-->
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1 title border">分类</div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1 type">
+            <ul class="nav nav-pills">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        所有类别<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="checkbox"><label><input type="radio" name="optionsRadios" checked value="番剧">番剧</label></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><label><input type="radio" name="optionsRadios" value="Cosplay">Cosplay</label></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><label><input type="radio" name="optionsRadios" value="新闻">新闻</label></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><label><input type="radio" name="optionsRadios" value="萌物">萌物</label></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><label><input type="radio" name="optionsRadios" value="图片">图片</label></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><label><input type="radio" name="optionsRadios" value="音乐">音乐</label></div>
+                        </li>
+                        <li>
+                            <div class="checkbox"><label><input type="radio" name="optionsRadios" value="视频">视频</label></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--标签-->
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1 title border">标签</div>
+    </div>
+    <div class="row tagsRow">
+        <div class="col-md-11 col-md-offset-1">
+            <div class="col-md-1">
+                <label class="checkbox-inline"><input type="checkbox" value="激萌" class="tag">激萌</label>
+            </div>
+            <div class="col-md-1">
+                <label class="checkbox-inline"><input type="checkbox" value="新人" class="tag">新人</label>
+            </div>
+            <div class="col-md-1">
+                <label class="checkbox-inline"><input type="checkbox" value="御宅" class="tag">御宅</label>
+            </div>
+            <div class="col-md-1">
+                <label class="checkbox-inline"><input type="checkbox" value="QAQ" class="tag">Q__Q</label>
+            </div>
+            <div class="col-md-1">
+                <label class="checkbox-inline"><input type="checkbox" value="追番" class="tag">追番</label>
+            </div>
+            <div class="col-md-1">
+                <label class="checkbox-inline"><input type="checkbox" value="中二" class="tag">中二</label>
+            </div>
+            <div class="col-md-1">
+                <label class="checkbox-inline"><input type="checkbox" value="日常" class="tag">日常</label>
+            </div>
+            <div class="col-md-1">
+                <label class="checkbox-inline"><input type="checkbox" value="Cosplayer" class="tag">Cosplayer</label>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1 border title">简介</div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 input-group">
+            <script id="editorAbstract" type="text/plain" class="shadow"></script>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1 border title">正文</div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 input-group">
+            <script id="editorContent" type="text/plain" class="shadow"></script>
+        </div>
+    </div>
+
+    <!--发表贴文-->
+    <div class="row">
+        <div class="col-md-12" id="sendDiv">
+            <button type="button" class="btn btn-default" id="sendArticle">发布 <span class="glyphicon glyphicon-send"></span></button>
+        </div>
+    </div>
+</div>
+
+<%- include footer%>
+</body>
+<%- include modalWindow%>
+</html>

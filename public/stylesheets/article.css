@@ -1,0 +1,105 @@
+#articleTitle {
+    text-align: center;
+}
+
+#backgroundImg {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
+    background: url("/images/pictures/rem.jpg") no-repeat;
+    background-size: cover;
+}
+
+.totalBackground {
+    background-color: #ededed;
+    border-radius: 1px;
+    margin-bottom: 1em;
+    -webkit-box-shadow:0 0 8px black;
+    -moz-box-shadow:0 0 8px black;
+    box-shadow:0 0 8px black;
+}
+
+#articleContent {
+    width: 100%;
+    margin: auto;
+    margin-top: 2em;
+    background-color: whitesmoke;
+}
+
+#up,#down {
+    margin: auto;
+    font-size: 2em;
+}
+
+#articleAuthor,#articleTime {
+    margin-top: 1em;
+}
+
+#makeComment {
+    margin-top: 2em;
+}
+
+#comments {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+.comment {
+    width: 96%;
+    margin: 0px auto;
+    margin-top:1em;
+    padding: 1%;
+    background: #9ddf4d;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    border: darkgreen solid 1px;
+    color: #004080;
+}
+
+.commentName {
+    width: 20%;
+    float: left;
+}
+
+.commentContent {
+    width: 80%;
+    float: left;
+}
+
+.comments-wrapper{
+    margin: 0px auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 1%;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    border: #2bae23 solid 2px;
+    height: auto;
+}
+
+.entry-comments{
+    width: 96%;
+    margin: 0px auto;
+    margin-top:1em;
+    padding: 1%;
+    background: #9ddf4d;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    border: darkgreen solid 1px;
+    color: #004080;
+}
+
+.comment-label {
+    width: 100%;
+    margin: 0px auto;
+    padding: 0 0 0 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+}

@@ -1,0 +1,73 @@
+<!--贴文页-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <script type="text/javascript" src="/javascripts/lib/jquery-2.1.4.js"></script>
+    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
+    <link rel='stylesheet' href='/stylesheets/article.css' />
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <script type="text/javascript" src="/javascripts/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="/javascripts/article.js"></script>
+
+</head>
+<body>
+<!--背景-->
+<div id="backgroundImg" class="opacityHalf blur"></div>
+<%- include header%>
+<!--正文区域-->
+<div class="container totalBackground opacityAlmost">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 h3" id="articleTitle">文章标题</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-4 border" id="articleAuthor">作者</div>
+        <div class="col-md-2 border" id="articleTime">发表时间</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <textarea id="articleContent"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1 col-md-offset-5">
+            <a class="glyphicon glyphicon-thumbs-up" id="up"><span class="badge">999</span></a>
+        </div>
+        <div class="col-md-1">
+            <a class="glyphicon glyphicon-thumbs-down" id="down"><span class="badge">999</span></a>
+
+        </div>
+    </div>
+</div>
+
+<!--评论区-->
+<div class="container totalBackground opacityAlmost">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="input-group" id="makeComment">
+                <input type="text" class="form-control" placeholder="此处应该有留言..">
+                <span class="input-group-addon glyphicon glyphicon-comment"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="comments-wrapper col-md-12">
+                <div class="comment-label">评论</div>
+
+                <div class="entry-comments">
+                    <label>{{comment.commentator}}: </label>
+                    <label>{{comment.content}}</label><br>
+                    <label>{{comment.dates}}</label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<%- include pageAnchor%>
+<%- include footer%>
+</body>
+</html>

@@ -1,0 +1,76 @@
+.postTitle {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: .5em;
+    font-family: 黑体;
+    font-weight: bold;
+    font-size: 2em;
+    text-shadow: 0 0 10px #395980;
+    color: #fdfbf6;
+}
+
+#backgroundImg {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
+    background: url("/images/pictures/liya2.jpg") no-repeat;
+    background-size: cover;
+}
+
+.total {
+    background-color: #fdfbf6;
+    border: double 3px #353846;
+    margin-bottom: 2em;
+}
+
+.title {
+    margin-bottom: 1em;
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: #395980;
+    color: #b5dccc;
+    text-align: center;
+    -moz-box-shadow: 5px 5px #353846;
+    -webkit-box-shadow: 5px 5px#353846;
+    box-shadow: 5px 5px #353846;
+}
+
+#articleTitle {
+    margin-bottom: 1.5em;
+    width: 100%;
+}
+
+.shadow {
+    -webkit-box-shadow:0 0 10px #353846;
+    -moz-box-shadow:0 0 10px #353846;
+    box-shadow:0 0 10px #353846;
+}
+
+#editorAbstract {
+    margin-bottom: 1.5em;
+}
+
+#editorContent {
+    margin-bottom: 1.5em;
+}
+
+.tagsRow {
+    margin-bottom: 1em;
+}
+
+.type {
+    margin-bottom: 1em;
+}
+
+#sendDiv {
+    text-align: center;
+}
+
+#sendArticle {
+    border: solid 1px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}

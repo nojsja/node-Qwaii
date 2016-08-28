@@ -1,0 +1,51 @@
+.opacityLow {
+    filter:alpha(opacity=20);
+    -moz-opacity:0.20;
+    -khtml-opacity: 0.20;
+    opacity: 0.20;
+}
+
+.opacityHalf{
+    filter:alpha(opacity=50);
+    -moz-opacity:0.50;
+    -khtml-opacity: 0.50;
+    opacity: 0.50;
+}
+
+.opacityAlmost {
+    filter:alpha(opacity=90);
+    -moz-opacity:0.90;
+    -khtml-opacity: 0.90;
+    opacity: 0.90;
+}
+.pageAnchor {
+    position: fixed;
+    right: 2em;
+    bottom: 5em;
+}
+
+.copyRight{
+    color: #ffffff;
+    text-align: center;
+    font-size: 1em;
+    background-color: #989fae;
+    margin-top: 1em;
+}
+
+.border {
+    border: solid 1px green;
+}
+
+.tips {
+    font-family: 微软雅黑;
+    font-size: 1.3em;
+    word-spacing:8px;
+    letter-spacing: 1px;
+}
+
+.blur {
+    -webkit-filter: blur(6px); /* Chrome, Opera */
+    -moz-filter: blur(6px);
+    -ms-filter: blur(6px);
+    filter: blur(6px);
+}

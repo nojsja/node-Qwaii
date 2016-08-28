@@ -1,0 +1,179 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    min-height:100%;
+}
+
+html{
+    height:100%;
+}
+a {
+  color: #00B7FF;
+}
+
+header {
+    margin: auto;
+}
+.copyRight{
+    color: #ffffff;
+    text-align: center;
+    font-size: 1em;
+    background-color: #989fae;
+    margin-top: 1em;
+}
+
+.border {
+    border: solid 1px red;
+}
+
+.iconBorder {
+    -webkit-box-shadow:0 0 20px #0CC;
+  -moz-box-shadow:0 0 20px #0CC;
+  box-shadow:0 0 20px #0CC;
+}
+
+.iconBorder:hover {
+    -webkit-box-shadow:0 0 20px #c75183;
+    -moz-box-shadow:0 0 20px #c75183;
+    box-shadow:0 0 20px #c75183;
+
+    -moz-transition: box-shadow 0.3s linear;
+    -webkit-transition: box-shadow 0.3s linear;
+    transition: box-shadow 0.3s linear;
+}
+
+.navBorder {
+    border-radius: 5px;
+    -webkit-box-shadow:0 0 20px #cc507f;
+    -moz-box-shadow:0 0 20px #cc507f;
+    box-shadow:0 0 20px #cc507f;
+    background-color: white;
+
+}
+
+.contentNav {
+    margin: 0.5em;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 2px;
+    font-family: 方正兰亭超细黑简体;
+    font-weight: bold;
+}
+
+.contentNav:hover{
+    color: #590502;
+    text-shadow: 0 0 10px #590502;
+    transition:text-shadow .3s linear;
+    border-radius: 1em;
+}
+
+.icon {
+
+}
+
+.icon > img {
+    width: auto;
+    height: 6em;
+    max-width: 6em;
+    max-height: 6em;
+    margin: auto;
+}
+
+#hotView {
+    margin-top: 2em;
+    background-color: #fdfbf6;
+    -webkit-box-shadow:0 0 8px black inset;
+    -moz-box-shadow:0 0 8px black inset;
+    box-shadow:0 0 8px black inset;
+}
+
+.hotTitle {
+    width: 100%;
+    height: 15em;
+    border: solid 1px gray;
+    border-top: 0em;
+}
+
+.hotContent {
+    width: 100%;
+    height: 15em;
+}
+
+.hotContent > img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.articleView {
+    margin-top: 2em;
+    border-top: solid 3px;
+    border-bottom: solid 3px;
+    border-left: groove 1px;
+    border-right: groove 1px;
+
+    background-color: white;
+    -webkit-box-shadow:0 0 8px black;
+    -moz-box-shadow:0 0 8px black;
+    box-shadow:0 0 8px black;
+}
+
+.articleBorder {
+    background-color: #b5dccc;
+    width: auto;
+    height: auto;
+}
+
+.tag {
+    width: auto;
+    height: auto;
+    text-align: center;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    background-color: #395980;
+    color: #ffffff;
+    max-width: 5em;
+    display: inline-block;
+    margin: 0.7em;
+}
+
+.tag:hover {
+    color: #395980;
+    background-color: #e1ebfd;
+    -moz-transition: background-color .2s linear;
+    -webkit-transition: background-color .2s linear;
+    transition: background-color .2s linear;
+}
+
+.articleTitle{
+    font-weight: bold;
+}
+
+.articleTime,.articleAuthor {
+    color: #868686;
+}
+
+.articleAbstract {
+}
+
+.articleRead {
+    background-color: #353846;
+    color: whitesmoke;
+    text-align: center;
+}
+
+#backgroundImg {
+    position: fixed; right: 0; bottom: 0;
+    min-width: 100%; min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background: url("/images/pictures/luka2.jpg") no-repeat;
+    background-size: cover;
+}
+
+.pageAnchor {
+    position: fixed;
+    right: 2em;
+    bottom: 5em;
+
+}

@@ -1,0 +1,36 @@
+<!--顶部导航-->
+<header>
+    <nav class="navbar navbar-inverse navbar-inner" role="navigation">
+        <div class="navbar-header"><a class="navbar-brand" href="#" id="Brand" name="top"><b>Q站</b></a></div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/" id="home">主页</a></li>
+            <li><a href="#" id="about">关于Qwaii</a></li>
+            <li><a href="#" id="contact">联系站长</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="userName"> 游客 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li id="loginLi"><a tabindex="-1" href="/login">登录/注册</a></li>
+                    <li class="divider" role="presentation"></li>
+                    <li class="disabled" id="logoutLi"><a tabindex="-1" href="#">注销</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">我要投稿<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a tabindex="-1" href="/post">发表贴文</a></li>
+                    <li><a tabindex="-1" href="#">转载番剧</a></li>
+                    <li class="divider" role="presentation"></li>
+                    <li><a tabindex="-1" href="#">上载视频</a></li>
+                    <li><a tabindex="-1" href="#">上载图片</a></li>
+                    <li><a tabindex="-1" href="#">上传音乐</a></li>
+                </ul>
+            </li>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text"class="form-control" placeholder="站内搜索">
+                </div>
+                <button class="btn btn-default" type="submit">搜索 <span class="glyphicon glyphicon-search"></span></button>
+            </form>
+        </ul>
+    </nav>
+</header>

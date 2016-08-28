@@ -1,0 +1,72 @@
+.searchDiv {
+    margin-top: 1em;
+}
+
+#backgroundImg {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
+    background: url("/images/pictures/miku.jpg") no-repeat;
+    background-size: cover;
+}
+
+.typeTabs {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    -moz-box-shadow: 0 0 3px 3px #868686 inset;
+    -webkit-box-shadow: 0 0 3px 3px #868686 inset;
+    box-shadow: 0 0 3px 3px #868686 inset;
+    border-radius: 1em;
+}
+
+.tabContent {
+    min-height: 15em;
+    height: auto;
+}
+
+.articleAbstract,.articleAuthor {
+    height: 1.5em;
+    overflow: hidden;
+}
+
+.articleTitle {
+    height: 1.5em;
+    overflow: hidden;
+    margin-top: 0.5em;
+    line-height: 1.5em;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #acacac;
+    text-shadow: 1px 1px  black;
+}
+
+.articleRead {
+    background-color: #353846;
+    color: whitesmoke;
+}
+
+.articleView {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-top: solid 3px;
+    border-bottom: solid 3px;
+    border-left: groove 1px;
+    border-right: groove 1px;
+
+    background-color: white;
+    -webkit-box-shadow:0 0 8px black;
+    -moz-box-shadow:0 0 8px black;
+    box-shadow:0 0 8px black;
+}
+
+.total {
+    background-color: #ededed;
+    margin-bottom: 2em;
+    border: solid 1px #b5dccc;
+    -webkit-box-shadow: 0 0 5px 4px #395980;
+    -moz-box-shadow: 0 0 5px 4px #395980;
+    box-shadow: 0 0 5px 4px #395980;
+}
