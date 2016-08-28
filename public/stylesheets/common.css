@@ -43,6 +43,11 @@
     letter-spacing: 1px;
 }
 
+.spacing {
+    word-spacing:8px;
+    letter-spacing: 1px;
+}
+
 .blur {
     -webkit-filter: blur(6px); /* Chrome, Opera */
     -moz-filter: blur(6px);

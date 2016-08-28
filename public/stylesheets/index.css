@@ -29,6 +29,11 @@ header {
     -webkit-box-shadow:0 0 20px #0CC;
   -moz-box-shadow:0 0 20px #0CC;
   box-shadow:0 0 20px #0CC;
+
+    transition:All 0.4s ease-in-out;
+    -webkit-transition:All 0.4s ease-in-out;
+    -moz-transition:All 0.4s ease-in-out;
+    -o-transition:All 0.4s ease-in-out
 }
 
 .iconBorder:hover {
@@ -39,6 +44,12 @@ header {
     -moz-transition: box-shadow 0.3s linear;
     -webkit-transition: box-shadow 0.3s linear;
     transition: box-shadow 0.3s linear;
+
+    transform:translate(0,-10px);
+    -webkit-transform:translate(0,-10px);
+    -moz-transform:translate(0,-10px);
+    -o-transform:translate(0,-10px);
+    -ms-transform:translate(0,-10px);
 }
 
 .navBorder {
@@ -57,6 +68,11 @@ header {
     padding: 2px;
     font-family: 方正兰亭超细黑简体;
     font-weight: bold;
+
+    transition:All 0.3s ease-in-out;
+    -webkit-transition:All 0.3s ease-in-out;
+    -moz-transition:All 0.3s ease-in-out;
+    -o-transition:All 0.3s ease-in-out;
 }
 
 .contentNav:hover{
@@ -64,6 +80,12 @@ header {
     text-shadow: 0 0 10px #590502;
     transition:text-shadow .3s linear;
     border-radius: 1em;
+
+    transform:scale(1.4);
+    -webkit-transform:scale(1.4);
+    -moz-transform:scale(1.4);
+    -o-transform:scale(1.4);
+    -ms-transform:scale(1.4);
 }
 
 .icon {
@@ -95,7 +117,8 @@ header {
 
 .hotContent {
     width: 100%;
-    height: 15em;
+    height: 100%;
+    padding: 1em;
 }
 
 .hotContent > img {
@@ -142,17 +165,24 @@ header {
     -moz-transition: background-color .2s linear;
     -webkit-transition: background-color .2s linear;
     transition: background-color .2s linear;
+
 }
 
 .articleTitle{
     font-weight: bold;
+    border-bottom: solid 1px #d2d2d2;
 }
 
 .articleTime,.articleAuthor {
     color: #868686;
+    margin-bottom: 0.5em;
 }
 
 .articleAbstract {
+    margin-bottom: 1em;
+    background-color: #e1ebfd;
+    padding: 0.5em;
+    color: #395980
 }
 
 .articleRead {

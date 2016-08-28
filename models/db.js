@@ -10,7 +10,7 @@ var client = new MongoClient(new Server(settings.host,settings.port, {
         socketOptions: {
             connectTimeoutMS:500
         },
-        poolSize:50,
+        poolSize:5,
         auto_reconnect:true
         },{
             numberOfRetries:3,

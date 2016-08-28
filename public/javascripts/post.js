@@ -103,7 +103,7 @@ pageAction.postCheck = function(){
     with(pageAction){
         article.title = $('#articleTitle').val();
         article.type = $('input[name="optionsRadios"]:checked').val();
-        article.abstract = ueAbstract.getContent();
+        article.abstract = ueAbstract.getPlainTxt();
         article.content = ueContent.getContent();
         //发表文章
         sendPost();
