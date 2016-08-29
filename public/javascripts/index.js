@@ -31,39 +31,6 @@ pageAction.readArticleList = function () {
     },
     "JSON");
 
-    /*//文章伪造数据
-    var JSONdata = {
-        status: true,
-        articleData : {
-            articles:[
-                {
-                    title: "标题",
-                    author: "作者",
-                    date: "时间",
-                    abstract: "摘要",
-                    tags: [
-                        {tag: "御宅"},
-                        {tag: "激萌"}
-                    ],
-                    readNumer: 0,
-                    commentNumber: 0,
-                },
-                {
-                    title: "标题2",
-                    author: "作者2",
-                    date: "时间2",
-                    abstract: "摘要2",
-                    tags: [
-                        {tag: "御宅"},
-                        {tag: "激萌"}
-                    ],
-                    readNumer: 0,
-                    commentNumber: 0,
-                }
-            ]
-        }
-    };*/
-
 };
 
 //更新页面
