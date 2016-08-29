@@ -4,19 +4,33 @@
 //限定作用域
 $(function () {
     headerAction.updateUser();
-    //注销动作绑定
-    $('#logoutLi').click(function(){
-        $.post('/user',{
-                action:"logout"
-            }, function (JSONdata) {
-                if(JSONdata.logout){
-                    headerAction.modalWindow("注销成功!");
-                    headerAction.updateUser();
-                }else {
-                    headerAction.modalWindow("服务器发生错误,注销失败!");
-                }
-            },
-            "JSON");
+    $('#loginLi').click(function () {
+        if($('#loginLi').attr('class') == "disabled"){
+            headerAction.modalWindow("要想登录其它账户必须注销当前账户!");
+        } else {
+            window.location.href = "/login";
+        }
+    });
+
+    $('#logoutLi').click(function () {
+       if($('#logoutLi').attr('class') == "disabled"){
+           headerAction.modalWindow("你还未登录任何账户!");
+       } else {
+           //注销动作绑定
+           $('#logoutLi').click(function(){
+               $.post('/user',{
+                       action:"logout"
+                   }, function (JSONdata) {
+                       if(JSONdata.logout){
+                           headerAction.modalWindow("注销成功!");
+                           headerAction.updateUser();
+                       }else {
+                           headerAction.modalWindow("服务器发生错误,注销失败!");
+                       }
+                   },
+                   "JSON");
+           });
+       }
     });
 });
 

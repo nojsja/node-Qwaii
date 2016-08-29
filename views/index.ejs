@@ -22,7 +22,11 @@
   <div class="container opacityAlmost" id="navContent">
       <div class="row">
           <div class="col-md-2">
-              <div class="icon col-md-12"><img src="/images/icon/nico.jpg" class="iconBorder" title="Q站 -> Qwaii"></div>
+              <div class="icon col-md-12">
+                  <img src="/images/icon/nico.jpg" class="iconBorder" id="iconPopover" data-container="body"
+                       data-toggle="popover" data-original-title="Qwaii" data-trigger="click"
+                       data-placement="bottom" data-content="Q站是个人开发的兴趣小站...">
+              </div>
           </div>
           <div class="col-md-10 navBorder opacityAlmost">
               <div class="col-md-2 contentNav">番剧</div>
@@ -40,19 +44,53 @@
   <div class="container opacityAlmost" id="hotView">
       <div class="row">
           <div class="col-md-6">
-              <div class="hotContent"><img src="/images/icon/hot.jpg" class=""></div>
+              <div data-ride="carousel" class="carousel slide" id="carousel-container">
+                  <!--图片容器-->
+                  <div class="carousel-inner">
+                      <div class="item"><img src="/images/icon/hot.jpg" class=""></div>
+                      <div class="item active"><img src="/images/icon/hot2.jpg" class=""></div>
+                      <div class="item"><img src="/images/icon/hot3.jpg" class=""></div>
+                  </div>
+                  <!--圆圈指示符-->
+                  <ol class="carousel-indicators">
+                      <li data-slide-to="0" data-target="#carousel-container"></li>
+                      <li data-slide-to="1" data-target="#carousel-container" class="active"></li>
+                      <li data-slide-to="2" data-target="#carousel-container"></li>
+                  </ol>
+                  <!--左右控制按钮-->
+                  <a data-slide="prev" href="#carousel-container" class="left carousel-control">
+                      <span class="glyphicon glyphicon-chevron-left"></span>
+                  </a>
+                  <a data-slide="next" href="#carousel-container" class="right carousel-control">
+                      <span class="glyphicon glyphicon-chevron-right"></span>
+                  </a>
+              </div>
           </div>
-          <div class="col-md-5 col-md-offset-1">
-              <div class="col-md-12">
-                  <ul class="nav nav-tabs">
-                      <li ><a href="#">热图</a></li>
-                      <li class="active"><a href="#">热文</a></li>
-                      <li><a href="#">热番</a></li>
-                  </ul>
-              </div>
-              <div class="col-md-12">
-                  <div class="hotTitle"></div>
-              </div>
+          <div class="col-md-6">
+                  <div class="navTabsBorder">
+                      <ul class="nav nav-tabs">
+                          <li ><a href="#hotPicture" data-toggle="tab">热图</a></li>
+                          <li class="active"><a href="#hotArticle" data-toggle="tab">热文</a></li>
+                          <li><a href="#hotVideo" data-toggle="tab">热番</a></li>
+                      </ul>
+                      <div class="tab-content hotTitle">
+                          <div class="tab-pane fade" id="hotPicture">
+                              <div class="col-md-12"><p class="popuItem">热图1</p></div>
+                              <div class="col-md-12"><p class="popuItem">热图2</p></div>
+                              <div class="col-md-12"><p class="popuItem">热图3</p></div>
+                          </div>
+                          <div class="tab-pane fade in active" id="hotArticle">
+                              <div class="col-md-12"><p class="popuItem">热文1</p></div>
+                              <div class="col-md-12"><p class="popuItem">热文2</p></div>
+                              <div class="col-md-12"><p class="popuItem">热文3</p></div>
+                          </div>
+                          <div class="tab-pane fade" id="hotVideo">
+                              <div class="col-md-12"><p class="popuItem">热番1</p></div>
+                              <div class="col-md-12"><p class="popuItem">热番2</p></div>
+                              <div class="col-md-12"><p class="popuItem">热番3</p></div>
+                          </div>
+                      </div>
+                  </div>
           </div>
       </div>
   </div>

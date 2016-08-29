@@ -4,6 +4,7 @@
 //限定作用域
 $(function () {
     pageAction.readArticleList();
+    $('#iconPopover').popover();
 });
 
 //页面对象

@@ -61,6 +61,21 @@ header {
 
 }
 
+.item > img {
+    transition:All 0.3s ease-in-out;
+    -webkit-transition:All 0.3s ease-in-out;
+    -moz-transition:All 0.3s ease-in-out;
+    -o-transition:All 0.3s ease-in-out;
+}
+
+.item > img:hover {
+    transform:scale(1.4);
+    -webkit-transform:scale(1.4);
+    -moz-transform:scale(1.4);
+    -o-transform:scale(1.4);
+    -ms-transform:scale(1.4);
+}
+
 .contentNav {
     margin: 0.5em;
     font-size: 1.3em;
@@ -111,7 +126,7 @@ header {
 .hotTitle {
     width: 100%;
     height: 15em;
-    border: solid 1px gray;
+    border: solid 1px #a6a6a6;
     border-top: 0em;
 }
 
@@ -121,10 +136,9 @@ header {
     padding: 1em;
 }
 
-.hotContent > img {
-    width: 100%;
-    height: 100%;
-    margin: auto;
+.navTabsBorder {
+    margin: 1.2em;
+    height: 20em;
 }
 
 .articleView {
@@ -166,6 +180,14 @@ header {
     -webkit-transition: background-color .2s linear;
     transition: background-color .2s linear;
 
+}
+
+.popuItem {
+    font-size: 1em;
+    text-align: center;
+    border-bottom: dotted 1px #e3e3e3;
+    font-family: 微软雅黑;
+    margin: 0.25em;
 }
 
 .articleTitle{
