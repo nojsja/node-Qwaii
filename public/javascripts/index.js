@@ -50,7 +50,12 @@ pageAction.updatePage = function (JSONdata) {
             //文章主要内容
             var $article = $('<div class="col-md-10"></div>');
             var $title = $('<div class="col-md-12 h3 articleTitle"></div>');
-            $title.text(article.title).appendTo($article);
+            var $a = $('<a></a>');
+            $a.text(article.title);
+            $a.prop({
+                'href':"/article/" + article.author + "/" + article.title + "/" + article.date
+            });
+            $title.append($a).appendTo($article);
             var $author = $('<div class="col-md-2 articleAuthor"></div>');
             $author.text(article.author).appendTo($article);
             var $date = $('<div class="col-md-6 articleTime"></div>');

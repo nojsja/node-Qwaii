@@ -1,4 +1,7 @@
-
+body {
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+    min-height:100%;
+}
 .loginIcon {
     background-color: #e1ebfd;
     border: solid 1px white;
@@ -16,7 +19,7 @@
 
 .total {
     border: solid 1px blue;
-    min-width: 800px;
+    min-width: 850px;
     background-color: #f4f4f4;
     -webkit-box-shadow:0 0 10px black;
     -moz-box-shadow:0 0 10px black;

@@ -1,5 +1,5 @@
 body {
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
     min-height:100%;
 }
 
@@ -126,6 +126,7 @@ header {
 .hotTitle {
     width: 100%;
     height: 15em;
+    overflow-y:  scroll;;
     border: solid 1px #a6a6a6;
     border-top: 0em;
 }
@@ -137,8 +138,8 @@ header {
 }
 
 .navTabsBorder {
-    margin: 1.2em;
-    height: 20em;
+    margin-top: 1em;
+    height: auto;
 }
 
 .articleView {

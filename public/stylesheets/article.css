@@ -1,5 +1,11 @@
+body {
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+    min-height:100%;
+}
+
 #articleTitle {
     text-align: center;
+    border-bottom: solid 1px #c5cede;
 }
 
 #backgroundImg {
@@ -24,9 +30,11 @@
 
 #articleContent {
     width: 100%;
-    margin: auto;
     margin-top: 2em;
     background-color: whitesmoke;
+    border-top: dashed 1px #395980;
+    border-bottom: dashed 1px #395980;
+    padding: 1.5em;
 }
 
 #up,#down {
@@ -35,7 +43,8 @@
 }
 
 #articleAuthor,#articleTime {
-    margin-top: 1em;
+    margin-top: 0.5em;
+    text-align: center;
 }
 
 #makeComment {
@@ -102,4 +111,10 @@
     text-align: center;
     font-weight: bold;
     font-size: 1.5em;
+}
+
+#up, #down {
+    margin-top: 0.5em;
+    text-align: center;
+
 }

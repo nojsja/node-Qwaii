@@ -1,3 +1,8 @@
+body {
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+    min-height:100%;
+}
+
 .searchDiv {
     margin-top: 1em;
 }
@@ -25,6 +30,7 @@
 .tabContent {
     min-height: 15em;
     height: auto;
+    padding: 0.7em;
 }
 
 .articleAbstract,.articleAuthor {
@@ -46,11 +52,13 @@
 .articleRead {
     background-color: #353846;
     color: whitesmoke;
+    -webkit-box-shadow:0 0 8px black;
+    -moz-box-shadow:0 0 8px black;
+    box-shadow:0 0 8px black;
 }
 
 .articleView {
     margin-top: 1em;
-    margin-bottom: 1em;
     border-top: solid 3px;
     border-bottom: solid 3px;
     border-left: groove 1px;

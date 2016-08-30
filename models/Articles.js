@@ -105,5 +105,53 @@ Articles.findSome = function (condition,callback) {
     });
 };
 
+//查找一篇文章
+Articles.findOne = function (condition,callback) {
+    //数据库初始化
+    console.log(0);
+    dbAction.dbInit(function (err,db) {
+        console.log(1);
+        if(err){
+            console.log("读取文章错误!");
+            return callback(err,null);
+        }else {
+            console.log(2);
+            db.collection("QARTICLE", function (err,collection) {
+                if(err){
+                    dbAction.dbLogout(db);
+                    console.log("读取文章错误!");
+                    return callback(err,null);
+                }else {
+                    console.log(3);
+                    collection.find(condition, function (err,cursor) {
+                       if(err){
+                           dbAction.dbLogout(db);
+                           console.log("读取文章错误!");
+                           return callback(err,null);
+                       }else {
+                           console.log(4);
+                           cursor.count(function (err,count) {
+                               if(err){
+                                   console.log(err);
+                               }
+                              console.log("文章数量: " + count);
+                           });
+                           cursor.nextObject(function (err,item) {
+                              if(err){
+                                  dbAction.dbLogout(db);
+                                  return callback(err,null);
+                              }else {
+                                  console.log(5);
+                                  dbAction.dbLogout(db);
+                                  callback(null,item);
+                              }
+                           });
+                       }
+                    });
+                }
+            });
+        }
+    });
+};
 
 module.exports = Articles;
