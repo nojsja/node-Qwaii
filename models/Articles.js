@@ -108,28 +108,23 @@ Articles.findSome = function (condition,callback) {
 //查找一篇文章
 Articles.findOne = function (condition,callback) {
     //数据库初始化
-    console.log(0);
     dbAction.dbInit(function (err,db) {
-        console.log(1);
         if(err){
             console.log("读取文章错误!");
             return callback(err,null);
         }else {
-            console.log(2);
             db.collection("QARTICLE", function (err,collection) {
                 if(err){
                     dbAction.dbLogout(db);
                     console.log("读取文章错误!");
                     return callback(err,null);
                 }else {
-                    console.log(3);
                     collection.find(condition, function (err,cursor) {
                        if(err){
                            dbAction.dbLogout(db);
                            console.log("读取文章错误!");
                            return callback(err,null);
                        }else {
-                           console.log(4);
                            cursor.count(function (err,count) {
                                if(err){
                                    console.log(err);
@@ -141,12 +136,169 @@ Articles.findOne = function (condition,callback) {
                                   dbAction.dbLogout(db);
                                   return callback(err,null);
                               }else {
-                                  console.log(5);
                                   dbAction.dbLogout(db);
                                   callback(null,item);
                               }
                            });
                        }
+                    });
+                }
+            });
+        }
+    });
+};
+
+//查找一篇文章的所有评论
+Articles.findComments = function (condition,callback) {
+    //数据库初始化
+    dbAction.dbInit(function (err,db) {
+        if(err){
+            console.log("读取评论错误!");
+            return callback(err,null);
+        }else {
+            db.collection("QCOMMENTS", function (err,collection) {
+                if(err){
+                    dbAction.dbLogout(db);
+                    console.log("读取评论错误!");
+                    return callback(err,null);
+                }else {
+                    collection.find(condition, function (err,cursor) {
+                        if(err){
+                            dbAction.dbLogout(db);
+                            console.log("读取评论错误!");
+                            return callback(err,null);
+                        }else {
+                            cursor.count(function (err,count) {
+                                if(err){
+                                    console.log(err);
+                                }
+                                console.log("评论数量: " + count);
+                            });
+                            //评论数据
+                            var commentsData = {comments:[]};
+                            cursor.each(function (err,item) {
+                                if(err){
+                                    cursor.close();
+                                    dbAction.dbLogout(db);
+                                    return callback(err,null);
+                                }
+                                if(item){
+                                    commentsData.comments.push({
+                                        commentator: item.commentator,
+                                        content: item.content,
+                                        date: item.date
+                                    });
+                                }else {
+                                    cursor.close();
+                                    dbAction.dbLogout(db);
+                                    callback(null, commentsData);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    });
+};
+
+//给一篇文章插入评论
+Articles.saveComment = function (conditon,callback) {
+    //数据库初始化
+    dbAction.dbInit(function insertComment(err,db) {
+        if(err){
+            return callback(err,"Sorry,数据库发生了内部错误!");
+        }else {
+            console.log("insert comment action.");
+            //读取数据库
+            db.collection("QCOMMENTS", function (err,collection) {
+                if (err){
+                    dbAction.dbLogout(db);
+                    callback(err,"Sorry,发生了数据库内部错误!");
+                }else {
+                    //插入用户数据
+                    collection.insert(conditon,function(err,results){
+                        if(err){
+                            dbAction.dbLogout(db);
+                            callback(err,"Sorry,发生了数据库内部错误!");
+                        }else {
+                            //注销用户连接
+                            dbAction.dbLogout(db);
+                            callback(null,null);
+                        }
+                    });
+                }
+            });
+        }
+    });
+};
+
+//增加阅读量
+Articles.updateRead = function (condition,callback) {
+    //数据库初始化
+    dbAction.dbInit(function updateRead(err,db) {
+        if(err){
+            return callback(err,"Sorry,数据库发生了内部错误!");
+        }else {
+            //读取数据库
+            db.collection("QARTICLE", function (err,collection) {
+                if (err){
+                    dbAction.dbLogout(db);
+                    callback(err,"Sorry,发生了数据库内部错误!");
+                }else {
+                    //更新数据
+                    collection.update({
+                        title:condition.title,
+                        author:condition.author,
+                        $isolated:1
+                    },{
+                        $inc:{readNumber:1}
+                    },{
+                        upsert:false,multi:true, w:1
+                    }, function (err,results) {
+                        if(err){
+                            dbAction.dbLogout(db);
+                            return callback(err,"Sorry, 数据库发生了内部错误!");
+                        }else {
+                            dbAction.dbLogout(db);
+                            callback(null,null);
+                        }
+                    });
+                }
+            });
+        }
+    });
+};
+
+//更新评论数
+Articles.updateComment = function (condition,callback) {
+    dbAction.dbInit(function updateRead(err,db) {
+        if(err){
+            return callback(err,"Sorry,数据库发生了内部错误!");
+        }else {
+            //读取数据库
+            db.collection("QARTICLE", function (err,collection) {
+                if (err){
+                    dbAction.dbLogout(db);
+                    callback(err,"Sorry,发生了数据库内部错误!");
+                }else {
+                    //更新数据
+                    collection.update({
+                        title:condition.title,
+                        author:condition.author,
+                        $isolated:1
+                    },{
+                        $inc:{commentNumber:1}
+                    },{
+                        upsert:false,multi:true, w:1
+                    }, function (err,results) {
+                        if(err){
+                            dbAction.dbLogout(db);
+                            return callback(err,"Sorry, 数据库发生了内部错误!");
+                        }else {
+                            dbAction.dbLogout(db);
+                            callback(null,null);
+                        }
                     });
                 }
             });

@@ -14,6 +14,10 @@ $(function () {
     $('#sendArticle').click(function () {
         pageAction.postCheck();
     });
+    //刷新事件绑定
+    window.addEventListener("beforeunload", function(event) {
+        event.returnValue = "警告";
+    });
 });
 
 //页面动作

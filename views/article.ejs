@@ -10,6 +10,7 @@
     <script type="text/javascript" src="/javascripts/lib/bootstrap.js"></script>
     <script type="text/javascript" src="/Ueditor/ueditor.parse.js"></script>
     <script type="text/javascript" src="/javascripts/article.js"></script>
+    <script type="text/javascript" src="/javascripts/header.js"></script>
 
 </head>
 <body>
@@ -17,7 +18,7 @@
 <div id="backgroundImg" class="opacityHalf blur"></div>
 <%- include header%>
 <!--正文区域-->
-<div class="container totalBackground opacityAlmost">
+<div class="container totalBackground">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 h3" id="articleTitle"><%= Title %></div>
     </div>
@@ -33,10 +34,10 @@
     </div>
     <div class="row">
         <div class="col-md-1 col-md-offset-5">
-            <a class="glyphicon glyphicon-thumbs-up" id="up"><span class="badge">999</span></a>
+            <a class="glyphicon glyphicon-thumbs-up" id="up"><span class="badge"></span></a>
         </div>
         <div class="col-md-1">
-            <a class="glyphicon glyphicon-thumbs-down" id="down"><span class="badge">999</span></a>
+            <a class="glyphicon glyphicon-thumbs-down" id="down"><span class="badge"></span></a>
 
         </div>
     </div>
@@ -56,19 +57,14 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="comments-wrapper col-md-12">
                 <div class="comment-label">评论</div>
-
-                <div class="entry-comments">
-                    <label>{{comment.commentator}}: </label>
-                    <label>{{comment.content}}</label><br>
-                    <label>{{comment.dates}}</label>
-                </div>
-
             </div>
         </div>
     </div>
 
 </div>
 <%- include pageAnchor%>
+<!--模态弹窗口组件-->
+<%-include modalWindow.ejs%>
 <%- include footer%>
 </body>
 </html>
