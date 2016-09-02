@@ -5,6 +5,16 @@
 $(function () {
     pageAction.readArticleList();
     $('#iconPopover').popover();
+    $('.contentNav').click(function () {
+        $.post('/',{
+                action : "readList",
+                type : $(this).text(),
+                number : 15
+            }, function (JSONdata) {
+                pageAction.updatePage(JSONdata);
+            },
+            "JSON");
+    });
 });
 
 //页面对象
@@ -39,6 +49,7 @@ pageAction.updatePage = function (JSONdata) {
 
     if(JSONdata.status){
         //读取成功,一次读取15条
+        $('#articleList').children().remove();
         var Articles = JSON.parse(JSONdata.articleData);
         //文章父组件
         var $articleList = $('#articleList');

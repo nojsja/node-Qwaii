@@ -306,4 +306,86 @@ Articles.updateComment = function (condition,callback) {
     });
 };
 
+//赞成或反对
+Articles.upOrDown = function (condition,callback) {
+    dbAction.dbInit(function (err,db) {
+        if(err){
+            return callback(err, "抱歉,数据库发生错误!");
+        }else {
+            db.collection('QCOMMENTS', function (err,collection) {
+               if(err){
+                   dbAction.dbLogout(db);
+                   return callback(err, "抱歉,数据库发生错误!");
+               }else {
+                   collection.find({
+                       articleTitle: condition.title,
+                       articleAuthor: condition.author
+                   }, function (err,cursor) {
+                       if(err){
+                           dbAction.dbLogout(db);
+                           return callback(err,"抱歉,数据库发生错误!");
+                       }else {
+                           cursor.count(function (err,count) {
+                               if(err){
+                                   cursor.close();
+                                   dbAction.dbLogout(db);
+                                   return callback(err, "抱歉数据库发生错误!");
+                               }else{
+                                   cursor.close();
+                                   console.log("count: " + count);
+                                   if(count == 0){
+                                       collection.insert({
+                                           articleTitle: condition.articleTitle,
+                                           articleAuthor: condition.articleAuthor,
+                                           comments: [],
+                                           up: (condition.action == "up") ? [condition.commentator] : [],
+                                           down: (condition.action == "down") ? [condition.commentator] : []
+                                       }, function (err,results) {
+                                           if(err){
+                                               dbAction.dbLogout(db);
+                                               return callback(err,"抱歉数据库发生错误");
+                                           }else{
+                                               dbAction.dbLogout(db);
+                                               //插入成功
+                                               return callback(false,null);
+                                           }
+                                       });
+                                   }else {
+                                       updateUpOrDown(collection);
+                                   }
+                               }
+                           });
+                       }
+                   });
+               }
+            });
+        }
+    });
+
+    function updateUpOrDown(collection){
+
+        var action;
+        //定义更新动作
+        (condition.action == "up") ? action = {$addToSet:{up:condition.commentator}} :
+            action = {$addToSet:{down:condition.commentator}};
+
+        collection.update({
+            articleTitle:condition.articleTitle,
+            articleAuthor:condition.articleAuthor,
+            $isolated:1
+        },action,{
+            upsert:false,multi:true, w:1
+        }, function (err,results) {
+            if(err){
+                dbAction.dbLogout(db);
+                return callback(err,"Sorry, 数据库发生了内部错误!");
+            }else {
+                dbAction.dbLogout(db);
+                //数据更新成功
+                callback(false,null);
+            }
+        });
+    }
+};
+
 module.exports = Articles;

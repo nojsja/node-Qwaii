@@ -7,6 +7,16 @@ $(function(){
     pageAction.getContent();
     //获取文章评论
     pageAction.getArticleInfo();
+    //赞同或反对
+    $('#up').click(function () {
+        /*保存作用域*/
+        var that = this;
+        pageAction.upOrDown(that);
+    });
+    $('#down').click(function () {
+        var that = this;
+        pageAction.upOrDown(that);
+    });
     //插入评论
     $('#makeComment span').click(function(){
         pageAction.insertComment();
@@ -30,6 +40,33 @@ pageAction.modalWindow = function (text) {
     });
 };
 
+//赞同或反对
+pageAction.upOrDown = function (object){
+    var action;
+    if(object == document.getElementById('up')){
+        action = "up";
+    }else {
+        action = "down";
+    }
+
+    $.post('/article/upOrDown',{
+            action: action,
+            title: $('#articleTitle').text(),
+            author: $('#articleAuthor').text()
+        },
+        function (status) {
+            if(status.err){
+                pageAction.modalWindow(status.statusText);
+            }else {
+                if(action == "up"){
+                    $('#up > span').text(parseInt($('#up > span').text()) + 1);
+                }else {
+                    $('#down > span').text(parseInt($('#down > span').text()) + 1);
+                }
+            }
+        }, "JSON");
+}
+
 //得到文章数据
 pageAction.getContent = function () {
     var author = this.author;
@@ -41,6 +78,7 @@ pageAction.getContent = function () {
             $('#articleContent').append($(JSONdata.article.content));
             $('#up span').text(JSONdata.article.up);
             $('#down span').text(JSONdata.article.down);
+            $("img").lazyload({effect: "fadeIn"});
         }else {
             pageAction.modalWindow("读取出错!");
         }

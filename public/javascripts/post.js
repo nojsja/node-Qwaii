@@ -14,10 +14,18 @@ $(function () {
     $('#sendArticle').click(function () {
         pageAction.postCheck();
     });
-    //刷新事件绑定
-    window.addEventListener("beforeunload", function(event) {
-        event.returnValue = "警告";
+    //颜色变化
+    $('.type > div').click(function () {
+        pageAction.article.type = $(this).text();
+        $('.type > div').css({"background-color":"rgba(0,0,0,0)"});
+        $(this).css({"background-color":"#b5dccc"});
     });
+    //初始化
+    $('.type > div:eq(1)').css({"background-color":"#b5dccc"});
+    //刷新事件绑定
+    /*window.addEventListener("beforeunload", function(event) {
+        event.returnValue = "警告";
+    });*/
 });
 
 //页面动作
@@ -28,7 +36,7 @@ var pageAction = {
     /*文章属性*/
     article:{
         title:null,
-        type:"新闻",
+        type:"贴文",
         tags:[{tag:null}],
         abstract:null,
         content:null
@@ -105,8 +113,7 @@ pageAction.postCheck = function(){
         return;
     }
     with(pageAction){
-        article.title = $('#articleTitle').val();
-        article.type = $('input[name="optionsRadios"]:checked').val();
+        article.title = "[" + article.type + "]" + $('#articleTitle').val();
         article.abstract = ueAbstract.getPlainTxt();
         article.content = ueContent.getContent();
         //发表文章

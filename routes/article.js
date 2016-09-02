@@ -69,6 +69,30 @@ module.exports = function (app) {
         });
     });
 
+    //点赞或差评
+    app.post('/article/upOrDown',function (req, res) {
+        console.log('up or down');
+        var condition = {
+            articleTitle: req.body.title,
+            articleAuthor: req.body.author,
+            action: req.body.action,
+            commentator: req.session.userName
+        };
+        Articles.upOrDown(condition, function (err,statusText) {
+            if(err){
+                res.json({
+                    err:err,
+                    statusText: statusText
+                });
+            }else{
+                res.json({
+                    err:false
+                });
+            }
+        });
+
+    });
+
     //更新阅读量
     function updateRead(req,res){
         console.log("update read.");

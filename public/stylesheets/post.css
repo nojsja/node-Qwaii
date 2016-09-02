@@ -70,6 +70,33 @@ body {
     margin-bottom: 1em;
 }
 
+.type > div {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    box-shadow:0px 0px 8px #238eae inset;
+    -moz-box-shadow:0px 0px 8px #238eae inset;
+    -o-box-shadow:0px 0px 8px #238eae inset;
+    -webkit-box-shadow: 0px 0px 8px #238eae inset;
+    padding: 0.5em;
+    font-family: 华文中宋;
+    color: #767676;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.tagDiv{
+    margin: 0px auto;
+    text-align: center;
+    border-left: double 1px #238eae;
+    padding: 0.5em;
+    font-family: 微软雅黑;
+    color: #238eae;
+}
+
+.type > div:hover {
+    background-color: #b5dccc;
+}
+
 #sendDiv {
     text-align: center;
 }
