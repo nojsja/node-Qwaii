@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var format = require('util').format;
 var ueditor = require("ueditor");
+var schedule = require('node-schedule');
 //持久化session信息
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
@@ -18,6 +19,9 @@ var search = require('./routes/search');
 var settings =require('./settings.js');
 var users = require('./routes/users');
 
+//数据库定时器
+var MongoSchedule = require('./models/MongoSchedule.js');
+
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,8 +30,9 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+//设置body的最长限制
+app.use(bodyParser.json({limit:"50mb"}));
+app.use(bodyParser.urlencoded({ limit: "50mb" ,extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -82,6 +87,13 @@ post(app);
 article(app);
 search(app);
 users(app);
+
+//node-schedule定时执行任务,更新popolar表,每天的凌晨零点
+var rule = new schedule.RecurrenceRule()
+rule.dayOfWeek = new schedule.Range(0,6);
+rule.hour = 0;
+rule.minute = 0;
+var scheduleJob = schedule.scheduleJob(rule, MongoSchedule);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

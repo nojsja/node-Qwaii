@@ -23,6 +23,8 @@ $(function(){
     });
     //更新阅读量
     pageAction.updateReadNumber();
+    //更新点赞情况
+    pageAction.getUpAndDown();
 });
 
 //页面动作对象
@@ -58,14 +60,39 @@ pageAction.upOrDown = function (object){
             if(status.err){
                 pageAction.modalWindow(status.statusText);
             }else {
-                if(action == "up"){
-                    $('#up > span').text(parseInt($('#up > span').text()) + 1);
-                }else {
-                    $('#down > span').text(parseInt($('#down > span').text()) + 1);
-                }
+                //读取一篇文章的赞同和反对数
+                pageAction.getUpAndDown();
             }
+
         }, "JSON");
 }
+
+//得到一篇文章的赞同数和反对数
+pageAction.getUpAndDown = function () {
+    $.post('/article/readUpAndDown',{
+            title: $('#articleTitle').text(),
+            author: $('#articleAuthor').text()
+        }, function (status) {
+            if(status.err){
+                pageAction.modalWindow(status.statusText);
+            }else {
+                //更新赞同数和反对数
+                $('#up span').text(status.up);
+                $('#down span').text(status.down);
+                if(status.isUp){
+                    $('#up .badge').css({
+                       'background-color':"green"
+                    });
+                }else if(status.isDown){
+                    $('#down .badge').css({
+                        'background-color':"green"
+                    });
+                }
+            }
+        },
+        "JSON");
+};
+
 
 //得到文章数据
 pageAction.getContent = function () {
@@ -76,8 +103,6 @@ pageAction.getContent = function () {
         if(JSONdata.status){
             //渲染文章
             $('#articleContent').append($(JSONdata.article.content));
-            $('#up span').text(JSONdata.article.up);
-            $('#down span').text(JSONdata.article.down);
             $("img").lazyload({effect: "fadeIn"});
         }else {
             pageAction.modalWindow("读取出错!");
@@ -95,6 +120,8 @@ pageAction.getArticleInfo = function () {
             //删除所有子节点
             $('.comments-wrapper').children('div[class!="comment-label"]').remove();
             var commentsData = JSON.parse(JSONdata.commentsData);
+            $('#up > span').text(commentsData.up);
+            $('#down > span').text(commentsData.down);
             $.each(commentsData.comments, function (index,comment) {
                 var $comment = $('<div class="entry-comments"></div>');
 
@@ -109,7 +136,6 @@ pageAction.getArticleInfo = function () {
                 var $dateLabel = $('<label></label>');
                 $dateLabel.text(comment.date);
                 $dateLabel.appendTo($comment);
-
                 $comment.appendTo($('.comments-wrapper'));
             });
         }else {
@@ -123,7 +149,6 @@ pageAction.insertComment = function () {
     var content = $('#makeComment input').val();
     var title = this.title;
     var author = this.author;
-
     if(!content){
         return this.modalWindow("你还没有输入评论内容!");
     }

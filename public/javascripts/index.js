@@ -4,6 +4,7 @@
 //限定作用域
 $(function () {
     pageAction.readArticleList();
+    //动画效果触发
     $('#iconPopover').popover();
     $('.contentNav').click(function () {
         $.post('/',{
@@ -15,6 +16,12 @@ $(function () {
             },
             "JSON");
     });
+
+    //热门内容获取和刷新
+    //注意this的作用域会动态绑定, 绑定对象是调用者的执行环境
+    $('#hotArticleSpan').click(pageAction.updateHot);
+    $('#hotPictureSpan').click(pageAction.updateHot);
+    $('#hotVideoSpan').click(pageAction.updateHot);
 });
 
 //页面对象
@@ -42,6 +49,49 @@ pageAction.readArticleList = function () {
     },
     "JSON");
 
+};
+
+//更新热门内容
+pageAction.updateHot = function () {
+    var actionType = $(this).text();
+    $.post('/updateHot',{
+        actionType: actionType
+    }, function (data) {
+        var jsonData = JSON.parse(data);
+        if(jsonData.err){
+            pageAction.modalWindow(jsonData.statusText);
+        }else {
+            if(jsonData.hotList){
+                /*清空缓存列表*/
+                if(actionType == "图片"){
+                    $('#hotPicture').children().remove();
+                }else if(actionType == "视频"){
+                    $('#hotVideo').children().remove();
+                }else if(actionType == "贴文"){
+                    $('#hotArticle').children().remove();
+                }
+                $.each(jsonData.hotList, function (index,item) {
+                    var $hotDiv = $('<div class="col-md-12"></div>');
+                    var $hotP = $('<div class="popuItem"></div>');
+
+                    var $hotContent = $('<a></a>');
+                    $hotContent.prop('href',"/article/"+item.author+"/"+item.title+"/"+item.date);
+                    $hotContent.text(item.title);
+                    $hotContent.appendTo($hotP);
+                    $hotP.appendTo($hotDiv);
+
+                    if(actionType == "图片"){
+                        $('#hotPicture').append($hotDiv);
+                    }else if(actionType == "视频"){
+                        $('#hotVideo').append($hotDiv);
+                    }else if(actionType == "贴文"){
+                        $('#hotArticle').append($hotDiv);
+                    }
+                });
+            }
+        }
+    },
+    "JSON");
 };
 
 //更新页面
@@ -94,7 +144,8 @@ pageAction.updatePage = function (JSONdata) {
             $row.appendTo($container);
             $articleList.append($container);
         });
-
+        //触发一次click事件
+        $('#hotArticleSpan').click();
     }else {
         //发生错误
         this.modalWindow("服务器发生错误,请刷新重试!");

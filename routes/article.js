@@ -16,6 +16,10 @@ module.exports = function (app) {
 
     });
 
+    app.get('/test', function (req,res) {
+       res.render('test');
+    });
+    
     //渲染内容
     app.post('/article/:author/:title',function(req,res){
 
@@ -30,13 +34,12 @@ module.exports = function (app) {
         }
         if(req.body.action == "updateRead"){
             updateRead(req,res);
-            return;
         }
     });
 
     //发布评论
     app.post('/article/makeComment', function (req,res) {
-        console.log('make comment.');
+        console.log('make comment.' + req.session.userName);
         var comment = {
             content : req.body.content,
             date : new Date().toLocaleDateString(),
@@ -69,6 +72,32 @@ module.exports = function (app) {
         });
     });
 
+    //读取点赞和反对
+    app.post('/article/readUpAndDown', function (req,res) {
+        console.log('read up and down');
+        var condition = {
+            articleTitle: req.body.title,
+            articleAuthor: req.body.author,
+            userName: req.session.userName
+        };
+        Articles.readUpAndDown(condition, function (err,status) {
+           if(err){
+               return res.json({
+                   err:err,
+                   statusText: status
+               });
+           }else {
+               return res.json({
+                   up: status.up,
+                   down: status.down,
+                   isUp: status.isUp,
+                   isDown: status.isDown
+               });
+
+           }
+        });
+    });
+
     //点赞或差评
     app.post('/article/upOrDown',function (req, res) {
         console.log('up or down');
@@ -78,17 +107,11 @@ module.exports = function (app) {
             action: req.body.action,
             commentator: req.session.userName
         };
-        Articles.upOrDown(condition, function (err,statusText) {
-            if(err){
-                res.json({
-                    err:err,
-                    statusText: statusText
-                });
-            }else{
-                res.json({
-                    err:false
-                });
-            }
+        Articles.upOrDown(condition, function (err,status) {
+            res.json({
+                err:err,
+                statusText: status
+            });
         });
 
     });
@@ -103,7 +126,15 @@ module.exports = function (app) {
         Articles.updateRead(articleCondition, function (err,statusText) {
             if(err){
                 console.log("updateRead ERR: " + statusText);
+                return res.json({
+                    err:err,
+                    statusText:"抱歉,数据库发生错误!"
+                });
             }
+            return res.json({
+                err:null,
+                statusText: "ok"
+            });
         });
     }
 
@@ -132,9 +163,7 @@ module.exports = function (app) {
                     res.json({
                         status: true,
                         article: {
-                            content: articleData.content,
-                            up: articleData.up,
-                            down: articleData.down
+                            content: articleData.content
                         }
                     });
                 }

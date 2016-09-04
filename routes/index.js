@@ -32,4 +32,22 @@ module.exports = function(app){
         }
     });
 
+    //更新热门内容
+    app.post('/updateHot', function (req,res) {
+       var actionType = req.body.actionType;
+        Articles.updateHot({type:actionType}, function (err,jsonData) {
+           if(err){
+               res.json(JSON.stringify({
+                   err:err,
+                   statusText:"抱歉,数据库发生错误!"
+               }));
+           }else {
+               res.json(JSON.stringify({
+                  err:null,
+                   hotList:jsonData
+               }));
+           }
+        });
+    });
+
 };

@@ -22,7 +22,7 @@ Articles.prototype.save = function (callback) {
         type : this.type, date : this.date,
         tags: this.tags, abstract: this.abstract,
         content : this.content, readNumber: 0,
-        commentNumber:0,up:0,down:0
+        commentNumber:0
     };
 
     //数据库初始化
@@ -172,23 +172,25 @@ Articles.findComments = function (condition,callback) {
                                 if(err){
                                     console.log(err);
                                 }
-                                console.log("评论数量: " + count);
+                                console.log("目标文章: " + count);
                             });
                             //评论数据
                             var commentsData = {comments:[]};
-                            cursor.each(function (err,item) {
+                            commentsData.up = 0;
+                            commentsData.down = 0;
+                            cursor.nextObject(function (err,item) {
                                 if(err){
                                     cursor.close();
                                     dbAction.dbLogout(db);
                                     return callback(err,null);
-                                }
-                                if(item){
-                                    commentsData.comments.push({
-                                        commentator: item.commentator,
-                                        content: item.content,
-                                        date: item.date
-                                    });
                                 }else {
+                                    if(item){
+                                        commentsData.comments = item.comments;
+                                        commentsData.up = item.up.length;
+                                        commentsData.down = item.down.length;
+                                    }
+                                    console.log('up length:' + commentsData.up);
+                                    console.log('down length:' + commentsData.down);
                                     cursor.close();
                                     dbAction.dbLogout(db);
                                     callback(null, commentsData);
@@ -203,7 +205,7 @@ Articles.findComments = function (condition,callback) {
 };
 
 //给一篇文章插入评论
-Articles.saveComment = function (conditon,callback) {
+Articles.saveComment = function (condition,callback) {
     //数据库初始化
     dbAction.dbInit(function insertComment(err,db) {
         if(err){
@@ -216,17 +218,82 @@ Articles.saveComment = function (conditon,callback) {
                     dbAction.dbLogout(db);
                     callback(err,"Sorry,发生了数据库内部错误!");
                 }else {
-                    //插入用户数据
-                    collection.insert(conditon,function(err,results){
+                    collection.find({
+                        articleTitle: condition.articleTitle,
+                        articleAuthor: condition.articleAuthor
+                    }, function (err,cursor) {
                         if(err){
                             dbAction.dbLogout(db);
-                            callback(err,"Sorry,发生了数据库内部错误!");
+                            return callback(err, "Sorry,数据库发生内部错误!");
                         }else {
-                            //注销用户连接
-                            dbAction.dbLogout(db);
-                            callback(null,null);
+                            cursor.count(function (err,count) {
+                               if(err){
+                                   cursor.close();
+                                   dbAction.dbLogout(db);
+                                   return callback(err,"Sorry,数据库发生内部错误!");
+                               }else {
+                                   console.log(3);
+                                   if(count == 0){
+                                       console.log(1);
+                                       collection.insert({
+                                           articleAuthor: condition.articleAuthor,
+                                           articleTitle: condition.articleTitle,
+                                           comments: [{
+                                               commentator: condition.commentator,
+                                               content: condition.content,
+                                               date: condition.date
+                                           }],
+                                           up:[],
+                                           down:[]
+                                       }, function (err,results) {
+                                           if(err){
+                                               cursor.close();
+                                               dbAction.dbLogout(db);
+                                               return callback(err,"数据库发生内部错误!");
+                                           }else{
+                                               cursor.close();
+                                               dbAction.dbLogout(db);
+                                               return callback(null,null);
+                                           }
+                                       });
+                                   }else {
+                                       cursor.close();
+                                       console.log(2);
+                                       //添加一条新评论
+                                       insert(collection);
+                                   }
+                               }
+                            });
                         }
                     });
+                }
+            });
+        }
+        //添加一条评论数据
+        function insert(collection){
+            console.log('4');
+            collection.update({
+                articleTitle: condition.articleTitle,
+                articleAuthor: condition.articleAuthor
+     /*           $ioslated: 1*/
+            },{$push:{
+                comments:{
+                    commentator: condition.commentator,
+                    content: condition.content,
+                    date: condition.date
+                }
+            }},{
+                upsert:false,
+                multi:true,
+                w:1
+            }, function (err,results) {
+                if(err){
+                    dbAction.dbLogout(db);
+                    return callback(err,"Sorry,数据库发生错误!");
+                }else {
+                     console.log(5);
+                    dbAction.dbLogout(db);
+                    return callback(null,null);
                 }
             });
         }
@@ -318,8 +385,8 @@ Articles.upOrDown = function (condition,callback) {
                    return callback(err, "抱歉,数据库发生错误!");
                }else {
                    collection.find({
-                       articleTitle: condition.title,
-                       articleAuthor: condition.author
+                       articleTitle: condition.articleTitle,
+                       articleAuthor: condition.articleAuthor
                    }, function (err,cursor) {
                        if(err){
                            dbAction.dbLogout(db);
@@ -360,32 +427,158 @@ Articles.upOrDown = function (condition,callback) {
                }
             });
         }
+        function updateUpOrDown(collection){
+
+            var action;
+            //定义更新动作
+            (condition.action == "up") ? action = {$addToSet:{up:condition.commentator}} :
+                action = {$addToSet:{down:condition.commentator}};
+
+            console.log('action:' + action);
+            collection.update({
+                articleTitle:condition.articleTitle,
+                articleAuthor:condition.articleAuthor,
+                $isolated:1
+            },action,{
+                upsert:false,multi:true, w:1
+            }, function (err,results) {
+                if(err){
+                    dbAction.dbLogout(db);
+                    return callback(err,"Sorry, 数据库发生了内部错误!");
+                }else {
+                    dbAction.dbLogout(db);
+                    //数据更新成功
+                    callback(false,null);
+                }
+            });
+        }
     });
+};
 
-    function updateUpOrDown(collection){
+//读取文章的赞成数和反对数
+Articles.readUpAndDown = function (condition,callback) {
+    dbAction.dbInit(function (err,db) {
+       db.collection("QCOMMENTS", function (err,collection) {
+          if(err){
+              dbAction.dbLogout(db);
+              return callback(err,"抱歉,数据库发生内部错误!");
+          }else {
+              collection.find({
+                  articleTitle: condition.articleTitle,
+                  articleAuthor: condition.articleAuthor
+              }, function (err,cursor) {
+                  if(err){
+                      dbAction.dbLogout(db);
+                      return callback(err,"抱歉,数据库发生错误!");s
+                  }else{
+                      cursor.nextObject(function (err,item) {
+                         if(err){
+                             cursor.close();
+                             dbAction.dbLogout(db);
+                             return callback(err,"抱歉数据库发生错误");
+                         }else {
+                             if(item){
+                                 var isUp = false;
+                                 var isDown = false;
+                                 for(var i = 0; item.up[i]; i++){
+                                     if(item.up[i] == condition.userName){
+                                         isUp = true;
+                                         callback(null,{
+                                             isUp: isUp,
+                                             isDown: isDown,
+                                             up: item.up.length,
+                                             down: item.down.length
+                                         });
+                                         cursor.close();
+                                         dbAction.dbLogout(db);
+                                         return;
+                                     }
+                                     if(item.down[i] == condition.userName){
+                                         isDown = true;
+                                         callback(null,{
+                                             isUp: isUp,
+                                             isDown: isDown,
+                                             up: item.up.length,
+                                             down: item.down.length
+                                         });
+                                         cursor.close();
+                                         dbAction.dbLogout(db);
+                                         return;
+                                     }
+                                 }
+                                 //未投票
+                                 callback(null,{
+                                     isUp: isUp,
+                                     isDown: isDown,
+                                     up: item.up.length,
+                                     down: item.down.length
+                                 });
+                                 cursor.close();
+                                 dbAction.dbLogout(db);
+                             }else {
+                                 //未投票
+                                 callback(null,{
+                                     isVoted: false,
+                                     up: 0,
+                                     down: 0
+                                 });
+                                 cursor.close();
+                                 dbAction.dbLogout(db);
+                             }
+                         }
+                      });
+                  }
+              });
+          }
+       });
+    });
+};
 
-        var action;
-        //定义更新动作
-        (condition.action == "up") ? action = {$addToSet:{up:condition.commentator}} :
-            action = {$addToSet:{down:condition.commentator}};
-
-        collection.update({
-            articleTitle:condition.articleTitle,
-            articleAuthor:condition.articleAuthor,
-            $isolated:1
-        },action,{
-            upsert:false,multi:true, w:1
-        }, function (err,results) {
-            if(err){
-                dbAction.dbLogout(db);
-                return callback(err,"Sorry, 数据库发生了内部错误!");
-            }else {
-                dbAction.dbLogout(db);
-                //数据更新成功
-                callback(false,null);
-            }
-        });
-    }
+//更新热门内容列表
+Articles.updateHot = function (type,callback) {
+    dbAction.dbInit(function (err,db) {
+       if(err){
+           console.log(1);
+           return callback(err,null);
+       }else {
+           console.log(2);
+           db.collection('QPOPULAR', function (err,collection) {
+               if(err){
+                   console.log(3);
+                   dbAction.dbLogout(db);
+                   return callback(err,null);
+               }else {
+                   console.log(4);
+                   collection.find(type, function (err,cursor) {
+                       if(err){
+                           console.log(5);
+                           dbAction.dbLogout(db);
+                           return callback(err,null);
+                       }
+                       //热门内容列表
+                       var hotList = [];
+                       cursor.each(function (err,item) {
+                           if(err){
+                               cursor.close();
+                               dbAction.dbLogout(db);
+                               return callback(err,hotList);
+                           }
+                           if(!item){
+                               cursor.close();
+                               dbAction.dbLogout(db);
+                               return callback(null,hotList);
+                           }
+                           hotList.push({
+                               title: item.title,
+                               author: item.author,
+                               date: item.date
+                           });
+                       });
+                   });
+               }
+           });
+       }
+    });
 };
 
 module.exports = Articles;
