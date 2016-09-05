@@ -11,7 +11,18 @@ module.exports = function (app) {
         if(!req.session.userName){
             res.render('login',{title:"登录或注册"});
         }else {
-            res.render('post',{title:'我要投稿'});
+            if(req.query.from == "bilibili"){
+                res.render('post',{
+                    title:'我要转载',
+                    from:'bilibili'
+                });
+            }else {
+                res.render('post',{
+                    title:'我要投稿',
+                    from:'Qwaii'
+                });
+            }
+
         }
 
     });

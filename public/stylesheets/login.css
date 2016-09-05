@@ -20,7 +20,7 @@ body {
 .total {
     border: solid 1px blue;
     min-width: 850px;
-    background-color: #f4f4f4;
+    background-color: rgba(244,244,244,0.9);
     -webkit-box-shadow:0 0 10px black;
     -moz-box-shadow:0 0 10px black;
     box-shadow:0 0 10px black;

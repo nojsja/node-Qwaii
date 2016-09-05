@@ -26,7 +26,7 @@ body {
 }
 
 .total {
-    background-color: #fdfbf6;
+    background-color: rgba(253,251,246,0.90);
     border: double 3px #353846;
     margin-bottom: 2em;
 }
@@ -43,7 +43,7 @@ body {
     box-shadow: 5px 5px #353846;
 }
 
-#articleTitle {
+#articleTitle,#bilibiliAV {
     margin-bottom: 1.5em;
     width: 100%;
 }

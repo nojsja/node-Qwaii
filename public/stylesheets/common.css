@@ -48,6 +48,11 @@
     letter-spacing: 1px;
 }
 
+#headerNav {
+    background-color: rgba(0, 0, 0, 0.80);
+    border-bottom: solid 3px #c0291f;
+}
+
 .blur {
     -webkit-filter: blur(6px); /* Chrome, Opera */
     -moz-filter: blur(6px);

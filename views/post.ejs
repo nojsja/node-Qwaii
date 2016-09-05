@@ -23,9 +23,9 @@
 <div id="backgroundImg" class="opacityHalf"></div>
 <%- include header%>
 
-<div class="container total opacityAlmost">
+<div class="container total">
     <div class="row">
-        <div class="col-md-2 col-md-offset-5 postTitle">我要投稿</div>
+        <div class="col-md-2 col-md-offset-5 postTitle"><%= title %></div>
     </div>
     <div class="row">
         <div class="col-md-2 col-md-offset-1 title border">标题</div>
@@ -35,6 +35,18 @@
             <input id="articleTitle" class="shadow" type="text" placeholder="请输入标题">
         </div>
     </div>
+
+    <!--b站转载-->
+    <% if(from == "bilibili") { %>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1 title border"> bilibili</div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <input id="bilibiliAV" class="shadow" type="text" placeholder="请输入哔哩哔哩视频AV号">
+        </div>
+    </div>
+    <% } %>
 
     <!--分类-->
     <div class="row">

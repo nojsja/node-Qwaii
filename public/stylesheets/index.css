@@ -57,7 +57,7 @@ header {
     -webkit-box-shadow:0 0 20px #cc507f;
     -moz-box-shadow:0 0 20px #cc507f;
     box-shadow:0 0 20px #cc507f;
-    background-color: white;
+    background-color: rgba(255,255,255,0.9);
 
 }
 
@@ -121,17 +121,15 @@ header {
 
 #hotView {
     margin-top: 2em;
-    background-color: #fdfbf6;
-    -webkit-box-shadow:0 0 8px black inset;
-    -moz-box-shadow:0 0 8px black inset;
-    box-shadow:0 0 8px black inset;
+    -webkit-box-shadow:0 0 5px black;
+    -moz-box-shadow:0 0 5px black;
+    box-shadow:0 0 5px black;
 }
 
 .hotTitle {
     width: 100%;
     height: 15em;
     overflow-y:  scroll;;
-    border: solid 1px #a6a6a6;
     border-top: 0em;
 }
 
@@ -144,6 +142,7 @@ header {
 .navTabsBorder {
     margin-top: 1em;
     height: auto;
+    background-color: rgba(225,235,253,0.5);
 }
 
 .articleView {
@@ -153,7 +152,7 @@ header {
     border-left: groove 1px;
     border-right: groove 1px;
 
-    background-color: white;
+    background-color: rgba(255,255,255,0.8);
     -webkit-box-shadow:0 0 8px black;
     -moz-box-shadow:0 0 8px black;
     box-shadow:0 0 8px black;
@@ -190,7 +189,7 @@ header {
 .popuItem {
     font-size: 1em;
     text-align: left;
-    border-bottom: dotted 1px #e3e3e3;
+    border-bottom: dotted 1px #a6a6a6;
     font-family: 微软雅黑;
     width: 100%;
     margin: 0.5em;

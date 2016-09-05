@@ -22,6 +22,9 @@ $(function () {
     });
     //初始化
     $('.type > div:eq(1)').css({"background-color":"#b5dccc"});
+
+    //判断文章是转载的还是原创的
+    pageAction.article.from = ($('#bilibiliAV').length > 0) ? "bilibili" : "Qwaii";
     //刷新事件绑定
     /*window.addEventListener("beforeunload", function(event) {
         event.returnValue = "警告";
@@ -39,8 +42,11 @@ var pageAction = {
         type:"贴文",
         tags:[{tag:null}],
         abstract:null,
-        content:null
-    }
+        content:null,
+        from:"Qwaii",
+        source:null
+    },
+    //原创文章是origin,转载B站的话是bilibili
 };
 
 //模态弹窗
@@ -96,6 +102,10 @@ pageAction.tagCheck = function () {
 //文章编辑检测
 pageAction.postCheck = function(){
 
+    if(!$('#bilibiliAV').val()){
+        headerAction.modalWindow("填写bilibili AV号才能成功转载额!");
+        return;
+    }
     if(!$('#articleTitle').val()){
         headerAction.modalWindow("至少要填写文章标题吧!");
         return;
@@ -116,6 +126,7 @@ pageAction.postCheck = function(){
         article.title = "[" + article.type + "]" + $('#articleTitle').val();
         article.abstract = ueAbstract.getPlainTxt();
         article.content = ueContent.getContent();
+        article.source = $('#bilibiliAV').val();
         //发表文章
         sendPost();
     }
@@ -125,7 +136,7 @@ pageAction.postCheck = function(){
 pageAction.sendPost = function () {
     $.post('/post',{
         //发送json对象
-       jsonArticle: JSON.stringify(pageAction.article),
+       jsonArticle: JSON.stringify(pageAction.article)
     }, function (JSONdata) {
         JSONdata.status ? pageAction.modalWindow(JSONdata.statusText): pageAction.modalWindow("出错啦!code: " + JSONdata.statusText);
     },

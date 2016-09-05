@@ -4,6 +4,7 @@
 //限定作用域
 $(function () {
     pageAction.readArticleList();
+    $('.pageNumber:eq(0)').prop('class','active pageNumber');
     //动画效果触发
     $('#iconPopover').popover();
     $('.contentNav').click(function () {
@@ -16,12 +17,20 @@ $(function () {
             },
             "JSON");
     });
+    $('.contentNav').click(function () {
+        $('.contentNav').css({'box-shadow':'','-webkit-box-shadow':'','-moz-box-shadow':''});
+        $(this).css({'box-shadow':'0px 0px 8px grey','-webkit-box-shadow':'0px 0px 8px grey','-moz-box-shadow':'0px 0px 8px grey'});
+    });
 
     //热门内容获取和刷新
     //注意this的作用域会动态绑定, 绑定对象是调用者的执行环境
     $('#hotArticleSpan').click(pageAction.updateHot);
     $('#hotPictureSpan').click(pageAction.updateHot);
     $('#hotVideoSpan').click(pageAction.updateHot);
+
+    //分页导航事件绑定
+    pageAction.pageNavbarAction();
+
 });
 
 //页面对象
@@ -43,7 +52,8 @@ pageAction.readArticleList = function () {
     $.post('/',{
         action : "readList",
         type : "All",
-        number : 15
+        number : 10,
+        start: 0
     }, function (JSONdata) {
         that.updatePage(JSONdata);
     },
@@ -75,7 +85,10 @@ pageAction.updateHot = function () {
                     var $hotP = $('<div class="popuItem"></div>');
 
                     var $hotContent = $('<a></a>');
-                    $hotContent.prop('href',"/article/"+item.author+"/"+item.title+"/"+item.date);
+                    $hotContent.attr('openHref',"/article/"+item.author+"/"+item.title+"/"+item.date);
+                    $hotContent.click(function () {
+                       window.open($hotContent.attr('openHref'));
+                    });
                     $hotContent.text(item.title);
                     $hotContent.appendTo($hotP);
                     $hotP.appendTo($hotDiv);
@@ -99,13 +112,17 @@ pageAction.updatePage = function (JSONdata) {
 
     if(JSONdata.status){
         //读取成功,一次读取15条
-        $('#articleList').children().remove();
+
         var Articles = JSON.parse(JSONdata.articleData);
+        if(Articles.articles.length == 0){
+            return this.modalWindow("抱歉,没有相关数据!");
+        }
+        $('#articleList').children().remove();
         //文章父组件
         var $articleList = $('#articleList');
         $.each(Articles.articles, function (index, article) {
             //jQuery动态操作DOM
-            var $container = $('<div class="container opacityAlmost" ></div>');
+            var $container = $('<div class="container" ></div>');
             var $row = $('<div class="row articleView">');
 
             //文章主要内容
@@ -113,8 +130,11 @@ pageAction.updatePage = function (JSONdata) {
             var $title = $('<div class="col-md-12 h3 articleTitle"></div>');
             var $a = $('<a></a>');
             $a.text(article.title);
-            $a.prop({
-                'href':"/article/" + article.author + "/" + article.title + "/" + article.date
+            $a.attr({
+                'openHref':"/article/" + article.author + "/" + article.title + "/" + article.date
+            });
+            $a.click(function () {
+                window.open($(this).attr('openHref'));
             });
             $title.append($a).appendTo($article);
             var $author = $('<div class="col-md-2 articleAuthor"></div>');
@@ -149,5 +169,64 @@ pageAction.updatePage = function (JSONdata) {
     }else {
         //发生错误
         this.modalWindow("服务器发生错误,请刷新重试!");
+    }
+};
+
+//分页导航事件
+pageAction.pageNavbarAction = function () {
+    var pageStart = 0;
+    var pageLimit = 10;
+    var that = this;
+    //点击首页按钮
+    $('#first').click(function () {
+        if($('.pageNumber:eq(0)').prop('class') == "active pageNumber"){
+            return;
+        }
+        $('.pageNumber[class="active pageNumber"]').prop('class','pageNumber');
+        $('.pageNumber:eq(0)').prop('class','active pageNumber');
+        pageStart = 0;
+        //读取文章列表
+        getList();
+    });
+    //点击页数按钮
+    $('.pageNumber').click(function () {
+        if($(this).prop('class') == "active pageNumber"){
+            return;
+        };
+        $('.pageNumber[class="active pageNumber"]').prop('class','pageNumber');
+        $(this).prop('class','active pageNumber');
+        pageStart = ($(this).children(0).text() - 1) * pageLimit;
+        getList();
+    });
+
+    //点击翻页按钮
+    $('#next').click(function () {
+        $('.pageNumber[class="active pageNumber"]').prop('class','pageNumber');
+        var $pageNumber = $('.pageNumber');
+        $.each($pageNumber.children(0), function (index,item) {
+           $(item).text( parseInt($(item).text()) + 10 );
+        });
+    });
+
+    $('#last').click(function () {
+        $('.pageNumber[class="active pageNumber"]').prop('class','pageNumber');
+        var $pageNumber = $('.pageNumber');
+        $.each($pageNumber.children(0), function (index,item) {
+            var $num = parseInt($(item).text());
+            $(item).text( ($num-10) > 0 ? ($num-10) : $num );
+        });
+    });
+
+    //读取文章列表
+    function getList(){
+        $.post('/',{
+                action : "readList",
+                type : "All",
+                number : pageLimit,
+                start: pageStart
+            }, function (JSONdata) {
+                that.updatePage(JSONdata);
+            },
+            "JSON");
     }
 };

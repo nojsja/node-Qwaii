@@ -12,7 +12,8 @@ module.exports = function(app){
         if(req.body.action == "readList"){
             Articles.findSome({
                 type: req.body.type,
-                number: req.body.number
+                number: req.body.number,
+                start:req.body.start
             }, function (err,JSONdata) {
                 if(err){
                     console.error("this is :" + err);

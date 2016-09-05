@@ -11,6 +11,8 @@ function Articles(article){
     this.abstract = article.abstract;
     this.tags = article.tags;
     this.type = article.type;
+    this.from = article.from;
+    this.source = article.source;
     this.content = article.content;
     this.date = new Date();
 }
@@ -22,6 +24,7 @@ Articles.prototype.save = function (callback) {
         type : this.type, date : this.date,
         tags: this.tags, abstract: this.abstract,
         content : this.content, readNumber: 0,
+        from: this.from,source:this.source,
         commentNumber:0
     };
 
@@ -54,7 +57,7 @@ Articles.prototype.save = function (callback) {
     });
 };
 
-//查找
+//遍历查找文章列表
 Articles.findSome = function (condition,callback) {
     //数据库初始化
     dbAction.dbInit(function findArticle(err,db) {
@@ -73,7 +76,7 @@ Articles.findSome = function (condition,callback) {
                     if(condition.type != "All"){
                         findCondition.type = condition.type;
                     }
-                    collection.find(findCondition, function (err,cursor) {
+                    collection.find(findCondition,{sort:{date:-1},limit:condition.number,skip:condition.start}, function (err,cursor) {
                         if(err){
                             dbAction.dbLogout(db);
                             return callback(err,null);
@@ -87,9 +90,8 @@ Articles.findSome = function (condition,callback) {
                                     dbAction.dbLogout(db);
                                     return callback(err,"抱歉,服务器发生内部错误!");
                                 }else {
-                                    if(item && condition.number != 0){
+                                    if(item){
                                         articleData.articles.push(item);
-                                        condition.number --;
                                     }else {
                                         cursor.close();
                                         dbAction.dbLogout(db);

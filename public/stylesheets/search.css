@@ -71,7 +71,7 @@ body {
 }
 
 .total {
-    background-color: #ededed;
+    background-color: rgba(237,237,237,0.85);
     margin-bottom: 2em;
     border: solid 1px #b5dccc;
     -webkit-box-shadow: 0 0 5px 4px #395980;
