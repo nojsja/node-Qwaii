@@ -113,6 +113,12 @@ body {
     font-size: 1.5em;
 }
 
+.biliVideo {
+    width: 100%;
+    height: 600px;
+    border: solid 1px green;
+}
+
 #up, #down {
     margin-top: 0.5em;
     text-align: center;

@@ -5,8 +5,7 @@ $(function(){
     pageAction.title = $('#articleTitle').text();
     pageAction.author = $('#articleAuthor').text();
     pageAction.getContent();
-    //获取文章评论
-    pageAction.getArticleInfo();
+
     //赞同或反对
     $('#up').click(function () {
         /*保存作用域*/
@@ -23,14 +22,32 @@ $(function(){
     });
     //更新阅读量
     pageAction.updateReadNumber();
-    //更新点赞情况
-    pageAction.getUpAndDown();
+    //滚动侦测动态加载
+    $(window).scroll(scrollCheck);
+    //3秒后进行检测,防止页面卡住的情况
+    setTimeout(scrollCheck,3000);
+    function scrollCheck() {
+        //滚动的Y轴距离
+        var scrollTop = $(this).scrollTop();
+        //文档总长度
+        var scrollHeight = $(document).height();
+        //可视化窗口高度
+        var windowHeight = $(this).height();
+        if((scrollHeight == scrollTop + windowHeight) && (!pageAction.commentLoaded)){
+            pageAction.commentLoaded = true;
+            //更新点赞情况
+            pageAction.getUpAndDown();
+            //获取文章评论
+            pageAction.getArticleInfo();
+        }
+    }
 });
 
 //页面动作对象
 var pageAction = {
     title: null,
     author: null,
+    commentLoaded:false
 };
 
 //模态弹窗
@@ -74,6 +91,7 @@ pageAction.getUpAndDown = function () {
             author: $('#articleAuthor').text()
         }, function (status) {
             if(status.err){
+                pageAction.commentLoaded = false;
                 pageAction.modalWindow(status.statusText);
             }else {
                 //更新赞同数和反对数
@@ -103,8 +121,16 @@ pageAction.getContent = function () {
         if(JSONdata.status){
             //渲染文章
             $('#articleContent').append($(JSONdata.article.content));
+            /*判断是否包含b站资源*/
+            if(JSONdata.article.from == "bilibili"){
+                var src = "http://www.bilibili.com/html/player.html?aid=" + JSONdata.article.source;
+                $('#articleContent').append($('<iframe class="biliVideo" ' +
+                    'frameborder="0" allowfullscreen="" ' +
+                    'scrolling="no"></iframe>').prop('src',src));
+            }
             $("img").lazyload({effect: "fadeIn"});
         }else {
+            pageAction.commentLoaded = false;
             pageAction.modalWindow("读取出错!");
         }
     }, "JSON");

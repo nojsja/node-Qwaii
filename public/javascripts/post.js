@@ -102,7 +102,7 @@ pageAction.tagCheck = function () {
 //文章编辑检测
 pageAction.postCheck = function(){
 
-    if(!$('#bilibiliAV').val()){
+    if(!$('#bilibiliAV').val() && ($('#bilibiliAV').length > 0)){
         headerAction.modalWindow("填写bilibili AV号才能成功转载额!");
         return;
     }

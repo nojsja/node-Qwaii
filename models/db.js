@@ -14,7 +14,7 @@ dbAction.dbInit = function(callback){
     MongoClient.connect("mongodb://Johnson:yangwei020154@localhost:27017/Qwaii",{
         db:{w:1,native_parser:false},
         server:{
-            poolSize:5,
+            poolSize:4,
             socketOptions:{connectTimeoutMS:500},
             auto_reconnect:true
         },

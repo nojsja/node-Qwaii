@@ -101,6 +101,13 @@ module.exports = function (app) {
     //点赞或差评
     app.post('/article/upOrDown',function (req, res) {
         console.log('up or down');
+        console.log(req.session.userName);
+        if(!req.session.userName || req.session.userName == "游客"){
+            return res.json({
+                err:true,
+                statusText:"游客不能投票!"
+            });
+        }
         var condition = {
             articleTitle: req.body.title,
             articleAuthor: req.body.author,
@@ -163,7 +170,9 @@ module.exports = function (app) {
                     res.json({
                         status: true,
                         article: {
-                            content: articleData.content
+                            content: articleData.content,
+                            from: articleData.from,
+                            source: articleData.source
                         }
                     });
                 }
