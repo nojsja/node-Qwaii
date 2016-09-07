@@ -1,0 +1,59 @@
+<!--起始主页-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title%></title>
+    <meta name="description" content="Q站，二次元之家" />
+    <meta name="keywords" content="二次元,番剧，漫画，动漫，视频，新闻" />
+
+    <script type="text/javascript" src="/javascripts/lib/jquery-2.1.4.js"></script>
+    <!--jQuery-file-upload-->
+    <script type="text/javascript" src="/javascripts/lib/vendor/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/jquery.fileupload.js"></script>
+
+    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
+    <link rel='stylesheet' href='/stylesheets/upload.css' />
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <script type="text/javascript" src="/javascripts/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="/javascripts/upload.js"></script>
+    <script type="text/javascript" src="/javascripts/header.js"></script>
+
+</head>
+<body>
+<div id="backgroundImg" class="opacityHalf blur"></div>
+<%- include header%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 total">
+            <h2><p>上传<%= title %></p></h2>
+            <p>小提示:</p>
+            <p>1.一次最多批量上传5个<%= title %>文件</p>
+            <% if (title == "视频") {%>
+                <p>2.每个视频文件的大小不能超过2G</p>
+                <p>3.支持的视频格式有mp4,flv,rmvb,wmv,mkv</p>
+            <% }else if (title == "音乐") { %>
+                <p>2.每个音频文件的大小不能超过50M</p>
+                <p>3.支持的音频格式有mp3,ape,wav,ogg,wma</p>
+            <% } else if (title == "图片") { %>
+                <p>2.每张图片的大小不能超过10M</p>
+                <p>3.支持的图片格式有bmp,jpg,jpeg,svg,png,gif</p>
+            <% } %>
+
+            <p>4.请上传合法内容</p>
+
+            <input type="file" multiple=true id="fileUpload" size="5" value="选择" class="btn btn-lg btn-default" accept="video/mp4">
+            <div id="fileListDiv">
+
+            </div>
+            <div id="progress">
+                <div class="progress-bar"></div>
+            </div>
+            <button type="button" class="btn btn-danger" id="cancel">取消</button>
+        </div>
+    </div>
+</div>
+
+<%- include footer%>
+</body>

@@ -7,6 +7,7 @@ npm-debug.log*
 public/videos/users/*
 public/files/users/*
 public/images/users/*
+public/music/users/*
 .idea/
 .vscode/
 

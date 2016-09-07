@@ -1,0 +1,45 @@
+body {
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+    min-height:100%;
+}
+
+.total {
+    border: double 4px #767676;
+    min-height: 600px;
+    height: auto;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.total p {
+    font-weight: bold;
+    word-spacing: 0.5em;
+    letter-spacing: 0.2em;
+    margin-top: 1em;
+    color: #767676;
+
+}
+
+#fileUpload {
+    margin-top: 2em;
+}
+
+.total h2 {
+    font-family: 华文彩云;
+}
+
+#cancel {
+    margin-top: 2em;
+}
+
+#progress {
+    margin-top: 1em;
+    height: 1.5em;
+    width: 20em;
+    border: solid 1px black;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #238eae;
+}

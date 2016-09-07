@@ -169,20 +169,11 @@ header {
     height: auto;
     text-align: center;
     border-radius: 0.5em;
-    padding: 0.5em;
-    background-color: #395980;
-    color: #ffffff;
-    max-width: 5em;
+    padding: 0.1em;
+    color: #238eae;
+    border: solid 1px #238eae;
     display: inline-block;
-    margin: 0.7em;
-}
-
-.tag:hover {
-    color: #395980;
-    background-color: #e1ebfd;
-    -moz-transition: background-color .2s linear;
-    -webkit-transition: background-color .2s linear;
-    transition: background-color .2s linear;
+    margin-right: 0.5em;
 }
 
 .popuItem {
@@ -195,19 +186,20 @@ header {
 }
 
 .articleTitle{
-    font-weight: bold;
     border-bottom: solid 1px #d2d2d2;
+    font-size: 1.3em;
+    margin: 0.3em;
 }
 
 .articleTime,.articleAuthor {
     color: #868686;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.2em;
 }
 
 .articleAbstract {
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     background-color: #e1ebfd;
-    padding: 0.5em;
+    padding: 0.3em;
     color: #395980
 }
 
@@ -225,6 +217,68 @@ header {
     z-index: -100;
     background: url("/images/pictures/luka2.jpg") no-repeat;
     background-size: cover;
+}
+
+/*热门标签*/
+.hotTagDiv, .friendLinkDiv{
+    margin-top: 2em;
+    margin-bottom: 2em;
+    min-height: 13em;
+    height: auto;
+    border-bottom: solid 2px #661611;
+    border-top: solid 2px #661611;
+
+    background-color: white;
+
+    -moz-box-shadow: 0px 0px 8px #661611;
+    -o-box-shadow: 0px 0px 8px #661611;
+    -webkit-box-shadow: 0px 0px 8px #661611;
+    box-shadow:0px 0px 8px #661611;
+}
+
+.hotTag{
+    display: inline-block;
+    margin: 0.2em;
+    color: #661611;
+    font-family: 华文中宋;
+    transition:All 0.3s ease-in-out;
+    -webkit-transition:All 0.3s ease-in-out;
+    -moz-transition:All 0.3s ease-in-out;
+    -o-transition:All 0.3s ease-in-out;
+}
+
+.hotTagTitle,.friendLink {
+    margin-bottom:  0.5em;
+    text-align: center;
+    background-color: #767676;
+    color: whitesmoke;
+    font-weight: bold;
+    padding: 0.2em;
+}
+
+.hotTag:hover {
+    color: #661611;
+    font-weight: bold;
+    transform:scale(1.7);
+    -webkit-transform:scale(1.7);
+    -moz-transform:scale(1.7);
+    -o-transform:scale(1.7);
+    -ms-transform:scale(1.7);
+}
+
+.friendLinkA {
+}
+
+.friendLinkA > img {
+    width: 5em;
+    height: 1.7em;
+    margin: 0.2em;
+
+    -moz-box-shadow: 0px 0px 8px #395980;
+    -o-box-shadow: 0px 0px 8px #395980;
+    -webkit-box-shadow: 0px 0px 8px #395980;
+    box-shadow:0px 0px 8px #395980;
+
 }
 
 .pageAnchor {

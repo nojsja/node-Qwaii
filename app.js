@@ -18,6 +18,7 @@ var post = require('./routes/post');
 var search = require('./routes/search');
 var settings =require('./settings.js');
 var users = require('./routes/users');
+var upload = require('./routes/upload');
 
 //数据库定时器
 var MongoSchedule = require('./models/MongoSchedule.js');
@@ -87,6 +88,7 @@ post(app);
 article(app);
 search(app);
 users(app);
+upload(app);
 
 //node-schedule定时执行任务,更新popolar表,每天的凌晨零点
 var rule = new schedule.RecurrenceRule()

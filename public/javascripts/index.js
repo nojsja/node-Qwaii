@@ -121,15 +121,24 @@ pageAction.updatePage = function (JSONdata) {
         //文章父组件
         var $articleList = $('#articleList');
         $.each(Articles.articles, function (index, article) {
-            //jQuery动态操作DOM
-            var $container = $('<div class="container" ></div>');
-            var $row = $('<div class="row articleView">');
+            var $row = $('<div class="col-md-12">');
 
             //文章主要内容
-            var $article = $('<div class="col-md-10"></div>');
-            var $title = $('<div class="col-md-12 h3 articleTitle"></div>');
+            var $article = $('<div class="col-md-12 articleView"></div>');
+            var $title = $('<div class="col-md-12 articleTitle"></div>');
             var $a = $('<a></a>');
-            $a.text(article.title);
+            $a.text(article.title + " ");
+            if(article.type == "视频"){
+                $a.append($('<span class="glyphicon glyphicon-film"></span>'));
+            }else if(article.type == "贴文"){
+                $a.append($('<span class="glyphicon glyphicon-pencil"></span>'));
+            }else if(article.type == "图片"){
+                $a.append($('<span class="glyphicon glyphicon-picture"></span>'));
+            }else if(article.type == "音乐"){
+                $a.append($('<span class="glyphicon glyphicon-headphones"></span>'));
+            }else {
+                $a.append($('<span class="glyphicon glyphicon-list-alt"></span>'));
+            }
             $a.attr({
                 'openHref':"/article/" + article.author + "/" + article.title + "/" + article.date
             });
@@ -143,15 +152,15 @@ pageAction.updatePage = function (JSONdata) {
             $date.text(article.date).appendTo($article);
             var $abstract = $('<div class="col-md-12 articleAbstract spacing"></div>');
             $abstract.text(article.abstract).appendTo($article);
-            $article.appendTo($row);
 
             //标签内容
-            var $tags = $('<div class="col-md-2"></div>');
+            var $tags = $('<div class="col-md-12"></div>');
             $.each(article.tags, function (index,tag) {
                 var $tag = $('<p class="tag"></p>');
                 $tag.text(tag.tag).appendTo($tags);
             });
-            $tags.appendTo($row);
+            $tags.appendTo($article);
+            $article.appendTo($row);
 
             //阅读信息
             var $info = $('<div class="col-md-12 articleRead"></div>');
@@ -161,8 +170,7 @@ pageAction.updatePage = function (JSONdata) {
             $commentNumber.text('评论: ' + article.commentNumber).appendTo($info);
             $info.appendTo($row);
 
-            $row.appendTo($container);
-            $articleList.append($container);
+            $articleList.append($row);
         });
         //触发一次click事件
         $('#hotArticleSpan').click();
