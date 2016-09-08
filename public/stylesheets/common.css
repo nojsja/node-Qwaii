@@ -20,7 +20,7 @@
 }
 .pageAnchor {
     position: fixed;
-    right: 2em;
+    right: 1em;
     bottom: 5em;
 }
 
@@ -30,6 +30,7 @@
     font-size: 1em;
     background-color: #989fae;
     margin-top: 1em;
+    box-shadow: 0px 0px 8px #661611 inset;
 }
 
 .border {

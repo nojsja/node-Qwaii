@@ -16,6 +16,10 @@ body {
     z-index: -100;
     background: url("/images/pictures/miku.jpg") no-repeat;
     background-size: cover;
+    filter:alpha(opacity=20);
+    -moz-opacity:0.20;
+    -khtml-opacity: 0.20;
+    opacity: 0.20;
 }
 
 .typeTabs {

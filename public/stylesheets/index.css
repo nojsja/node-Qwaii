@@ -117,6 +117,7 @@ header {
 
 #hotArticleSpan,#hotPictureSpan,#hotVideoSpan {
     color: #c0291f;
+    font-size: 1.2em;
 }
 
 #hotView {
@@ -152,7 +153,7 @@ header {
     border-left: groove 1px;
     border-right: groove 1px;
 
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,1);
     -webkit-box-shadow:0 0 8px black;
     -moz-box-shadow:0 0 8px black;
     box-shadow:0 0 8px black;
@@ -207,6 +208,9 @@ header {
     background-color: #353846;
     color: whitesmoke;
     text-align: center;
+    -webkit-box-shadow:0 0 8px black;
+    -moz-box-shadow:0 0 8px black;
+    box-shadow:0 0 8px black;
 }
 
 #backgroundImg {
@@ -217,6 +221,10 @@ header {
     z-index: -100;
     background: url("/images/pictures/luka2.jpg") no-repeat;
     background-size: cover;
+    filter:alpha(opacity=20);
+    -moz-opacity:0.20;
+    -khtml-opacity: 0.20;
+    opacity: 0.20;
 }
 
 /*热门标签*/
@@ -281,9 +289,6 @@ header {
 
 }
 
-.pageAnchor {
-    position: fixed;
-    right: 2em;
-    bottom: 5em;
-
+.total {
+    background-color: rgba(204, 204, 204, 0.5);
 }

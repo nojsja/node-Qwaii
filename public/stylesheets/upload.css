@@ -8,7 +8,23 @@ body {
     min-height: 600px;
     height: auto;
     margin-top: 1em;
+    background-color: rgba(227, 227, 227, 0.8);
     margin-bottom: 2em;
+}
+
+#backgroundImg {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -100;
+    background: url("/images/pictures/miku.jpg") no-repeat;
+    background-size: cover;
+    filter:alpha(opacity=20);
+    -moz-opacity:0.20;
+    -khtml-opacity: 0.20;
+    opacity: 0.20;
 }
 
 .total p {

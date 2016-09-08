@@ -3,8 +3,12 @@
  */
 var formidable = require('formidable');
 var fs = require('fs');
+//保存到数据库
+var Videos = require('./Video.js');
+var Musics = require('./Musics.js');
+var Pictures = require('./Pictures.js');
 
-module.exports = function (req,res) {
+function Upload(req,res) {
 
     console.log('Upload..');
     //存放表单域和文件
@@ -30,20 +34,31 @@ module.exports = function (req,res) {
         docs.push(file);
         //前缀路径
         var prePath;
+        //访问路径
+        var visitPath;
         //判断文件类型
         var types = file.name.split('.')[1];
-        console.log(types);
+        //文件类型s
+        var type;
+
         if(regVideo.test(types)){
             prePath = "./public/videos/users/" + req.session.userName;
+            visitPath = "/videos/users/" + req.session.userName;
+            type = "video";
         }else if(regMusic.test(types)){
             prePath = "./public/music/users/" + req.session.userName;
+            visitPath = "/music/users/" + req.session.userName;
+            type = "music";
         }else if(regPicture.test(types)){
             prePath = "./public/images/users/" + req.session.userName;
+            visitPath = "/images/users/" + req.session.userName;
+            type = "picture";
         }else {
             prePath = "./public/files/users/" + req.session.userName;
+            visitPath = "/files/users/" + req.session.userName;
+            type = "file";
         }
-        var date = new Date();
-        var ms = Date.parse(date);
+
         try{
             if(!fs.existsSync(prePath)){
                 fs.mkdirSync(prePath);
@@ -52,15 +67,48 @@ module.exports = function (req,res) {
             fs.rename(file.path, prePath + "/" + file.name, function (err) {
                 if(err){
                     console.log(err);
-                }
-                //删除文件
-                fs.readdir("./temp", function (err,files) {
-                    for(var i = 0; files[i];i++){
-                        fs.unlink("./temp/" + files[i], function (err) {
+                }else {
+                    /*存储信息*/
+                    var info = {
+                      title:file.name,
+                        author: req.session.userName,
+                        source: visitPath + "/" + file.name
+                    };
+                    //将上传的文件信息存进数据库
+                    if(type == "music"){
+                        var music = new Musics(info);
+                        music.save(function (err) {
+                           if(err){
+                               console.log(err);
+                           }
+                        });
+                    }else if(type == "video"){
+                        var video = new Videos(info);
+                        video.save(function (err) {
                             if(err){
                                 console.log(err);
                             }
                         });
+                    }else if(type == "picture"){
+                        var picture = new Pictures(info);
+                        picture.save(function (err) {
+                            if(err){
+                                console.log(err);
+                            }
+                        });
+                    }
+
+                }
+                //删除文件
+                fs.readdir("./temp", function (err,files) {
+                    for(var i = 0; files[i];i++){
+                        if(files[i] == file.name){
+                            fs.unlink("./temp/" + files[i], function (err) {
+                                if(err){
+                                    console.log(err);
+                                }
+                            });
+                        }
                     }
                 });
             });
@@ -88,4 +136,18 @@ module.exports = function (req,res) {
 
         console.log('parsing done');
     });
+
 }
+
+//预览资源
+Upload.preview = function (condition,callback) {
+    if(condition.type == "music"){
+        Musics.getPreviewData(condition.author,callback);
+    }else if(condition.type == "video"){
+        Videos.getPreviewData(condition.author,callback);
+    }else if(condition.type == "picture"){
+        Pictures.getPreviewData(condition.author,callback);
+    }
+};
+
+module.exports = Upload;

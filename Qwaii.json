@@ -1,0 +1,7 @@
+{
+  apps : [{
+    script    : './bin/Qwaii',
+    instances : '2',
+    exec_mode : 'cluster'
+  }]
+}

@@ -57,14 +57,26 @@
             <div class="col-md-2">番剧</div>
             <div class="col-md-2">贴文</div>
             <div class="col-md-2">萌物</div>
-            <div class="col-md-2">图片</div>
-            <div class="col-md-2">音乐</div>
-            <div class="col-md-2">视频</div>
+            <div class="col-md-2" id="pictureSelect">图片</div>
+            <div class="col-md-2" id="musicSelect">音乐</div>
+            <div class="col-md-2" id="videoSelect">视频</div>
             <div class="col-md-2">漫画</div>
             <div class="col-md-2">其它</div>
         </div>
     </div>
+    <!--图片预览和视频预览,音乐预览-->
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 contentPreview" style="display: none">
+            <!--内容列表-->
+            <!--<div class="picturePreviewDiv">
+                <img src="/images/head/4.jpg">
+            </div>-->
+            <div class="videoPreviewDiv">
+                <p class="videoPreview">虽然歌是无形的.mp4 - Johnson - 2016.9.6<span class="glyphicon glyphicon-film"></span></p>
+            </div>
 
+        </div>
+    </div>
     <!--标签-->
     <div class="row">
         <div class="col-md-2 col-md-offset-1 title border">标签</div>
@@ -95,8 +107,6 @@
             <div class="col-md-1 tagDiv">
                 <label class="checkbox-inline"><input type="checkbox" value="Coser" class="tag">Coser</label>
             </div>
-
-
         </div>
     </div>
 
