@@ -40,6 +40,12 @@ module.exports = function (app) {
     //发布评论
     app.post('/article/makeComment', function (req,res) {
         console.log('make comment.' + req.session.userName);
+        if(!req.session.userName){
+            return res.json({
+               err:true,
+                statusText:"登录后才可以评论额!"
+            });
+        }
         var comment = {
             content : req.body.content,
             date : new Date().toLocaleDateString(),

@@ -1,8 +1,18 @@
 /**
  * Created by yangw on 2016/8/19.
  */
-//限定作用域
-$(function () {
+//定义RequireJs模块
+define('post',['jquery'], function () {
+    return {
+        postInit:postInit,
+        getBackgroundImg: function () {
+            $('#backgroundImg').prop('class','backgroundImg');
+        }
+    }
+});
+
+//初始化方法
+function postInit() {
 
     /*初始化编辑器*/
     pageAction.ueditorInit();
@@ -43,7 +53,7 @@ $(function () {
     /*window.addEventListener("beforeunload", function(event) {
         event.returnValue = "警告";
     });*/
-});
+};
 
 //页面动作
 var pageAction = {
@@ -268,7 +278,12 @@ pageAction.sendPost = function () {
         //发送json对象
        jsonArticle: JSON.stringify(pageAction.article)
     }, function (JSONdata) {
-        JSONdata.status ? pageAction.modalWindow(JSONdata.statusText): pageAction.modalWindow("出错啦!code: " + JSONdata.statusText);
+        if(!JSONdata.status){
+            pageAction.modalWindow(JSONdata.statusText);
+        }else {
+            var urlData = JSONdata.statusText;
+            window.location.href = "/article/"+urlData.author+"/"+urlData.title+"/"+urlData.date;
+        }
     },
     "JSON");
 };

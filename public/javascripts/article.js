@@ -1,10 +1,26 @@
 /**
  * Created by yangw on 2016/8/18.
  */
-$(function(){
+//定义RequireJs模块
+define('article',['jquery'], function () {
+    return {
+        articleInit:articleInit,
+        getContent: function () {
+          pageAction.getContent();
+        },
+        updateReadNumber: function () {
+          pageAction.updateReadNumber();
+        },
+        getBackgroundImg: function () {
+            $('#backgroundImg').prop('class','backgroundImg');
+        }
+    }
+});
+
+//初始化
+function articleInit(){
     pageAction.title = $('#articleTitle').text();
     pageAction.author = $('#articleAuthor').text();
-    pageAction.getContent();
 
     //赞同或反对
     $('#up').click(function () {
@@ -20,8 +36,6 @@ $(function(){
     $('#makeComment span').click(function(){
         pageAction.insertComment();
     });
-    //更新阅读量
-    pageAction.updateReadNumber();
     //滚动侦测动态加载
     $(window).scroll(scrollCheck);
     //3秒后进行检测,防止页面卡住的情况
@@ -41,7 +55,7 @@ $(function(){
             pageAction.getArticleInfo();
         }
     }
-});
+};
 
 //页面动作对象
 var pageAction = {

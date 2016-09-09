@@ -3,20 +3,17 @@
 <html>
 <head>
     <title><%= title %></title>
-    <script type="text/javascript" src="/javascripts/lib/jquery-2.1.4.js"></script>
-    <script type="text/javascript" src="/javascripts/lib/jquery.lazyload.js"></script>
-    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
+    <!--<script type="text/javascript" src="/javascripts/lib/jquery.lazyload.js"></script>-->
+    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/article.css' />
     <link rel="stylesheet" href="/stylesheets/common.css">
-    <script type="text/javascript" src="/javascripts/lib/bootstrap.js"></script>
-    <script type="text/javascript" src="/Ueditor/ueditor.parse.js"></script>
-    <script type="text/javascript" src="/javascripts/article.js"></script>
-    <script type="text/javascript" src="/javascripts/header.js"></script>
+
+    <script data-main="/javascripts/config/articleConfig.js" src="/javascripts/lib/require.js"></script>
 
 </head>
 <body>
 <!--背景-->
-<div id="backgroundImg" class="opacityLow"></div>
+<div id="backgroundImg"></div>
 <%- include header%>
 <!--正文区域-->
 <div class="container totalBackground">

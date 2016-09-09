@@ -73,7 +73,7 @@ body {
 }
 
 /*背景图片*/
-#backgroundImg {
+.backgroundImg {
     position: fixed;
     bottom: 0;
     right: 0;

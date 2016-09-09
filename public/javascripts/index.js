@@ -1,9 +1,21 @@
 /**
  * Created by yangw on 2016/8/17.
  */
-//限定作用域
-$(function () {
-    pageAction.readArticleList();
+//定义RequireJs模块
+define('index',['jquery'], function () {
+    return {
+        indexInit:indexInit,
+        readArticleList: function () {
+            pageAction.readArticleList();
+        },
+        getBackgroundImg: function () {
+            $('#backgroundImg').prop('class','backgroundImg');
+        }
+    }
+});
+
+//初始化函数
+function indexInit() {
     $('.pageNumber:eq(0)').prop('class','active pageNumber');
     //动画效果触发
     $('#iconPopover').popover();
@@ -30,8 +42,7 @@ $(function () {
 
     //分页导航事件绑定
     pageAction.pageNavbarAction();
-
-});
+};
 
 //页面对象
 var pageAction = {};
@@ -50,14 +61,14 @@ pageAction.readArticleList = function () {
     //保存this作用域
     var that = this;
     $.post('/',{
-        action : "readList",
-        type : "All",
-        number : 10,
-        start: 0
-    }, function (JSONdata) {
-        that.updatePage(JSONdata);
-    },
-    "JSON");
+            action : "readList",
+            type : "All",
+            number : 10,
+            start: 0
+        }, function (JSONdata) {
+            that.updatePage(JSONdata);
+        },
+        "JSON");
 
 };
 
@@ -65,46 +76,46 @@ pageAction.readArticleList = function () {
 pageAction.updateHot = function () {
     var actionType = $(this).text();
     $.post('/updateHot',{
-        actionType: actionType
-    }, function (data) {
-        var jsonData = JSON.parse(data);
-        if(jsonData.err){
-            pageAction.modalWindow(jsonData.statusText);
-        }else {
-            if(jsonData.hotList){
-                /*清空缓存列表*/
-                if(actionType == "图片"){
-                    $('#hotPicture').children().remove();
-                }else if(actionType == "视频"){
-                    $('#hotVideo').children().remove();
-                }else if(actionType == "贴文"){
-                    $('#hotArticle').children().remove();
-                }
-                $.each(jsonData.hotList, function (index,item) {
-                    var $hotDiv = $('<div class="col-md-12"></div>');
-                    var $hotP = $('<div class="popuItem"></div>');
-
-                    var $hotContent = $('<a></a>');
-                    $hotContent.attr('openHref',"/article/"+item.author+"/"+item.title+"/"+item.date);
-                    $hotContent.click(function () {
-                       window.open($hotContent.attr('openHref'));
-                    });
-                    $hotContent.text(item.title);
-                    $hotContent.appendTo($hotP);
-                    $hotP.appendTo($hotDiv);
-
+            actionType: actionType
+        }, function (data) {
+            var jsonData = JSON.parse(data);
+            if(jsonData.err){
+                pageAction.modalWindow(jsonData.statusText);
+            }else {
+                if(jsonData.hotList){
+                    /*清空缓存列表*/
                     if(actionType == "图片"){
-                        $('#hotPicture').append($hotDiv);
+                        $('#hotPicture').children().remove();
                     }else if(actionType == "视频"){
-                        $('#hotVideo').append($hotDiv);
+                        $('#hotVideo').children().remove();
                     }else if(actionType == "贴文"){
-                        $('#hotArticle').append($hotDiv);
+                        $('#hotArticle').children().remove();
                     }
-                });
+                    $.each(jsonData.hotList, function (index,item) {
+                        var $hotDiv = $('<div class="col-md-12"></div>');
+                        var $hotP = $('<div class="popuItem"></div>');
+
+                        var $hotContent = $('<a></a>');
+                        $hotContent.attr('openHref',"/article/"+item.author+"/"+item.title+"/"+item.date);
+                        $hotContent.click(function () {
+                            window.open($hotContent.attr('openHref'));
+                        });
+                        $hotContent.text(item.title);
+                        $hotContent.appendTo($hotP);
+                        $hotP.appendTo($hotDiv);
+
+                        if(actionType == "图片"){
+                            $('#hotPicture').append($hotDiv);
+                        }else if(actionType == "视频"){
+                            $('#hotVideo').append($hotDiv);
+                        }else if(actionType == "贴文"){
+                            $('#hotArticle').append($hotDiv);
+                        }
+                    });
+                }
             }
-        }
-    },
-    "JSON");
+        },
+        "JSON");
 };
 
 //更新页面
@@ -172,7 +183,7 @@ pageAction.updatePage = function (JSONdata) {
 
             $articleList.append($row);
         });
-        //触发一次click事件
+        //触发点击事件
         $('#hotArticleSpan').click();
     }else {
         //发生错误
@@ -212,7 +223,7 @@ pageAction.pageNavbarAction = function () {
         $('.pageNumber[class="active pageNumber"]').prop('class','pageNumber');
         var $pageNumber = $('.pageNumber');
         $.each($pageNumber.children(0), function (index,item) {
-           $(item).text( parseInt($(item).text()) + 10 );
+            $(item).text( parseInt($(item).text()) + 10 );
         });
     });
 
@@ -238,3 +249,4 @@ pageAction.pageNavbarAction = function () {
             "JSON");
     }
 };
+

@@ -80,7 +80,7 @@ body {
     padding: 2em;
 }
 
-#backgroundImg {
+.backgroundImg {
     position: fixed; right: 0; bottom: 0;
     min-width: 100%; min-height: 100%;
     width: auto;
@@ -88,4 +88,8 @@ body {
     z-index: -100;
     background: url("/images/pictures/liya.jpg") no-repeat;
     background-size: cover;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.50;
+    -khtml-opacity: 0.50;
+    opacity: 0.50;
 }

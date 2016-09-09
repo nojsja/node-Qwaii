@@ -3,18 +3,14 @@
 <html>
 <head>
     <title><%= title %></title>
-
-    <script type="text/javascript" src="/javascripts/lib/jquery-2.1.4.js"></script>
     <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
     <link rel='stylesheet' href='/stylesheets/login.css' />
     <link rel="stylesheet" href="/stylesheets/common.css">
-    <script type="text/javascript" src="/javascripts/lib/bootstrap.js"></script>
-    <script type="text/javascript" src="/javascripts/login.js"></script>
-
+    <script data-main="/javascripts/config/loginConfig.js" src="/javascripts/lib/require.js"></script>
 </head>
 <body>
 <!--背景-->
-<div id="backgroundImg" class="opacityHalf"></div>
+<div id="backgroundImg"></div>
 <%- include header%>
 <div class="container total">
     <div class="chooseDiv">
@@ -70,6 +66,9 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/javascripts/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="/javascripts/lib/bootstrap.js"></script>
+<script type="text/javascript" src="/javascripts/login.js"></script>
 <!--模态弹窗口组件-->
 <%-include modalWindow.ejs%>
 </body>

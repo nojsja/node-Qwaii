@@ -1,12 +1,24 @@
 /**
  * Created by yangw on 2016/8/18.
  */
+//定义RequireJs模块
+define('login',['jquery'], function () {
+    return {
+        loginInit:loginInit,
+        getBackgroundImg: function () {
+            $('#backgroundImg').prop('class','backgroundImg');
+        },
+        //载入头像
+        getHeadImg: function () {
+            pageAction.loadHeadImg();
+        }
+    }
+});
+
 //初始化操作
-$(function () {
+function loginInit() {
     $('#nameCheck').toggle("fast");
     $('#pswCheckGroup').toggle("fast");
-    //载入头像
-    pageAction.loadHeadImg();
     //绑定事件
     $('#rememberPsw').click(function () {
         if ($('#rememberPsw').prop("checked") == true){
@@ -15,7 +27,6 @@ $(function () {
             pageAction.rememberPsw = false;
         }
     });
-
     $('#signupTitle').click(function () {
         $('#action').text("用户注册")
         $('#nameCheck').slideDown("slow");
@@ -30,7 +41,7 @@ $(function () {
         pageAction.state = "login";
     });
 
-    //绑定函数
+    //绑定检查的事件
     check();
     $('#ok').click(function () {
         if(!pageAction.emailStatus){
@@ -51,7 +62,7 @@ $(function () {
         }
         pageAction.state == "login" ? pageAction.loginAction() : pageAction.signupAction();
     });
-});
+};
 
 //页面state对象
 var pageAction = {

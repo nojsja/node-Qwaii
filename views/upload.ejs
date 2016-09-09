@@ -5,23 +5,21 @@
     <title><%= title%></title>
     <meta name="description" content="Q站，二次元之家" />
     <meta name="keywords" content="二次元,番剧，漫画，动漫，视频，新闻" />
+    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
+    <link rel='stylesheet' href='/stylesheets/upload.css' />
+    <link rel="stylesheet" href="/stylesheets/common.css">
 
-    <script type="text/javascript" src="/javascripts/lib/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/jquery-3.1.0.min.js"></script>
     <!--jQuery-file-upload-->
+    <script type="text/javascript" src="/javascripts/upload.js"></script>
     <script type="text/javascript" src="/javascripts/lib/vendor/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="/javascripts/lib/jquery.iframe-transport.js"></script>
     <script type="text/javascript" src="/javascripts/lib/jquery.fileupload.js"></script>
 
-    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
-    <link rel='stylesheet' href='/stylesheets/upload.css' />
-    <link rel="stylesheet" href="/stylesheets/common.css">
-    <script type="text/javascript" src="/javascripts/lib/bootstrap.js"></script>
-    <script type="text/javascript" src="/javascripts/upload.js"></script>
-    <script type="text/javascript" src="/javascripts/header.js"></script>
 
 </head>
 <body>
-<div id="backgroundImg" class="opacityLow"></div>
+<div id="backgroundImg" class="backgroundImg"></div>
 <%- include header%>
 
 <div class="container">
@@ -54,6 +52,6 @@
         </div>
     </div>
 </div>
-
+<script data-main="/javascripts/config/uploadConfig.js" src="/javascripts/lib/require.js"></script>
 <%- include footer%>
 </body>

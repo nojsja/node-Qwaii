@@ -213,7 +213,7 @@ header {
     box-shadow:0 0 8px black;
 }
 
-#backgroundImg {
+.backgroundImg {
     position: fixed; right: 0; bottom: 0;
     min-width: 100%; min-height: 100%;
     width: auto;

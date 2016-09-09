@@ -1,8 +1,15 @@
 /**
  * Created by yangw on 2016/8/26.
  */
-//限定作用域
-$(function () {
+//定义RequireJs模块
+define('header',['jquery'], function () {
+   return {
+       headerInit: headerInit
+   }
+});
+
+//初始化函数
+function headerInit() {
     headerAction.updateUser();
     $('#loginLi').click(function () {
         if($('#loginLi').attr('class') == "disabled"){
@@ -35,8 +42,7 @@ $(function () {
         window.location.href = "/search";
     });
 
-    $('#')
-});
+};
 
 //页面动作对象
 var headerAction = {};

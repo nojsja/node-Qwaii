@@ -3,24 +3,21 @@
 <html>
 <head>
     <title><%= title %></title>
-    <script type="text/javascript" src="/javascripts/lib/jquery-2.1.4.js"></script>
-    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
+    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/post.css' />
     <link rel="stylesheet" href="/stylesheets/common.css">
-    <script type="text/javascript" src="/javascripts/lib/bootstrap.js"></script>
 
     <!--加载Uditor-->
     <script type="text/javascript" src="/Ueditor/ueditor.config.js"></script>
     <script type="text/javascript" src="/Ueditor/ueditor.all.js"></script>
     <script type="text/javascript" src="/Ueditor/lang/zh-cn/zh-cn.js"> </script>
 
-    <script type="text/javascript" src="/javascripts/post.js"></script>
-    <script type="text/javascript" src="/javascripts/header.js"></script>
+    <script data-main="/javascripts/config/postConfig" src="/javascripts/lib/require.js"></script>
 
 </head>
 <body>
 <!--背景-->
-<div id="backgroundImg" class="opacityHalf"></div>
+<div id="backgroundImg"></div>
 <%- include header%>
 
 <div class="container total">
@@ -71,9 +68,9 @@
             <!--<div class="picturePreviewDiv">
                 <img src="/images/head/4.jpg">
             </div>-->
-            <div class="videoPreviewDiv">
+            <!--<div class="videoPreviewDiv">
                 <p class="videoPreview">虽然歌是无形的.mp4 - Johnson - 2016.9.6<span class="glyphicon glyphicon-film"></span></p>
-            </div>
+            </div>-->
 
         </div>
     </div>

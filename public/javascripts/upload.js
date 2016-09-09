@@ -1,6 +1,7 @@
 /**
  * Created by yangw on 2016/9/7.
  */
+
 $(function () {
     $('#progress').hide();
     var $jqXHR = $('#fileUpload').fileupload({
@@ -82,6 +83,6 @@ $(function () {
 
     //取消上传
     $('#cancel').click(function () {
-       jqXHR.abort();
+       $jqXHR.abort();
     });
 });

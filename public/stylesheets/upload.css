@@ -12,7 +12,7 @@ body {
     margin-bottom: 2em;
 }
 
-#backgroundImg {
+.backgroundImg {
     position: fixed;
     bottom: 0;
     right: 0;

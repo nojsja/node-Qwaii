@@ -47,7 +47,11 @@ Articles.prototype.save = function (callback) {
                         }else {
                             //注销用户连接
                             dbAction.dbLogout(db);
-                            callback(null,"贴文发表成功!");
+                            callback(null,{
+                                title:article.title,
+                                author:article.author,
+                                date:article.date
+                            });
                         }
                     });
                 }
