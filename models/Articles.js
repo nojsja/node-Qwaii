@@ -94,7 +94,16 @@ Articles.findSome = function (condition,callback) {
                                     return callback(err,"抱歉,服务器发生内部错误!");
                                 }else {
                                     if(item){
-                                        articleData.articles.push(item);
+                                        articleData.articles.push({
+                                            title:item.title,
+                                            author:item.author,
+                                            type:item.type,
+                                            date:item.date,
+                                            tags: item.tags,
+                                            abstract: item.abstract,
+                                            readNumber:item.readNumber,
+                                            commentNumber:item.commentNumber
+                                        });
                                     }else {
                                         cursor.close();
                                         dbAction.dbLogout(db);
@@ -514,10 +523,10 @@ Articles.readUpAndDown = function (condition,callback) {
                              return callback(err,"抱歉数据库发生错误");
                          }else {
                              if(item){
-                                 var isUp = false;
-                                 var isDown = false;
+                                 var isUp = null;
+                                 var isDown = null;
                                  for(var i = 0; item.up[i] || item.down[i];){
-                                     if(item.up[i] == condition.userName){
+                                     if(item.up[i] && item.up[i] == condition.userName){
                                          isUp = true;
                                          callback(null,{
                                              isUp: isUp,
@@ -529,7 +538,7 @@ Articles.readUpAndDown = function (condition,callback) {
                                          dbAction.dbLogout(db);
                                          return;
                                      }
-                                     if(item.down[i] == condition.userName){
+                                     if(item.down[i] && item.down[i] == condition.userName){
                                          isDown = true;
                                          callback(null,{
                                              isUp: isUp,

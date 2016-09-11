@@ -21,6 +21,13 @@ body {
     overflow-y: scroll;
     overflow-x: hidden;
     height: 12em;
+    padding: 0.5em;
+}
+.contentPreview > p {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.69);
+    margin-top: 2em;
+    letter-spacing: 0.5em;
 }
 
 /*预览图片*/
@@ -28,7 +35,6 @@ body {
     display: inline-block;
     padding: 3px;
     margin: 0.2em;
-    margin-top: 1em;
 }
 .picturePreview {
     height: 5em;
@@ -43,8 +49,8 @@ body {
 .videoPreviewDiv {
 
 }
-.videoPreview {
-    text-align: center;
+.videoPreview,.musicPreview {
+    text-align: left;
     font-size: 1.1em;
     padding: 0.2em;
     font-weight: bold;
@@ -52,7 +58,12 @@ body {
     border-bottom: dotted 1px #a6a6a6;
 }
 
-.videoPreview:hover {
+/*音乐列表预览*/
+.musicPreviewDiv {
+
+}
+
+.videoPreview:hover,.musicPreview:hover {
     background-color: rgba(57, 89, 128, 0.5);
     color: white;
 }
@@ -61,15 +72,6 @@ body {
     display: block;
     width:100%;
     height: 300px;
-}
-
-/*音乐列表预览*/
-.musicPreviewDiv {
-
-}
-
-.musicPreview {
-
 }
 
 /*背景图片*/
@@ -136,10 +138,10 @@ body {
 .type > div {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    box-shadow:0px 0px 8px #238eae inset;
-    -moz-box-shadow:0px 0px 8px #238eae inset;
-    -o-box-shadow:0px 0px 8px #238eae inset;
-    -webkit-box-shadow: 0px 0px 8px #238eae inset;
+    box-shadow:0px 0px 8px rgba(0, 0, 0, 0.51) inset;
+    -moz-box-shadow:0px 0px 8px rgba(0, 0, 0, 0.51) inset;
+    -o-box-shadow:0px 0px 8px rgba(0, 0, 0, 0.51) inset;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.51) inset;
     padding: 0.5em;
     font-family: 华文中宋;
     color: #767676;

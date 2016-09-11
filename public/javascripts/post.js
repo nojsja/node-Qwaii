@@ -30,6 +30,7 @@ function postInit() {
         pageAction.contentPreview("picture");
     });
 
+
     //标签选定检测
     $('.tag').click(function () {
         pageAction.tagCheck();
@@ -41,6 +42,9 @@ function postInit() {
     //颜色变化
     $('.type > div').click(function () {
         pageAction.article.type = $(this).text();
+        if($(this).prop('class') == 'col-md-2 typeOther'){
+            $('.contentPreview').slideUp();
+        }
         $('.type > div').css({"background-color":"rgba(0,0,0,0)"});
         $(this).css({"background-color":"#b5dccc"});
     });
@@ -124,6 +128,9 @@ pageAction.contentPreview = function (type) {
     function picturePreview(pictures){
         var $contentPreview = $('.contentPreview');
         $contentPreview.children().remove();
+        if(!pictures.length){
+            return $('.contentPreview').append($('<p></p>').text('你还没有上传任何数据!'));
+        }
         $.each(pictures, function (index,item) {
             var $picturePreviewDiv = $('<div></div>');
             $picturePreviewDiv.prop('class','picturePreviewDiv');
@@ -168,6 +175,9 @@ pageAction.contentPreview = function (type) {
     function videoPreview(videos){
         var $contentPreview = $('.contentPreview');
         $contentPreview.children().remove();
+        if(!videos.length){
+            return $('.contentPreview').append($('<p></p>').text('你还没有上传任何数据!'));
+        }
         $.each(videos, function (index,video) {
             var $videoPreviewDiv = $('<div></div>');
             $videoPreviewDiv.prop('class','videoPreviewDiv');
@@ -213,8 +223,47 @@ pageAction.contentPreview = function (type) {
     function musicPreview(musics){
         var $contentPreview = $('.contentPreview');
         $contentPreview.children().remove();
+        if(!musics.length){
+            return $('.contentPreview').append($('<p></p>').text('你还没有上传任何数据!'));
+        }
         $.each(musics, function (index,music) {
-            
+            var $musicPreviewDiv = $('<div></div>');
+            $musicPreviewDiv.prop('class','musicPreviewDiv');
+            var $p = $('<p></p>');
+            $p.text(++index + ". " + music.title + " - " + music.date + " ")
+                .append($('<span class="glyphicon glyphicon-music" style="color: red"></span>'))
+                .prop({'class':'musicPreview'})
+
+            $p.isClicked = false;
+            $p.click(function () {
+                this.isClicked = !this.isClicked;
+                if(this.isClicked){
+                    $(this).css({
+                        "background-color": 'rgba(57, 89, 128, 0.5)'
+                    });
+                    //给富文本编辑器追加内容
+                    var $audio = $('<audio>');
+                    var $audioP = $('<p></p>');
+                    $audio.prop({
+                        'src':music.source,
+                        'controls':'controls'
+                    }).css({
+                        width:"100%",
+                        height: "auto"
+                    });
+                    $audioP.append($audio);
+                    pageAction.ueContent.setContent($audioP.html(), true);
+                }else {
+                    $(this).css({
+                        "background-color": ''
+                    });
+                    $(this).css({
+                        'opacity':'1'
+                    });
+                }
+            });
+            $musicPreviewDiv.append($p);
+            $contentPreview.append($musicPreviewDiv);
         });
     }
 };

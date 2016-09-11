@@ -39,6 +39,7 @@ body {
     border-top: dashed 1px #395980;
     border-bottom: dashed 1px #395980;
     padding: 1.5em;
+    overflow-x: scroll;
 }
 
 #up,#down {

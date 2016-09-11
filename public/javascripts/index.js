@@ -20,9 +20,13 @@ function indexInit() {
     //动画效果触发
     $('#iconPopover').popover();
     $('.contentNav').click(function () {
+        pageAction.article.type = $(this).text() == "全部" ? "All" : $(this).text();
+        $('.pageNumber[class="active pageNumber"]').prop('class','pageNumber');
+        $('.pageNumber:eq(0)').prop('class','active pageNumber');
+
         $.post('/',{
                 action : "readList",
-                type : $(this).text(),
+                type : pageAction.article.type,
                 number : 15
             }, function (JSONdata) {
                 pageAction.updatePage(JSONdata);
@@ -45,7 +49,11 @@ function indexInit() {
 };
 
 //页面对象
-var pageAction = {};
+var pageAction = {
+    article:{
+        type:"All"
+    }
+};
 
 //模态弹窗
 pageAction.modalWindow = function (text) {
@@ -240,7 +248,7 @@ pageAction.pageNavbarAction = function () {
     function getList(){
         $.post('/',{
                 action : "readList",
-                type : "All",
+                type : pageAction.article.type,
                 number : pageLimit,
                 start: pageStart
             }, function (JSONdata) {

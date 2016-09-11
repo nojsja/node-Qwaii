@@ -111,11 +111,12 @@ pageAction.getUpAndDown = function () {
                 //更新赞同数和反对数
                 $('#up span').text(status.up);
                 $('#down span').text(status.down);
-                if(status.isUp){
+                if(status.isUp && status.isUp != null){
                     $('#up .badge').css({
                        'background-color':"green"
                     });
-                }else if(status.isDown){
+                }else if(status.isDown && status.isDown != null){
+                    alert(status.isDown);
                     $('#down .badge').css({
                         'background-color':"green"
                     });

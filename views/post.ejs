@@ -9,7 +9,7 @@
 
     <!--加载Uditor-->
     <script type="text/javascript" src="/Ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" src="/Ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" src="/Ueditor/ueditor.all.min.js"></script>
     <script type="text/javascript" src="/Ueditor/lang/zh-cn/zh-cn.js"> </script>
 
     <script data-main="/javascripts/config/postConfig" src="/javascripts/lib/require.js"></script>
@@ -51,27 +51,20 @@
     </div>
     <div class="row">
         <div class="col-md-10 col-md-offset-1 type">
-            <div class="col-md-2">番剧</div>
-            <div class="col-md-2">贴文</div>
-            <div class="col-md-2">萌物</div>
+            <div class="col-md-2 typeOther">番剧</div>
+            <div class="col-md-2 typeOther">贴文</div>
+            <div class="col-md-2 typeOther">萌物</div>
             <div class="col-md-2" id="pictureSelect">图片</div>
             <div class="col-md-2" id="musicSelect">音乐</div>
             <div class="col-md-2" id="videoSelect">视频</div>
-            <div class="col-md-2">漫画</div>
-            <div class="col-md-2">其它</div>
+            <div class="col-md-2 typeOther">漫画</div>
+            <div class="col-md-2 typeOther">其它</div>
         </div>
     </div>
     <!--图片预览和视频预览,音乐预览-->
     <div class="row">
         <div class="col-md-10 col-md-offset-1 contentPreview" style="display: none">
-            <!--内容列表-->
-            <!--<div class="picturePreviewDiv">
-                <img src="/images/head/4.jpg">
-            </div>-->
-            <!--<div class="videoPreviewDiv">
-                <p class="videoPreview">虽然歌是无形的.mp4 - Johnson - 2016.9.6<span class="glyphicon glyphicon-film"></span></p>
-            </div>-->
-
+            <!--list-->
         </div>
     </div>
     <!--标签-->
