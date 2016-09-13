@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <!--通知 IE 采用其所支持的最新的模式-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <title><%= title %></title>
     <!--<script type="text/javascript" src="/javascripts/lib/jquery.lazyload.js"></script>-->
     <link rel="stylesheet" href="/stylesheets/lib/bootstrap.min.css">
@@ -16,7 +19,7 @@
 <div id="backgroundImg"></div>
 <%- include header%>
 <!--正文区域-->
-<div class="container totalBackground">
+<div class="container total-background">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 h3" id="articleTitle"><%= Title %></div>
     </div>
@@ -42,7 +45,7 @@
 </div>
 
 <!--评论区-->
-<div class="container totalBackground opacityAlmost">
+<div class="container total-background opacity-almost">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="input-group" id="makeComment">

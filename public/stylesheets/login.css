@@ -1,95 +1,97 @@
 body {
-    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
-    min-height:100%;
+    font : 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+    min-height : 100%;
 }
-.loginIcon {
-    background-color: #e1ebfd;
-    border: solid 1px white;
+.login-icon {
+    background-color : #e1ebfd;
+    border : solid 1px white;
 }
 
-.loginIcon:hover {
-    -webkit-box-shadow:0 0 10px #c75183 inset;
-    -moz-box-shadow:0 0 10px #c75183 inset;
-    box-shadow:0 0 10px #c75183 inset;
+.login-icon:hover {
+    -webkit-box-shadow : 0 0 10px #c75183 inset;
+    -moz-box-shadow : 0 0 10px #c75183 inset;
+    box-shadow : 0 0 10px #c75183 inset;
 
-    -moz-transition: box-shadow 0.3s linear;
-    -webkit-transition: box-shadow 0.3s linear;
-    transition: box-shadow 0.3s linear;
+    -moz-transition : box-shadow 0.3s linear;
+    -webkit-transition : box-shadow 0.3s linear;
+    transition : box-shadow 0.3s linear;
 }
 
 .total {
-    border: solid 1px blue;
-    min-width: 850px;
-    background-color: rgba(244,244,244,0.9);
-    -webkit-box-shadow:0 0 10px black;
-    -moz-box-shadow:0 0 10px black;
-    box-shadow:0 0 10px black;
+    border : solid 1px blue;
+    min-width : 850px;
+    background-color : rgba(244,244,244,0.9);
+    -webkit-box-shadow : 0 0 10px black;
+    -moz-box-shadow : 0 0 10px black;
+    box-shadow : 0 0 10px black;
 }
 
-.chooseDiv {
-    width: 800px;
-    margin: auto;
-    border: solid 1px #868686;
-    display: block;
-    height: 4em;
-    line-height: 4em;
+.choose-div {
+    width : 800px;
+    margin : auto;
+    border : solid 1px #868686;
+    display : block;
+    height : 4em;
+    line-height : 4em;
 }
 
-.loginChoose,.signupChoose {
-    width: 50%;
-    text-align: center;
-    float: left;
-    font-size: 2em;
-    font-family: 华文彩云;
-    display: block;
+.login-choose,
+.signup-choose {
+    width : 50%;
+    text-align : center;
+    float : left;
+    font-size : 2em;
+    font-family : 华文彩云;
+    display : block;
 }
 
-.loginChoose:hover,.signupChoose:hover {
-    font-size: 2.5em;
-    background-color: #e1ebfd;
-    transition: background-color .2s linear;
+.login-choose:hover,
+.signup-choose:hover {
+    font-size : 2.5em;
+    background-color : #e1ebfd;
+    transition : background-color .2s linear;
 }
 
-.loginDiv {
-    width: 800px;
-    height: 450px;
-    display: block;
-    margin: auto;
+.login-div {
+    width : 800px;
+    height : 450px;
+    display : block;
+    margin : auto;
 }
 
-.iconDiv {
-    width: 400px;
-    height: 400px;
-    float: left;
+.icon-div {
+    width : 400px;
+    height : 400px;
+    float : left;
 }
 
-.iconDiv > div {
-    width: 20%;
-    height: 20%;
-    float: left;
+.icon-div > div {
+    width : 20%;
+    height : 20%;
+    float : left;
 }
 
-.iconDiv > div > img {
-    padding: 5px;
-    width: 100%;
+.icon-div > div > img {
+    padding : 5px;
+    width : 100%;
 }
-.inputDiv {
-    width: 400px;
-    float: left;
-    height: 400px;
-    padding: 2em;
+.input-div {
+    width : 400px;
+    float : left;
+    height : 400px;
+    padding : 2em;
 }
 
-.backgroundImg {
-    position: fixed; right: 0; bottom: 0;
-    min-width: 100%; min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-    background: url("/images/pictures/liya.jpg") no-repeat;
-    background-size: cover;
-    filter:alpha(opacity=50);
-    -moz-opacity:0.50;
-    -khtml-opacity: 0.50;
-    opacity: 0.50;
+.background-img {
+    position : fixed; right: 0; bottom: 0;
+    min-width : 100%; min-height: 100%;
+    width : auto;
+    height : auto;
+    z-index : -100;
+    background : url("/images/pictures/liya.jpg") no-repeat;
+    background-size : cover;
+    filter : alpha(opacity=50);
+    -moz-opacity : 0.50;
+    -khtml-opacity : 0.50;
+    opacity : 0.50;
 }

@@ -2,72 +2,61 @@ body {
     font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
     min-height:100%;
 }
-
-html{
+html {
     height:100%;
 }
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
-
 header {
     margin: auto;
 }
-.copyRight{
+/*版权标识*/
+.copyright {
     color: #ffffff;
     text-align: center;
     font-size: 1em;
     background-color: #989fae;
     margin-top: 1em;
 }
-
 .border {
     border: solid 1px red;
 }
-
-.iconBorder {
+.icon-border {
     -webkit-box-shadow:0 0 20px #0CC;
-  -moz-box-shadow:0 0 20px #0CC;
-  box-shadow:0 0 20px #0CC;
-
+    -moz-box-shadow:0 0 20px #0CC;
+    box-shadow:0 0 20px #0CC;
     transition:All 0.4s ease-in-out;
     -webkit-transition:All 0.4s ease-in-out;
     -moz-transition:All 0.4s ease-in-out;
     -o-transition:All 0.4s ease-in-out
 }
-
-.iconBorder:hover {
+.icon-border:hover {
     -webkit-box-shadow:0 0 20px #c75183;
     -moz-box-shadow:0 0 20px #c75183;
     box-shadow:0 0 20px #c75183;
-
     -moz-transition: box-shadow 0.3s linear;
     -webkit-transition: box-shadow 0.3s linear;
     transition: box-shadow 0.3s linear;
-
     transform:translate(0,-10px);
     -webkit-transform:translate(0,-10px);
     -moz-transform:translate(0,-10px);
     -o-transform:translate(0,-10px);
     -ms-transform:translate(0,-10px);
 }
-
-.navBorder {
+.nav-border {
     border-radius: 5px;
     -webkit-box-shadow:0 0 20px #cc507f;
     -moz-box-shadow:0 0 20px #cc507f;
     box-shadow:0 0 20px #cc507f;
     background-color: rgba(255,255,255,0.9);
-
 }
-
 .item > img {
     transition:All 0.5s ease-in-out;
     -webkit-transition:All 0.5s ease-in-out;
     -moz-transition:All 0.5s ease-in-out;
     -o-transition:All 0.5s ease-in-out;
 }
-
 .item > img:hover {
     transform:scale(1.4);
     -webkit-transform:scale(1.4);
@@ -75,38 +64,31 @@ header {
     -o-transform:scale(1.4);
     -ms-transform:scale(1.4);
 }
-
-.contentNav {
+.nav-content {
     margin: 0.5em;
     font-size: 1.3em;
     text-align: center;
     padding: 2px;
     font-family: 方正兰亭超细黑简体;
     font-weight: bold;
-
     transition:All 0.3s ease-in-out;
     -webkit-transition:All 0.3s ease-in-out;
     -moz-transition:All 0.3s ease-in-out;
     -o-transition:All 0.3s ease-in-out;
 }
-
-.contentNav:hover{
+.nav-content:hover {
     color: #590502;
     text-shadow: 0 0 10px #590502;
-    transition:text-shadow .3s linear;
+    transition: text-shadow .3s linear;
     border-radius: 1em;
-
-    transform:scale(1.4);
-    -webkit-transform:scale(1.4);
-    -moz-transform:scale(1.4);
-    -o-transform:scale(1.4);
-    -ms-transform:scale(1.4);
+    transform: scale(1.4);
+    -webkit-transform: scale(1.4);
+    -moz-transform: scale(1.4);
+    -o-transform: scale(1.4);
+    -ms-transform: scale(1.4);
 }
-
 .icon {
-
 }
-
 .icon > img {
     width: auto;
     height: 6em;
@@ -114,57 +96,51 @@ header {
     max-height: 6em;
     margin: auto;
 }
-
-#hotArticleSpan,#hotPictureSpan,#hotVideoSpan {
+#hotArticleSpan,
+#hotPictureSpan,
+#hotVideoSpan {
     color: #c0291f;
     font-size: 1.2em;
 }
-
 #hotView {
     margin-top: 2em;
-    -webkit-box-shadow:0 0 5px black;
-    -moz-box-shadow:0 0 5px black;
-    box-shadow:0 0 5px black;
+    -webkit-box-shadow: 0 0 5px black;
+    -moz-box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px black;
 }
-
-.hotTitle {
+.hot-title {
     width: 100%;
     height: 15em;
-    overflow-y:  scroll;;
+    overflow-y: scroll;
     border-top: 0em;
 }
 
-.hotContent {
+.hot-content {
     width: 100%;
     height: 100%;
     padding: 1em;
 }
-
-.navTabsBorder {
+.nav-tabs-border {
     margin-top: 1em;
     height: auto;
     background-color: rgba(225,235,253,0.5);
 }
-
-.articleView {
+.article-view {
     margin-top: 2em;
     border-top: solid 3px;
     border-bottom: solid 3px;
     border-left: groove 1px;
     border-right: groove 1px;
-
     background-color: rgba(255,255,255,1);
     -webkit-box-shadow:0 0 8px black;
     -moz-box-shadow:0 0 8px black;
     box-shadow:0 0 8px black;
 }
-
-.articleBorder {
+.article-border {
     background-color: #b5dccc;
     width: auto;
     height: auto;
 }
-
 .tag {
     width: auto;
     height: auto;
@@ -176,8 +152,7 @@ header {
     display: inline-block;
     margin-right: 0.5em;
 }
-
-.popuItem {
+.popu-item {
     font-size: 1em;
     text-align: left;
     border-bottom: dotted 1px #a6a6a6;
@@ -185,26 +160,23 @@ header {
     width: 100%;
     margin: 0.5em;
 }
-
-.articleTitle{
+.article-title {
     border-bottom: solid 1px #d2d2d2;
     font-size: 1.3em;
     margin: 0.3em;
 }
-
-.articleTime,.articleAuthor {
+.article-time,
+.article-author {
     color: #868686;
     margin-bottom: 0.2em;
 }
-
-.articleAbstract {
+.article-abstract {
     margin-bottom: 0.5em;
     background-color: #e1ebfd;
     padding: 0.3em;
     color: #395980
 }
-
-.articleRead {
+.article-read {
     background-color: #353846;
     color: whitesmoke;
     text-align: center;
@@ -212,10 +184,12 @@ header {
     -moz-box-shadow:0 0 8px black;
     box-shadow:0 0 8px black;
 }
-
-.backgroundImg {
-    position: fixed; right: 0; bottom: 0;
-    min-width: 100%; min-height: 100%;
+.background-img {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
     width: auto;
     height: auto;
     z-index: -100;
@@ -226,25 +200,22 @@ header {
     -khtml-opacity: 0.20;
     opacity: 0.20;
 }
-
 /*热门标签*/
-.hotTagDiv, .friendLinkDiv{
+.hot-tag-div,
+.friend-link-div {
     margin-top: 2em;
     margin-bottom: 2em;
     min-height: 13em;
     height: auto;
     border-bottom: solid 2px #661611;
     border-top: solid 2px #661611;
-
     background-color: white;
-
     -moz-box-shadow: 0px 0px 8px #661611;
     -o-box-shadow: 0px 0px 8px #661611;
     -webkit-box-shadow: 0px 0px 8px #661611;
     box-shadow:0px 0px 8px #661611;
 }
-
-.hotTag{
+.hot-tag {
     display: inline-block;
     margin: 0.2em;
     color: #661611;
@@ -254,41 +225,35 @@ header {
     -moz-transition:All 0.3s ease-in-out;
     -o-transition:All 0.3s ease-in-out;
 }
-
-.hotTagTitle,.friendLink {
-    margin-bottom:  0.5em;
+.hot-tag-title,
+.friend-link {
+    margin-bottom: 0.5em;
     text-align: center;
     background-color: #767676;
     color: whitesmoke;
     font-weight: bold;
     padding: 0.2em;
 }
-
-.hotTag:hover {
+.hot-tag:hover {
     color: #661611;
     font-weight: bold;
-    transform:scale(1.7);
-    -webkit-transform:scale(1.7);
-    -moz-transform:scale(1.7);
-    -o-transform:scale(1.7);
-    -ms-transform:scale(1.7);
+    transform: scale(1.7);
+    -webkit-transform: scale(1.7);
+    -moz-transform: scale(1.7);
+    -o-transform: scale(1.7);
+    -ms-transform: scale(1.7);
 }
-
-.friendLinkA {
+.friend-link-a {
 }
-
-.friendLinkA > img {
+.friend-link-a > img {
     width: 5em;
     height: 1.7em;
     margin: 0.2em;
-
     -moz-box-shadow: 0px 0px 8px #395980;
     -o-box-shadow: 0px 0px 8px #395980;
     -webkit-box-shadow: 0px 0px 8px #395980;
-    box-shadow:0px 0px 8px #395980;
-
+    box-shadow: 0px 0px 8px #395980;
 }
-
 .total {
     background-color: rgba(204, 204, 204, 0.5);
 }

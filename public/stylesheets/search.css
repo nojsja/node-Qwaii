@@ -3,11 +3,11 @@ body {
     min-height:100%;
 }
 
-.searchDiv {
+.search-div {
     margin-top: 1em;
 }
 
-#backgroundImg {
+.background-img {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -22,7 +22,7 @@ body {
     opacity: 0.20;
 }
 
-.typeTabs {
+.type-tabs {
     margin-top: 2em;
     margin-bottom: 1em;
     -moz-box-shadow: 0 0 3px 3px #868686 inset;
@@ -31,18 +31,19 @@ body {
     border-radius: 1em;
 }
 
-.tabContent {
+.tab-content {
     min-height: 15em;
     height: auto;
     padding: 0.7em;
 }
 
-.articleAbstract,.articleAuthor {
+.article-abstract,
+.article-author {
     height: 1.5em;
     overflow: hidden;
 }
 
-.articleTitle {
+.article-title {
     height: 1.5em;
     overflow: hidden;
     margin-top: 0.5em;
@@ -53,7 +54,7 @@ body {
     text-shadow: 1px 1px  black;
 }
 
-.articleRead {
+.article-read {
     background-color: #353846;
     color: whitesmoke;
     -webkit-box-shadow:0 0 8px black;
@@ -61,7 +62,7 @@ body {
     box-shadow:0 0 8px black;
 }
 
-.articleView {
+.article-view {
     margin-top: 1em;
     border-top: solid 3px;
     border-bottom: solid 3px;

@@ -1,52 +1,52 @@
 /**
  * Created by yangw on 2016/8/19.
  */
-//定义RequireJs模块
-define('post',['jquery'], function () {
+/* 定义RequireJs模块 */
+define('post', ['jquery'], function() {
+
     return {
-        postInit:postInit,
-        getBackgroundImg: function () {
-            $('#backgroundImg').prop('class','backgroundImg');
+        postInit : postInit,
+        getBackgroundImg : function () {
+            $('#backgroundImg').prop('class', 'background-img');
         }
-    }
+    };
 });
 
-//初始化方法
+/* 初始化方法 */
 function postInit() {
 
-    /*初始化编辑器*/
+    //初始化编辑器
     pageAction.ueditorInit();
     //预览动作绑定
-    $('#musicSelect').click(function () {
-        $('.contentPreview').slideDown();
+    $('#musicSelect').click(function() {
+        $('.content-preview').slideDown();
         pageAction.contentPreview("music");
     });
-    $('#videoSelect').click(function () {
-        $('.contentPreview').slideDown();
+    $('#videoSelect').click(function() {
+        $('.content-preview').slideDown();
         pageAction.contentPreview("video");
     });
-    $('#pictureSelect').click(function () {
-        $('.contentPreview').slideDown();
+    $('#pictureSelect').click(function() {
+        $('.content-preview').slideDown();
         pageAction.contentPreview("picture");
     });
 
-
     //标签选定检测
-    $('.tag').click(function () {
+    $('.tag').click(function() {
         pageAction.tagCheck();
     });
     //发表文章
-    $('#sendArticle').click(function () {
+    $('#sendArticle').click(function() {
         pageAction.postCheck();
     });
     //颜色变化
-    $('.type > div').click(function () {
+    $('.type > div').click(function() {
         pageAction.article.type = $(this).text();
-        if($(this).prop('class') == 'col-md-2 typeOther'){
-            $('.contentPreview').slideUp();
+        if( $(this).prop('class') == 'col-md-2 type-other' ){
+            $('.content-preview').slideUp();
         }
-        $('.type > div').css({"background-color":"rgba(0,0,0,0)"});
-        $(this).css({"background-color":"#b5dccc"});
+        $('.type > div').css({"background-color" : "rgba(0,0,0,0)"});
+        $(this).css({"background-color" : "#b5dccc"});
     });
     //初始化
     $('.type > div:eq(1)').css({"background-color":"#b5dccc"});
@@ -57,59 +57,60 @@ function postInit() {
     /*window.addEventListener("beforeunload", function(event) {
         event.returnValue = "警告";
     });*/
-};
+}
 
-//页面动作
+/* 页面动作 */
 var pageAction = {
     //两个编辑器
-    ueAbstract:null,
-    ueContent:null,
-    /*文章属性*/
-    article:{
-        title:null,
-        type:"贴文",
-        tags:[{tag:null}],
-        abstract:null,
-        content:null,
-        from:"Qwaii",
-        source:null
+    ueAbstract : null,
+    ueContent : null,
+    //文章属性
+    article : {
+        title : null,
+        type : "贴文",
+        tags : [{tag : null}],
+        abstract : null,
+        content : null,
+        from : "Qwaii",
+        source : null
     },
     //原创文章是origin,转载B站的话是bilibili
 };
 
 //模态弹窗
-pageAction.modalWindow = function (text) {
+pageAction.modalWindow = function(text) {
+
     $('.modal-body').text(text);
-    $('#modalWindow').modal("show",{
-        backdrop:true,
-        keyboard:true
+    $('#modalWindow').modal("show", {
+        backdrop : true,
+        keyboard : true
     });
 };
 
-//初始化编辑器
-pageAction.ueditorInit = function () {
-    /*摘要编辑器*/
-    this.ueAbstract = UE.getEditor('editorAbstract',{
-        toolbars: [[
-            "fullscreen","source","undo","redo","insertunorderedlist",
-            "insertorderedlist","link","unlink","help","emotion","pagebreak","date","bold","italic",
-            "fontborder","strikethrough","underline","forecolor",
-            "justifyleft","justifycenter","justifyright","justifyjustify",
-            "paragraph","rowspacingbottom","rowspacingtop","lineheight"]],
-        autoHeightEnabled: true,
-        autoFloatEnabled: true
+/* 初始化编辑器 */
+pageAction.ueditorInit = function() {
+    //摘要编辑器
+    this.ueAbstract = UE.getEditor('editorAbstract', {
+        toolbars : [[
+            "fullscreen", "source", "undo", "redo", "insertunorderedlist",
+            "insertorderedlist", "link", "unlink", "help", "emotion", "pagebreak", "date", "bold", "italic",
+            "fontborder", "strikethrough", "underline", "forecolor",
+            "justifyleft", "justifycenter", "justifyright", "justifyjustify",
+            "paragraph", "rowspacingbottom", "rowspacingtop", "lineheight"]],
+        autoHeightEnabled : true,
+        autoFloatEnabled : true
     });
-
-    /*正文编辑器*/
-    this.ueContent = UE.getEditor('editorContent',{
-        autoHeightEnabled: true,
-        autoFloatEnabled: true
+    //正文编辑器
+    this.ueContent = UE.getEditor('editorContent', {
+        autoHeightEnabled : true,
+        autoFloatEnabled : true
     });
 };
 
-//预览个人数据
-pageAction.contentPreview = function (type) {
-    $.post('/preview/'+type, function (data) {
+/* 预览个人数据 */
+pageAction.contentPreview = function(type) {
+
+    $.post('/preview/'+ type, function(data) {
         var jsonData = JSON.parse(data);
         if(jsonData.err){
             return pageAction.modalWindow(jsonData.statusText);
@@ -121,50 +122,46 @@ pageAction.contentPreview = function (type) {
         }else if(type == "picture"){
             picturePreview(jsonData.data);
         }
-    },
-    "JSON");
+    }, "JSON");
 
     //照片预览
-    function picturePreview(pictures){
-        var $contentPreview = $('.contentPreview');
+    function picturePreview(pictures) {
+
+        var $contentPreview = $('.content-preview');
         $contentPreview.children().remove();
         if(!pictures.length){
-            return $('.contentPreview').append($('<p></p>').text('你还没有上传任何数据!'));
+            return $('.content-preview').append($('<p></p>').text('你还没有上传任何数据!'));
         }
-        $.each(pictures, function (index,item) {
+        $.each(pictures, function (index, item) {
             var $picturePreviewDiv = $('<div></div>');
-            $picturePreviewDiv.prop('class','picturePreviewDiv');
+            $picturePreviewDiv.prop('class', 'picture-preview-div');
             var $img = $('<img>');
             $img.prop({
-                'src':item.source,
-                'alt':item.title,
-                'class':'picturePreview'
+                'src': item.source,
+                'alt': item.title,
+                'class' : 'picture-preview'
             });
             $img.isClicked = false;
-            $img.click(function () {
+            $img.click(function() {
                 this.isClicked = !this.isClicked;
                 if(this.isClicked){
                     $picturePreviewDiv.css({
-                        "background-color": 'rgb(157,94,202)'
+                        "background-color" : 'rgb(157,94,202)'
                     });
                     $(this).css({
-                        'opacity':'0.5'
+                        'opacity' : '0.5'
                     });
                     //给富文本编辑器追加内容
                     pageAction.ueContent.setContent($('<p></p>')
                         .append($('<img>')
                             .prop({
-                                'src':item.source,
-                                'alt':item.title,
-                                'class':'picturePreview'})
+                                'src' : item.source,
+                                'alt' : item.title,
+                                'class' : 'picturePreview'})
                         ).html(), true);
                 }else {
-                    $picturePreviewDiv.css({
-                        "background-color": ''
-                    });
-                    $(this).css({
-                        'opacity':'1'
-                    });
+                    $picturePreviewDiv.css({"background-color" : ''});
+                    $(this).css({'opacity' : '1'});
                 }
             });
             $picturePreviewDiv.append($img);
@@ -172,47 +169,42 @@ pageAction.contentPreview = function (type) {
         });
     }
     //视频预览
-    function videoPreview(videos){
-        var $contentPreview = $('.contentPreview');
+    function videoPreview(videos) {
+
+        var $contentPreview = $('.content-preview');
         $contentPreview.children().remove();
         if(!videos.length){
-            return $('.contentPreview').append($('<p></p>').text('你还没有上传任何数据!'));
+            return $('.content-preview').append($('<p></p>').text('你还没有上传任何数据!'));
         }
-        $.each(videos, function (index,video) {
+        $.each(videos, function(index,video) {
             var $videoPreviewDiv = $('<div></div>');
-            $videoPreviewDiv.prop('class','videoPreviewDiv');
+            $videoPreviewDiv.prop('class','video-preview-div');
             var $p = $('<p></p>');
             $p.text(++index + ". " + video.title + " - " + video.date + " ")
                 .append($('<span class="glyphicon glyphicon-film" style="color: red"></span>'))
-                .prop({'class':'videoPreview'})
+                .prop({'class' : 'video-preview'});
 
             $p.isClicked = false;
-            $p.click(function () {
+            $p.click(function() {
                 this.isClicked = !this.isClicked;
                 if(this.isClicked){
-                    $(this).css({
-                        "background-color": 'rgba(57, 89, 128, 0.5)'
-                    });
+                    $(this).css({"background-color" : 'rgba(57, 89, 128, 0.5)'});
                     //给富文本编辑器追加内容
                     var $video = $('<video>');
                     var $videoP = $('<p></p>');
                     $video.prop({
-                       'src':video.source,
-                        'controls':'controls'
+                       'src' : video.source,
+                        'controls' : 'controls'
                     }).css({
-                        display: "block",
-                        width:"100%",
-                        height: "450px"
+                        display : "block",
+                        width :"100%",
+                        height : "450px"
                     });
                     $videoP.append($video);
                     pageAction.ueContent.setContent($videoP.html(), true);
                 }else {
-                    $(this).css({
-                        "background-color": ''
-                    });
-                    $(this).css({
-                        'opacity':'1'
-                    });
+                    $(this).css({"background-color" : ''});
+                    $(this).css({'opacity' : '1'});
                 }
             });
             $videoPreviewDiv.append($p);
@@ -221,45 +213,40 @@ pageAction.contentPreview = function (type) {
     }
     //音乐预览
     function musicPreview(musics){
-        var $contentPreview = $('.contentPreview');
+
+        var $contentPreview = $('.content-preview');
         $contentPreview.children().remove();
         if(!musics.length){
-            return $('.contentPreview').append($('<p></p>').text('你还没有上传任何数据!'));
+            return $('.content-preview').append($('<p></p>').text('你还没有上传任何数据!'));
         }
-        $.each(musics, function (index,music) {
+        $.each(musics, function (index, music) {
             var $musicPreviewDiv = $('<div></div>');
-            $musicPreviewDiv.prop('class','musicPreviewDiv');
+            $musicPreviewDiv.prop('class', 'music-preview-div');
             var $p = $('<p></p>');
             $p.text(++index + ". " + music.title + " - " + music.date + " ")
-                .append($('<span class="glyphicon glyphicon-music" style="color: red"></span>'))
-                .prop({'class':'musicPreview'})
+                .append($('<span class="glyphicon glyphicon-music" style="color : red"></span>'))
+                .prop({'class' : 'music-preview'});
 
             $p.isClicked = false;
-            $p.click(function () {
+            $p.click(function() {
                 this.isClicked = !this.isClicked;
                 if(this.isClicked){
-                    $(this).css({
-                        "background-color": 'rgba(57, 89, 128, 0.5)'
-                    });
+                    $(this).css({"background-color" : 'rgba(57, 89, 128, 0.5)'});
                     //给富文本编辑器追加内容
                     var $audio = $('<audio>');
                     var $audioP = $('<p></p>');
                     $audio.prop({
-                        'src':music.source,
-                        'controls':'controls'
+                        'src' : music.source,
+                        'controls' : 'controls'
                     }).css({
-                        width:"100%",
-                        height: "auto"
+                        width : "100%",
+                        height : "auto"
                     });
                     $audioP.append($audio);
                     pageAction.ueContent.setContent($audioP.html(), true);
                 }else {
-                    $(this).css({
-                        "background-color": ''
-                    });
-                    $(this).css({
-                        'opacity':'1'
-                    });
+                    $(this).css({"background-color" : ''});
+                    $(this).css({'opacity' : '1'});
                 }
             });
             $musicPreviewDiv.append($p);
@@ -268,12 +255,13 @@ pageAction.contentPreview = function (type) {
     }
 };
 
-//文章标签选定检测
-pageAction.tagCheck = function () {
+/* 文章标签选定检测 */
+pageAction.tagCheck = function() {
+
     var tags = [];
-    $.each($('.tag'), function (i,obj) {
+    $.each($('.tag'), function (i, obj) {
         if($(obj).prop("checked")){
-            tags.push({tag:obj.value});
+            tags.push({tag : obj.value});
         }
     });
     if(tags.length > 4){
@@ -288,8 +276,8 @@ pageAction.tagCheck = function () {
     }
 };
 
-//文章编辑检测
-pageAction.postCheck = function(){
+/* 文章编辑检测 */
+pageAction.postCheck = function() {
 
     if(!$('#bilibiliAV').val() && ($('#bilibiliAV').length > 0)){
         headerAction.modalWindow("填写bilibili AV号才能成功转载额!");
@@ -311,27 +299,29 @@ pageAction.postCheck = function(){
         headerAction.modalWindow("正文怎么能不写呢!");
         return;
     }
-    with(pageAction){
-        article.title = "[" + article.type + "]" + $('#articleTitle').val();
-        article.abstract = ueAbstract.getPlainTxt();
-        article.content = ueContent.getContent();
-        article.source = $('#bilibiliAV').val();
-        //发表文章
-        sendPost();
-    }
+
+    pageAction.article.title = "[" + pageAction.article.type + "]" + $('#articleTitle').val();
+    pageAction.article.abstract = pageAction.ueAbstract.getPlainTxt();
+    pageAction.article.content = pageAction.ueContent.getContent();
+    pageAction.article.source = $('#bilibiliAV').val();
+    //发表文章
+    pageAction.sendPost();
 };
 
-//发表文章
-pageAction.sendPost = function () {
-    $.post('/post',{
+/* 发表文章 */
+pageAction.sendPost = function() {
+
+    $.post('/post', {
         //发送json对象
-       jsonArticle: JSON.stringify(pageAction.article)
+       jsonArticle : JSON.stringify(pageAction.article)
     }, function (JSONdata) {
         if(!JSONdata.status){
             pageAction.modalWindow(JSONdata.statusText);
         }else {
             var urlData = JSONdata.statusText;
-            window.location.href = "/article/"+urlData.author+"/"+urlData.title+"/"+urlData.date;
+            var urlArray = [];
+            urlArray.push("/article/", urlData.author, "/", urlData.title, "/", urlData.date);
+            window.location.href = urlArray.join('');
         }
     },
     "JSON");

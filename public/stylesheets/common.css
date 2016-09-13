@@ -1,30 +1,27 @@
-.opacityLow {
-    filter:alpha(opacity=20);
-    -moz-opacity:0.20;
+.opacity-low {
+    filter: alpha(opacity=20);
+    -moz-opacity: 0.20;
     -khtml-opacity: 0.20;
     opacity: 0.20;
 }
-
-.opacityHalf{
-    filter:alpha(opacity=50);
-    -moz-opacity:0.50;
+.opacity-half {
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.50;
     -khtml-opacity: 0.50;
     opacity: 0.50;
 }
-
-.opacityAlmost {
-    filter:alpha(opacity=90);
-    -moz-opacity:0.90;
+.opacity-almost {
+    filter: alpha(opacity=90);
+    -moz-opacity: 0.90;
     -khtml-opacity: 0.90;
     opacity: 0.90;
 }
-.pageAnchor {
+.page-anchor {
     position: fixed;
     right: 1em;
     bottom: 5em;
 }
-
-.copyRight{
+.copyright {
     color: #ffffff;
     text-align: center;
     font-size: 1em;
@@ -32,30 +29,26 @@
     margin-top: 1em;
     box-shadow: 0px 0px 8px #661611 inset;
 }
-
 .border {
     border: solid 1px green;
 }
-
 .tips {
     font-family: 微软雅黑;
     font-size: 1.3em;
-    word-spacing:8px;
+    word-spacing: 8px;
     letter-spacing: 1px;
 }
-
 .spacing {
-    word-spacing:8px;
+    word-spacing: 8px;
     letter-spacing: 1px;
 }
-
 #headerNav {
     background-color: rgba(0, 0, 0, 0.80);
     border-bottom: solid 3px #c0291f;
 }
-
 .blur {
-    -webkit-filter: blur(6px); /* Chrome, Opera */
+    -webkit-filter: blur(6px);
+    /* Chrome, Opera*/
     -moz-filter: blur(6px);
     -ms-filter: blur(6px);
     filter: blur(6px);

@@ -1,34 +1,36 @@
 /**
  * Created by yangw on 2016/8/18.
  */
-//定义RequireJs模块
-define('article',['jquery'], function () {
+/* 定义RequireJs模块 */
+define('article', ['jquery'], function() {
+
     return {
-        articleInit:articleInit,
-        getContent: function () {
+        articleInit : articleInit,
+        getContent : function() {
           pageAction.getContent();
         },
-        updateReadNumber: function () {
+        updateReadNumber : function() {
           pageAction.updateReadNumber();
         },
-        getBackgroundImg: function () {
-            $('#backgroundImg').prop('class','backgroundImg');
+        getBackgroundImg : function () {
+            $('#backgroundImg').prop('class', 'background-img');
         }
-    }
+    };
 });
 
-//初始化
+/* 初始化 */
 function articleInit(){
+
     pageAction.title = $('#articleTitle').text();
     pageAction.author = $('#articleAuthor').text();
 
     //赞同或反对
-    $('#up').click(function () {
+    $('#up').click(function() {
         /*保存作用域*/
         var that = this;
         pageAction.upOrDown(that);
     });
-    $('#down').click(function () {
+    $('#down').click(function() {
         var that = this;
         pageAction.upOrDown(that);
     });
@@ -40,6 +42,7 @@ function articleInit(){
     $(window).scroll(scrollCheck);
     //3秒后进行检测,防止页面卡住的情况
     setTimeout(scrollCheck,3000);
+
     function scrollCheck() {
         //滚动的Y轴距离
         var scrollTop = $(this).scrollTop();
@@ -55,26 +58,28 @@ function articleInit(){
             pageAction.getArticleInfo();
         }
     }
-};
+}
 
-//页面动作对象
+/* 页面动作对象 */
 var pageAction = {
-    title: null,
-    author: null,
-    commentLoaded:false
+    title : null,
+    author : null,
+    commentLoaded : false
 };
 
-//模态弹窗
-pageAction.modalWindow = function (text) {
+/* 模态弹窗 */
+pageAction.modalWindow = function(text) {
+
     $('.modal-body').text(text);
-    $('#modalWindow').modal("show",{
-        backdrop:true,
-        keyboard:true
+    $('#modalWindow').modal("show", {
+        backdrop : true,
+        keyboard : true
     });
 };
 
-//赞同或反对
-pageAction.upOrDown = function (object){
+/* 赞同或反对 */
+pageAction.upOrDown = function(object){
+
     var action;
     if(object == document.getElementById('up')){
         action = "up";
@@ -82,10 +87,10 @@ pageAction.upOrDown = function (object){
         action = "down";
     }
 
-    $.post('/article/upOrDown',{
-            action: action,
-            title: $('#articleTitle').text(),
-            author: $('#articleAuthor').text()
+    $.post('/article/upOrDown', {
+            action : action,
+            title : $('#articleTitle').text(),
+            author : $('#articleAuthor').text()
         },
         function (status) {
             if(status.err){
@@ -94,15 +99,16 @@ pageAction.upOrDown = function (object){
                 //读取一篇文章的赞同和反对数
                 pageAction.getUpAndDown();
             }
+        }, "JSON"
+    );
+};
 
-        }, "JSON");
-}
+/* 得到一篇文章的赞同数和反对数 */
+pageAction.getUpAndDown = function() {
 
-//得到一篇文章的赞同数和反对数
-pageAction.getUpAndDown = function () {
-    $.post('/article/readUpAndDown',{
-            title: $('#articleTitle').text(),
-            author: $('#articleAuthor').text()
+    $.post('/article/readUpAndDown', {
+            title : $('#articleTitle').text(),
+            author : $('#articleAuthor').text()
         }, function (status) {
             if(status.err){
                 pageAction.commentLoaded = false;
@@ -111,39 +117,36 @@ pageAction.getUpAndDown = function () {
                 //更新赞同数和反对数
                 $('#up span').text(status.up);
                 $('#down span').text(status.down);
-                if(status.isUp && status.isUp != null){
-                    $('#up .badge').css({
-                       'background-color':"green"
-                    });
-                }else if(status.isDown && status.isDown != null){
-                    alert(status.isDown);
-                    $('#down .badge').css({
-                        'background-color':"green"
-                    });
+                if(status.isUp && status.isUp !== null){
+                    $('#up .badge').css({'background-color':"green"});
+                }else if(status.isDown && (status.isDown !== null)){
+                    $('#down .badge').css({'background-color':"green"});
                 }
             }
-        },
-        "JSON");
+        }, "JSON"
+    );
 };
 
 
-//得到文章数据
-pageAction.getContent = function () {
-    var author = this.author;
-    var title = this.title;
+/* 得到文章数据 */
+pageAction.getContent = function() {
 
-    $.post('/article/' + author + "/" + title,{action:"getContent"}, function (JSONdata) {
+    var urlArray = [];
+    urlArray.push('/article/', this.author, "/", this.title);
+    $.post(urlArray.join(''), {action : "getContent"}, function (JSONdata) {
         if(JSONdata.status){
             //渲染文章
             $('#articleContent').append($(JSONdata.article.content));
-            /*判断是否包含b站资源*/
+            //判断是否包含b站资源
             if(JSONdata.article.from == "bilibili"){
                 var src = "http://www.bilibili.com/html/player.html?aid=" + JSONdata.article.source;
-                $('#articleContent').append($('<iframe class="biliVideo" ' +
+                $('#articleContent').append(
+                    $('<iframe class="biliVideo" ' +
                     'frameborder="0" allowfullscreen="" ' +
-                    'scrolling="no"></iframe>').prop('src',src));
+                    'scrolling="no"></iframe>').prop('src',src)
+                );
             }
-            $("img").lazyload({effect: "fadeIn"});
+            $("img").lazyload({effect : "fadeIn"});
         }else {
             pageAction.commentLoaded = false;
             pageAction.modalWindow("读取出错!");
@@ -151,19 +154,19 @@ pageAction.getContent = function () {
     }, "JSON");
 };
 
-//得到一篇文章的评论
+/* 得到一篇文章的评论 */
 pageAction.getArticleInfo = function () {
-    var author = this.author;
-    var title = this.title;
 
-    $.post('/article/' + author + "/" + title,{action:"getInfo"}, function (JSONdata) {
+    var urlArray = [];
+    urlArray.push('/article/', this.author, "/", this.title);
+    $.post(urlArray.join(''), {action:"getInfo"}, function (JSONdata) {
         if(JSONdata.status){
             //删除所有子节点
             $('.comments-wrapper').children('div[class!="comment-label"]').remove();
             var commentsData = JSON.parse(JSONdata.commentsData);
             $('#up > span').text(commentsData.up);
             $('#down > span').text(commentsData.down);
-            $.each(commentsData.comments, function (index,comment) {
+            $.each(commentsData.comments, function(index,comment) {
                 var $comment = $('<div class="entry-comments"></div>');
 
                 var $nameLabel = $('<label></label>');
@@ -182,36 +185,38 @@ pageAction.getArticleInfo = function () {
         }else {
             pageAction.modalWindow("读取评论出错!");
         }
-    },"JSON");
+    }, "JSON");
 };
 
-//插入一条评论
-pageAction.insertComment = function () {
-    var content = $('#makeComment input').val();
-    var title = this.title;
-    var author = this.author;
+/* 插入一条评论 */
+pageAction.insertComment = function() {
+
+    var content = $('#makeComment input').val(),
+        title = this.title,
+        author = this.author;
+
     if(!content){
         return this.modalWindow("你还没有输入评论内容!");
     }
     $.post('/article/makeComment',{
-        content: content,
-        articleTitle: title,
-        articleAuthor: author
-    }, function (status) {
+        content : content,
+        articleTitle : title,
+        articleAuthor : author
+    }, function(status) {
         if(status.err){
             pageAction.modalWindow(status.statusText);
         }else {
             pageAction.getArticleInfo();
         }
-    },"JSON");
+    }, "JSON");
 };
 
-//更新阅读量
-pageAction.updateReadNumber = function () {
-    var title = this.title;
-    var author = this.author;
+/* 更新阅读量 */
+pageAction.updateReadNumber = function() {
 
-    $.post('/article/' + author + "/" + title,{
+    var urlArray = [];
+    urlArray.push('/article/', this.author, "/", this.title);
+    $.post(urlArray.join(''), {
         action: "updateRead"
     });
 };

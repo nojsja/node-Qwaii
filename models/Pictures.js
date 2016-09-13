@@ -4,7 +4,7 @@
 var dbAction = require('./db.js');
 var settings = require('../settings.js');
 
-//构造函数
+/* 构造函数 */
 function Pictures(picture){
     this.title = picture.title;
     this.date = new Date();
@@ -12,57 +12,57 @@ function Pictures(picture){
     this.author = picture.author;
 }
 
-//存储一条视频数据
+/* 存储一条视频数据 */
 Pictures.prototype.save = function (callback) {
     //存储的视频数据
     var picture = {
-        title: this.title,
-        date: this.date,
-        source: this.source,
-        author: this.author
+        title : this.title,
+        date : this.date,
+        source : this.source,
+        author : this.author
     };
-    dbAction.dbInit(function (err,db) {
+    dbAction.dbInit(function (err, db) {
         if(err){
-            return callback(err,"抱歉,数据库发生内部错误!");
+            return callback(err, "抱歉,数据库发生内部错误!");
         }
-        db.collection('QPICTURE', function (err,collection) {
+        db.collection('QPICTURE', function (err, collection) {
             if(err){
                 dbAction.dbLogout(db);
-                return callback(err,"抱歉,数据库发生内部错误!");
+                return callback(err, "抱歉,数据库发生内部错误!");
             }
-            collection.insert(picture, function (err,results) {
+            collection.insert(picture, function (err, results) {
                 dbAction.dbLogout(db);
                 if(err){
-                    return callback(err,"抱歉,数据库发生内部错误!");
+                    return callback(err, "抱歉,数据库发生内部错误!");
                 }
-                callback(null,null);
+                callback(null, null);
             });
         });
     });
 };
 
-//获取预览数据
-Pictures.getPreviewData = function (author,callback) {
-    dbAction.dbInit(function (err,db) {
+/* 获取预览数据 */
+Pictures.getPreviewData = function (author, callback) {
+    dbAction.dbInit(function (err, db) {
        if(err){
-           return callback(err,"抱歉,数据库发生严重错误!");
+           return callback(err, "抱歉,数据库发生严重错误!");
        }
-        db.collection('QPICTURE', function (err,collection) {
+        db.collection('QPICTURE', function (err, collection) {
            if(err){
                dbAction.dbLogout(db);
-               return callback(err,"抱歉,数据库发生严重错误!");
+               return callback(err, "抱歉,数据库发生严重错误!");
            }
-            collection.find({author:author}, function (err,cursor) {
+            collection.find({author : author}, function (err, cursor) {
                 if(err){
                     dbAction.dbLogout(db);
                     return callback(err);
                 }
                 var pictures = [];
-                cursor.each(function (err,item) {
+                cursor.each(function (err, item) {
                     if(err){
                         cursor.close();
                         dbAction.dbLogout(db);
-                        return callback(err,"抱歉,数据库发生错误!");
+                        return callback(err, "抱歉,数据库发生错误!");
                     }
                     if(item){
                         pictures.push(item);
@@ -70,7 +70,7 @@ Pictures.getPreviewData = function (author,callback) {
                         //正确返回数据
                         cursor.close();
                         dbAction.dbLogout(db);
-                        return callback(null,pictures);
+                        return callback(null, pictures);
                     }
                 });
             });

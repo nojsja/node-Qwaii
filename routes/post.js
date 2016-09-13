@@ -4,22 +4,23 @@
 var path = require("path");
 var Articles = require("../models/Articles.js");
 
-module.exports = function (app) {
+module.exports = function(app) {
+
     /*发布贴文页*/
-    app.get('/post', function (req,res) {
+    app.get('/post', function (req, res) {
         //没有登录跳转到登录页面
         if(!req.session.userName){
-            res.render('login',{title:"登录或注册"});
+            res.render('login', {title : "登录或注册"});
         }else {
             if(req.query.from == "bilibili"){
-                res.render('post',{
-                    title:'我要转载',
-                    from:'bilibili'
+                res.render('post', {
+                    title : '我要转载',
+                    from : 'bilibili'
                 });
             }else {
-                res.render('post',{
-                    title:'我要投稿',
-                    from:'Qwaii'
+                res.render('post', {
+                    title : '我要投稿',
+                    from : 'Qwaii'
                 });
             }
 
@@ -27,7 +28,7 @@ module.exports = function (app) {
 
     });
 
-    //处理发表贴文逻辑
+    /* 处理发表贴文逻辑 */
     app.post('/post', function (req,res) {
 
         var article = JSON.parse(req.body.jsonArticle);
@@ -39,13 +40,13 @@ module.exports = function (app) {
         newArticle.save(function (err, responseText) {
             if(err){
                 res.json({
-                    status: false,
-                    statusText: responseText
+                    status : false,
+                    statusText : responseText
                 });
             }else {
                 res.json({
-                    status: true,
-                    statusText: responseText
+                    status : true,
+                    statusText : responseText
                 });
             }
         });

@@ -5,7 +5,7 @@
 define('header',['jquery'], function () {
    return {
        headerInit: headerInit
-   }
+   };
 });
 
 //初始化函数
@@ -41,8 +41,7 @@ function headerInit() {
     $('#searchSpan').click(function () {
         window.location.href = "/search";
     });
-
-};
+}
 
 //页面动作对象
 var headerAction = {};

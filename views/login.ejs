@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge">
     <title><%= title %></title>
     <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
     <link rel='stylesheet' href='/stylesheets/login.css' />
@@ -13,15 +15,15 @@
 <div id="backgroundImg"></div>
 <%- include header%>
 <div class="container total">
-    <div class="chooseDiv">
-        <div class="signupChoose" id="signupTitle">注册</div>
-        <div class="loginChoose" id="loginTitle">登录</div>
+    <div class="choose-div">
+        <div class="signup-choose" id="signupTitle">注册</div>
+        <div class="login-choose" id="loginTitle">登录</div>
     </div>
-    <div class="loginDiv">
-        <div class="iconDiv">
+    <div class="login-div">
+        <div class="icon-div">
 
         </div>
-        <div class="inputDiv">
+        <div class="input-div">
 
                 <fieldset>
                     <legend id="action">用户登录</legend>
@@ -66,9 +68,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/javascripts/lib/jquery-2.1.4.js"></script>
-<script type="text/javascript" src="/javascripts/lib/bootstrap.js"></script>
-<script type="text/javascript" src="/javascripts/login.js"></script>
 <!--模态弹窗口组件-->
 <%-include modalWindow.ejs%>
 </body>

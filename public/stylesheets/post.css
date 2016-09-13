@@ -3,7 +3,7 @@ body {
     min-height:100%;
 }
 
-.postTitle {
+.post-title {
     text-align: center;
     margin-top: 1em;
     margin-bottom: .5em;
@@ -15,7 +15,7 @@ body {
 }
 
 /*预览内容*/
-.contentPreview {
+.content-preview {
     border: dashed 2px #395980;
     margin-bottom: 2em;
     overflow-y: scroll;
@@ -23,7 +23,7 @@ body {
     height: 12em;
     padding: 0.5em;
 }
-.contentPreview > p {
+.content-preview > p {
     text-align: center;
     color: rgba(0, 0, 0, 0.69);
     margin-top: 2em;
@@ -31,12 +31,12 @@ body {
 }
 
 /*预览图片*/
-.picturePreviewDiv {
+.picture-preview-div {
     display: inline-block;
     padding: 3px;
     margin: 0.2em;
 }
-.picturePreview {
+.picture-preview {
     height: 5em;
     width:auto;
     border: solid 1px white;
@@ -46,10 +46,11 @@ body {
     -webkit-box-shadow: 0px 0px 8px #238eae;
 }
 /*视频列表预览*/
-.videoPreviewDiv {
+.video-preview-div {
 
 }
-.videoPreview,.musicPreview {
+.video-preview,
+.music-preview {
     text-align: left;
     font-size: 1.1em;
     padding: 0.2em;
@@ -59,23 +60,24 @@ body {
 }
 
 /*音乐列表预览*/
-.musicPreviewDiv {
+.music-preview-div {
 
 }
 
-.videoPreview:hover,.musicPreview:hover {
+.video-preview:hover,
+.music-preview:hover {
     background-color: rgba(57, 89, 128, 0.5);
     color: white;
 }
 
-.videoInsert {
+.video-insert {
     display: block;
     width:100%;
     height: 300px;
 }
 
 /*背景图片*/
-.backgroundImg {
+.background-img {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -108,7 +110,8 @@ body {
     box-shadow: 5px 5px #353846;
 }
 
-#articleTitle,#bilibiliAV {
+#articleTitle,
+#bilibiliAV {
     margin-bottom: 1.5em;
     width: 100%;
 }
@@ -127,7 +130,7 @@ body {
     margin-bottom: 1.5em;
 }
 
-.tagsRow {
+.tags-row {
     margin-bottom: 1em;
 }
 
@@ -149,7 +152,7 @@ body {
     text-align: center;
 }
 
-.tagDiv{
+.tag-div{
     margin: 0px auto;
     text-align: center;
     border-left: double 1px #238eae;

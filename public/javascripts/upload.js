@@ -5,41 +5,39 @@
 $(function () {
     $('#progress').hide();
     var $jqXHR = $('#fileUpload').fileupload({
-        url: '/upload',
-        dataType: 'json',
+        url : '/upload',
+        dataType : 'json',
         //autoUpload: false,
         //acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-        maxFileSize: 2000000000, // 5 MB
+        maxFileSize : 2000000000, // 5 MB
         // Enable image resizing, except for Android and Opera,
         // which actually support image resizing, but fail to
         // send Blob objects via XHR requests:
-        disableImageResize: /Android(?!.*Chrome)|Opera/
+        disableImageResize : /Android(?!.*Chrome)|Opera/
             .test(window.navigator.userAgent),
-        previewMaxWidth: 100,
-        previewMaxHeight: 100,
-        previewCrop: true
+        previewMaxWidth : 100,
+        previewMaxHeight : 100,
+        previewCrop : true
         //文件加载
     }).on('fileuploadadd', function (e, data) {
-        $('.progress-bar').css('width','0%');
+        $('.progress-bar').css('width', '0%');
         data.context = $('<div></div>').appendTo($('#fileListDiv'));
         $.each(data.files, function (index, file) {
             var node = $('<p></p>').text(file.name);
             node.appendTo(data.context);
             $('#progress').show();
-        })
+        });
 
-    }).on('fileuploadprocessalways', function (e, data) {
+    }).on('fileuploadprocessalways', function(e, data) {
         var index = data.index,
             file = data.files[index],
             node = $(data.context.children()[index]);
         if (file.preview) {
-            node
-                .prepend('<br>')
+            node.prepend('<br>')
                 .prepend(file.preview);
         }
         if (file.error) {
-            node
-                .append('<br>')
+            node.append('<br>')
                 .append($('<span class="text-danger"/>').text(file.error));
         }
         if (index + 1 === data.files.length) {
@@ -48,7 +46,7 @@ $(function () {
                 .prop('disabled', !!data.files.error);
         }
         //上传进度
-    }).on('fileuploadprogressall', function (e, data) {
+    }).on('fileuploadprogressall', function(e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
         $('#progress .progress-bar').css(
             'width',
