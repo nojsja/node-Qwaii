@@ -141,7 +141,7 @@ pageAction.getContent = function() {
             if(JSONdata.article.from == "bilibili"){
                 var src = "http://www.bilibili.com/html/player.html?aid=" + JSONdata.article.source;
                 $('#articleContent').append(
-                    $('<iframe class="biliVideo" ' +
+                    $('<iframe class="bili-video" ' +
                     'frameborder="0" allowfullscreen="" ' +
                     'scrolling="no"></iframe>').prop('src',src)
                 );

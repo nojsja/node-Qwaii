@@ -37,8 +37,8 @@ module.exports = function (app) {
 
         var fs = require('fs'),
             path = require('path'),
-            baseUrl = "/images/head/";
-        fs.readdir(path.join(__dirname, '../public/images/head'), function(err, files) {
+            baseUrl = "/images/head/origin/";
+        fs.readdir(path.join(__dirname, '../public/images/head/origin'), function(err, files) {
             if (err){
                 console.log(err);
                 res.type("text/plain");

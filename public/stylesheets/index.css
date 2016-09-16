@@ -123,7 +123,7 @@ header {
 .nav-tabs-border {
     margin-top: 1em;
     height: auto;
-    background-color: rgba(225,235,253,0.5);
+    background-color: rgba(225,235,253,0.75);
 }
 .article-view {
     margin-top: 2em;
@@ -193,12 +193,12 @@ header {
     width: auto;
     height: auto;
     z-index: -100;
-    background: url("/images/pictures/luka2.jpg") no-repeat;
+    background: url("/images/pictures/pugongying.jpg") no-repeat;
     background-size: cover;
     filter:alpha(opacity=20);
     -moz-opacity:0.20;
     -khtml-opacity: 0.20;
-    opacity: 0.20;
+    opacity: 0.40;
 }
 /*热门标签*/
 .hot-tag-div,
@@ -254,6 +254,7 @@ header {
     -webkit-box-shadow: 0px 0px 8px #395980;
     box-shadow: 0px 0px 8px #395980;
 }
+
 .total {
-    background-color: rgba(204, 204, 204, 0.5);
+    background-color: rgba(57, 89, 128, 0.32);
 }
