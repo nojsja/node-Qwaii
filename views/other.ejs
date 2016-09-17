@@ -1,0 +1,106 @@
+<!-- 其它页面 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/other.css' />
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <script data-main="/javascripts/config/otherConfig.js" src="/javascripts/lib/require.js"></script>
+</head>
+<body>
+<div id="backgroundImg" class="background-img"></div>
+<!--header-->
+<%- include header%>
+
+<!--主要内容-->
+<div class="container" id="total">
+    <!--判断请求内容-->
+    <% if (content == "about") { %>
+    <div class="row">
+        <div class="col-md-12 head">
+            <p><h1><%= title %></h1></p>
+        </div>
+
+        <div class="col-md-12 content">
+            <p><h3>服务条款</h3></p>
+            <ul>
+                <li>使用本站将被视为同意网站所有协议</li>
+                <li>Q站提供的是合法的网络视频,音乐,图片等内容</li>
+                <li>网站由个人开发,托管于腾讯云</li>
+            </ul>
+        </div>
+        <div class="col-md-12 content">
+            <p><h3>帮助中心</h3></p>
+            <ul>
+                <li>如果网站侵犯了您的个人权益请发邮件至: yangwei13@outlook.com 进行申诉</li>
+                <li>如需反馈请发送邮件至:yangwei13@outlook.com</li>
+            </ul>
+        </div>
+        <div class="col-md-12 content">
+            <p><h3>免责声明</h3></p>
+            <ul>
+                <li>用户应该遵守相关的法律法规</li>
+                <li>资源均来源于网络公开和个人用户上传,网站不负产权责任</li>
+                <li>网站享有监督权,可以删除非法的资源</li>
+            </ul>
+        </div>
+    </div>
+    <% } %>
+
+    <% if (content == "contact") { %>
+    <div class="row">
+        <div class="col-md-12 head">
+            <p><h1><%= title %></h1></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 content">
+            <p><h3>加入团队</h3></p>
+            <ul>
+                <li>我的团队期待您的加入!</li>
+                <li>联系QQ:1334239104</li>
+                <li>联系邮箱:yangwei13@outlook.com</li>
+            </ul>
+        </div>
+        <div class="col-md-12 content">
+            <p><h3>建议反馈</h3></p>
+            <ul>
+                <li>反馈信息请包括反馈主题,反馈内容,不要的话请给出您的联系方式.</li>
+                <li>反馈请至邮:yangwei13@outlook.com</li>
+            </ul>
+        </div>
+    </div>
+    <% } %>
+
+    <% if (content == "follow") { %>
+    <div class="row">
+        <div class="col-md-12 head">
+            <p><h1><%=  title %></h1></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 content">
+            <p><h3>Github</h3></p>
+            <ul>
+                <li>我的主页: <a href="https://github.com/NoJsJa">https://github.com/NoJsJa</a></li>
+                <li>Qwaii项目主页: <a href="https://github.com/NoJsJa">https://github.com/NoJsJa/node-Qwaii</a></li>
+            </ul>
+        </div>
+        <div class="col-md-12 content">
+            <p><h3>新浪微博/Twitter</h3></p>
+            <ul>
+                <li>微博: @AuTuMn_愤怒的Node</li>
+                <li>Twitter: @Johnyou29734209</li>
+            </ul>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+<!--footer-->
+<%- include footer%>
+</body>
+</html>

@@ -20,6 +20,7 @@ body {
 .total {
     border : solid 1px blue;
     min-width : 850px;
+    padding-bottom: 1em;
     background-color : rgba(244,244,244,0.9);
     -webkit-box-shadow : 0 0 10px black;
     -moz-box-shadow : 0 0 10px black;
@@ -94,4 +95,20 @@ body {
     -moz-opacity : 0.50;
     -khtml-opacity : 0.50;
     opacity : 0.50;
+}
+
+#headerNav {
+    background-color: rgba(0, 0, 0, 0.80);
+    border-bottom: solid 3px #c0291f;
+}
+
+.tips {
+    font-family: 微软雅黑;
+    font-size: 1.3em;
+    word-spacing: 8px;
+    letter-spacing: 1px;
+}
+.spacing {
+    word-spacing: 8px;
+    letter-spacing: 1px;
 }

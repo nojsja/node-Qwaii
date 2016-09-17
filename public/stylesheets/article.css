@@ -8,6 +8,12 @@ body {
     border-bottom : solid 1px #c5cede;
 }
 
+.page-anchor {
+    position: fixed;
+    right: 1em;
+    bottom: 5em;
+}
+
 .background-img {
     position : fixed;
     bottom : 0;
@@ -40,6 +46,13 @@ body {
     border-bottom : dashed 1px #395980;
     padding : 1.5em;
     overflow-x : scroll;
+}
+
+.opacity-almost {
+    filter: alpha(opacity=90);
+    -moz-opacity: 0.90;
+    -khtml-opacity: 0.90;
+    opacity: 0.90;
 }
 
 #up,
@@ -130,4 +143,19 @@ body {
 #down {
     margin-top : 0.5em;
     text-align : center;
+}
+
+#headerNav {
+    background-color: rgba(0, 0, 0, 0.80);
+    border-bottom: solid 3px #c0291f;
+}
+
+.copyright {
+    color: #395980;
+    text-align: center;
+    font-size: 1em;
+    /*background-color: #989fae;*/
+    background-color: rgba(245, 245, 245, 0.5);
+    margin-top: 1em;
+    box-shadow: 0px 0px 5px #661611 inset;
 }
