@@ -1,0 +1,27 @@
+<!--个人信息页面-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=Edge">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
+    <link rel='stylesheet' href='/stylesheets/selfInfo.css' />
+
+    <script data-main="/javascripts/config/selfConfig.js" src="/javascripts/lib/require.js"></script>
+
+</head>
+<body>
+<!--header-->
+<%- include header%>
+
+<!--背景-->
+<div id="backgroundImg" class="background-img"></div>
+<div class="container">
+    <div id="croppic"></div>
+    <button id="uploadImg">上传头像</button>
+</div>
+
+<!--footer-->
+<%- include footer%>
+</body>

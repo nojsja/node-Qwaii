@@ -19,6 +19,14 @@ function headerInit() {
         }
     });
 
+    $('#selfLi').click(function () {
+       if($('#selfLi').attr('class') == "disabled"){
+           headerAction.modalWindow("你还未登录任何账户!");
+       }else {
+           window.open('/selfInfo');
+       }
+    });
+
     $('#logoutLi').click(function () {
        if($('#logoutLi').attr('class') == "disabled"){
            headerAction.modalWindow("你还未登录任何账户!");
@@ -39,7 +47,7 @@ function headerInit() {
     });
 
     $('#searchSpan').click(function () {
-        window.location.href = "/search";
+        window.open('/search');
     });
 }
 
@@ -65,19 +73,25 @@ headerAction.updateUser = function () {
                 $('#userName').text(" 游客 ");
                 $('#userName').append($('<span class="caret"></span>'));
                 $('#loginLi').attr({
-                    "class":"enabled"
+                    "class" : "enabled"
+                });
+                $('#selfLi').attr({
+                   "class" : "disabled"
                 });
                 $('#logoutLi').attr({
-                    "class":"disabled"
+                    "class" : "disabled"
                 });
             }else {
                 $('#userName').text(" " + JSONdata.userName + " ");
                 $('#userName').append($('<span class="caret"></span>'));
                 $('#loginLi').attr({
-                    "class":"disabled"
+                    "class" : "disabled"
+                });
+                $('#selfLi').attr({
+                    "class" : "enabled"
                 });
                 $('#logoutLi').attr({
-                    "class":"enabled"
+                    "class" : "enabled"
                 });
             }
         },

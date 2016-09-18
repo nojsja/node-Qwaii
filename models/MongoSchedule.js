@@ -18,7 +18,7 @@ function MongoSchedule() {
                }else {
                    collection.find({},{
                        sort : {readNumber : -1},
-                       limit : 5
+                       limit : 15
                    }, function (err, cursor) {
                        if(err){
                            cursor.close();

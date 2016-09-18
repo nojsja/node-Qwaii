@@ -1,0 +1,58 @@
+body {
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+    min-height:100%;
+}
+
+#headerNav {
+    background-color: rgba(0, 0, 0, 0.80);
+    border-bottom: solid 3px #c0291f;
+}
+
+.tips {
+    font-family: 微软雅黑;
+    font-size: 1.3em;
+    word-spacing: 8px;
+    letter-spacing: 1px;
+}
+.spacing {
+    word-spacing: 8px;
+    letter-spacing: 1px;
+}
+
+.copyright {
+    color: #395980;
+    text-align: center;
+    font-size: 1em;
+    /*background-color: #989fae;*/
+    background-color: rgba(245, 245, 245, 0.5);
+    margin-top: 1em;
+    box-shadow: 0px 0px 5px #661611 inset;
+}
+
+.page-anchor {
+    position: fixed;
+    right: 1em;
+    bottom: 5em;
+}
+
+.background-img {
+    position : fixed;
+    bottom : 0;
+    right : 0;
+    min-width : 100%;
+    min-height : 100%;
+    z-index : -100;
+    background : url("/images/pictures/rem.jpg") no-repeat;
+    background-size : cover;
+    filter : alpha(opacity=20);
+    -moz-opacity : 0.20;
+    -khtml-opacity : 0.20;
+    opacity : 0.20;
+}
+
+/* 图片裁剪插件 */
+#croppic {
+    width: 600px;
+    height: 350px;
+    border: solid 1px;
+}
