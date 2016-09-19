@@ -650,4 +650,9 @@ Articles.updateHot = function (type, callback) {
     });
 };
 
+/* 预览简略文章列表 */
+Articles.getPreviewData = function (condition, callback) {
+
+};
+
 module.exports = Articles;

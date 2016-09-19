@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="/stylesheets/lib/bootstrap.css">
     <link rel='stylesheet' href='/stylesheets/selfInfo.css' />
 
+    <script type="text/javascript" src="/javascripts/lib/jquery-3.1.0.min.js"></script>
+    <!--jQuery-file-upload-->
+    <script type="text/javascript" src="/javascripts/upload.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/vendor/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/jquery.fileupload.js"></script>
     <script data-main="/javascripts/config/selfConfig.js" src="/javascripts/lib/require.js"></script>
 
 </head>
@@ -18,8 +24,52 @@
 <!--背景-->
 <div id="backgroundImg" class="background-img"></div>
 <div class="container">
-    <div id="croppic"></div>
-    <button id="uploadImg">上传头像</button>
+    <!--顶部信息-->
+    <div class="row">
+        <div class="head-background-div">
+            <div class="head-img-div"></div>
+        </div>
+    </div>
+    <!--上传头像-->
+    <div class="row upload-div">
+        <div class="col-md-6">
+            <label class="upload-label">上传头像</label>
+        </div>
+        <div class="col-md-6">
+            <input type="file" multiple=false id="headUpload" size="5" value="选择" class="btn btn-default upload-button">
+        </div>
+    </div>
+    <!--我的投稿管理-->
+    <div class="row history-div">
+        <!--视频管理-->
+        <div class="col-md-12 video-div" id="video">
+            <h4><a href="#video">我的视频</a></h4>
+            <div class="video-content">
+                <!--视频列表-->
+            </div>
+        </div>
+        <!--图片管理-->
+        <div class="col-md-12 picture-div" id="picture">
+            <h4><a href="#picture">我的图片</a></h4>
+            <div class="picture-content">
+                <!--图片列表-->
+            </div>
+        </div>
+        <!--文章管理-->
+        <div class="col-md-12 article-div" id="article">
+            <h4><a href="#article">我的贴文</a></h4>
+            <div class="article-content">
+                <!--贴文列表-->
+            </div>
+        </div>
+        <!--音乐管理-->
+        <div class="col-md-12 music-div" id="music">
+            <h4><a href="#music">我的音乐</a></h4>
+            <div class="music-content">
+                <!--音乐列表-->
+            </div>
+        </div>
+    </div>
 </div>
 
 <!--footer-->

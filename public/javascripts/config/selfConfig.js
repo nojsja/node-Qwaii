@@ -11,19 +11,15 @@ requirejs.config({
         bootstrap: './bootstrap.min',
         header: '../header',
         selfInfo: '../selfInfo',
-        croppic: './croppic.min'
     },
     shim: {
-        bootstrap: {deps: ['jquery']},
-        croppic: {deps: ['jquery']}
+        bootstrap: {deps: ['jquery']}
     }
 });
 
 /* RequireJs方法异步调用 */
-requirejs(["selfInfo", "header", "bootstrap", "croppic"], function (self, header) {
+requirejs(["selfInfo", "header", "bootstrap"], function (self, header) {
 
-    //self页面初始化
-    self.selfInit();
     //获取背景图片
     self.getBackgroundImg();
     //header初始化

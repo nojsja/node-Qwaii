@@ -14,6 +14,7 @@ function Pictures(picture){
 
 /* 存储一条视频数据 */
 Pictures.prototype.save = function (callback) {
+
     //存储的视频数据
     var picture = {
         title : this.title,
@@ -36,6 +37,41 @@ Pictures.prototype.save = function (callback) {
                     return callback(err, "抱歉,数据库发生内部错误!");
                 }
                 callback(null, null);
+            });
+        });
+    });
+};
+
+/* 存储头像 */
+Pictures.prototype.saveAsHead = function (callback) {
+
+    //存储头像的地址
+    var headImg = {
+        source : this.source,
+        userName : this.author
+    }
+
+    dbAction.dbInit(function (err, db) {
+        if(err){
+            return callback(err, "抱歉,数据库发生内部错误!");
+        }
+        db.collection('QUSER', function (err, collection) {
+            if(err){
+                dbAction.dbLogout(db);
+                return callback(err, "抱歉,数据库发生内部错误!");
+            }
+            collection.update({
+                name : headImg.userName
+            }, {
+                $set : {headImg : headImg.source}
+            }, {
+               upsert : false, multi : false, w : 1 
+            }, function (err, results) {
+                if(err){
+                    dbAction.dbLogout(db);
+                    return callback(err, "抱歉,数据库发生内部错误!");
+                }
+                callback(null, headImg.source);
             });
         });
     });

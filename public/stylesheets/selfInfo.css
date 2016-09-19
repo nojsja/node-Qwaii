@@ -39,10 +39,10 @@ body {
     position : fixed;
     bottom : 0;
     right : 0;
+    background-color: rgba(74, 74, 74, 0.43);
     min-width : 100%;
     min-height : 100%;
     z-index : -100;
-    background : url("/images/pictures/rem.jpg") no-repeat;
     background-size : cover;
     filter : alpha(opacity=20);
     -moz-opacity : 0.20;
@@ -50,9 +50,179 @@ body {
     opacity : 0.20;
 }
 
-/* 图片裁剪插件 */
-#croppic {
-    width: 600px;
-    height: 350px;
-    border: solid 1px;
+.head-background-div {
+    width: 100%;
+    min-height: 10em;
+    background: url('/images/pictures/Rem.png') no-repeat;
+    background-size: cover;
+    margin-bottom: 0;
+    -webkit-box-shadow: 0px 0px 8px blue;
+    -moz-box-shadow: 0px 0px 8px blue;
+    box-shadow: 0px 0px 8px blue;
+}
+
+.head-img-div{
+    border-radius: 50%;
+    background: url('/images/users/Johnson/head/head.jpg') no-repeat;
+    background-size: cover;
+    width: 7em;
+    height: 7em;
+    border: solid 4px white;
+    line-height: 10em;
+    margin: 0 auto;
+
+    -webkit-transition: border 0.4s linear;
+    -moz-transition:  border 0.4s linear;
+    -ms-transition:  border 0.4s linear;
+    -o-transition:  border 0.4s linear;
+    transition:  border 0.4s linear;
+}
+
+.head-img-div:hover {
+    border: solid 4px #e1535e;
+}
+
+.upload-div {
+    margin-top: 0;
+    margin-bottom: 4em;
+    -webkit-box-shadow: 0px 0px 8px black;
+    -moz-box-shadow:  0px 0px 8px black;
+    box-shadow:  0px 0px 8px black;
+}
+
+.upload-button {
+    margin: 0 auto;
+}
+
+.upload-label {
+    text-align: center;
+    font-size: 1.5em;
+    color: #00CCCC;
+    margin: 0 auto;
+    display: block;
+}
+
+/* 投稿管理 */
+.history-div {
+    background-color: rgba(88, 138, 198, 0.29);
+    border-radius: 5px;
+    margin-top: 1em;
+    margin-bottom: 3em;
+}
+
+/*预览图片*/
+.picture-preview-div {
+    display: inline-block;
+    padding: 3px;
+    margin: 0.2em;
+}
+.picture-preview {
+    height: 5em;
+    width:auto;
+    border: solid 1px white;
+    -moz-box-shadow: 0px 0px 8px #238eae;
+    box-shadow: 0px 0px 8px #238eae;
+    -o-box-shadow: 0px 0px 8px #238eae;
+    -webkit-box-shadow: 0px 0px 8px #238eae;
+}
+
+/*视频列表预览*/
+.video-preview-div {
+
+}
+.video-preview,
+.music-preview {
+    text-align: left;
+    font-size: 1.1em;
+    padding: 0.2em;
+    font-weight: bold;
+    color: rgb(57, 89, 128);
+    border-bottom: dotted 1px #a6a6a6;
+}
+
+/*音乐列表预览*/
+.music-preview-div {
+
+}
+
+.video-preview:hover,
+.music-preview:hover {
+    background-color: rgba(57, 89, 128, 0.5);
+    color: white;
+}
+
+.video-div,
+.picture-div,
+.article-div,
+.music-div {
+
+}
+
+.video-div > h4 a,
+.music-div > h4 a,
+.picture-div > h4 a,
+.article-div > h4 a {
+    background-color: #5dc3e1;
+    font-size: 1.2em;
+    color: whitesmoke;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px;
+    display: block;
+    border: solid 1px white;
+    border-radius: 10px;
+}
+
+.video-div > h4:before,
+.music-div > h4:before,
+.picture-div > h4:before,
+.article-div > h4:before {
+    border: solid 5px #FFFFFF;
+    border-color: #FFFFFF transparent transparent;
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 1em;
+    right: 2em;
+}
+
+.video-content,
+.picture-content,
+.music-content,
+.article-content {
+    height: 0;
+    font-size: 1.2em;
+    background-color: rgba(190, 195, 196, 0.5);
+    -webkit-box-shadow: inset 0px 0px 5px black;
+    -moz-box-shadow: inset 0px 0px 5px black;
+    box-shadow: inset 0px 0px 5px black;
+
+    overflow: hidden;
+    -webkit-transition: height 0.3s ease-in;
+    -moz-transition: height 0.3s ease-in;
+    -ms-transition: height 0.3s ease-in;
+    -o-transition: height 0.3s ease-in;
+    transition: height 0.3s ease-in;
+}
+
+/* 目标选择器 */
+.history-div :target > h4:before {
+    border-color: transparent transparent transparent #FFFFFF;
+}
+
+.history-div :target > h4 a,
+.history-div  h4 > a:hover,
+.history-div  h4 > a:active,
+.history-div  h4 > a:focus {
+    color: #ececec;
+    background-color: #2a888e;
+}
+
+.history-div :target .video-content,
+.history-div :target .music-content,
+.history-div :target .picture-content,
+.history-div :target .article-content {
+    height: 10em;
+   overflow: auto;
 }

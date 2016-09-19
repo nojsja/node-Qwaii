@@ -2,7 +2,7 @@
  * Created by yangw on 2016/8/22.
  */
 
-//表单处理
+/* 表单处理 */
 var Upload = require('../models/Upload.js');
 
 module.exports = function (app) {
