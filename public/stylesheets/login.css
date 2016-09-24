@@ -1,6 +1,11 @@
 body {
-    font : 16px "Lucida Grande", Helvetica, Arial, sans-serif;
-    min-height : 100%;
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+    min-height:100%;
+    background-color: #dcdcdc;
+}
+html {
+    height:100%;
+    font-size: 16px;
 }
 .login-icon {
     background-color : #e1ebfd;
@@ -18,9 +23,10 @@ body {
 }
 
 .total {
-    border : solid 1px blue;
-    min-width : 850px;
     padding-bottom: 1em;
+    margin-bottom: 1em;
+    display: block;
+    height: 100%;
     background-color : rgba(244,244,244,0.9);
     -webkit-box-shadow : 0 0 10px black;
     -moz-box-shadow : 0 0 10px black;
@@ -28,9 +34,11 @@ body {
 }
 
 .choose-div {
-    width : 800px;
+    width : 100%;
     margin : auto;
-    border : solid 1px #868686;
+    -webkit-box-shadow: inset 0 0 5px blue;
+    -moz-box-shadow: inset 0 0 5px blue;
+    box-shadow: inset 0 0 5px blue;
     display : block;
     height : 4em;
     line-height : 4em;
@@ -41,7 +49,7 @@ body {
     width : 50%;
     text-align : center;
     float : left;
-    font-size : 2em;
+    font-size : 1.5em;
     font-family : 华文彩云;
     display : block;
 }
@@ -50,19 +58,29 @@ body {
 .signup-choose:hover {
     font-size : 2.5em;
     background-color : #e1ebfd;
+    color: #588ac6;
+
+    -webkit-box-shadow: inset 0 0 5px blue;
+    -moz-box-shadow: inset 0 0 5px blue;
+    box-shadow: inset 0 0 5px blue;
+
+    -webkit-transition: background-color .2s linear;
+    -moz-transition: background-color .2s linear;
+    -ms-transition: background-color .2s linear;
+    -o-transition: background-color .2s linear;
     transition : background-color .2s linear;
 }
 
 .login-div {
-    width : 800px;
-    height : 450px;
+    width : 100%;
+    height : auto;
     display : block;
     margin : auto;
 }
 
 .icon-div {
-    width : 400px;
-    height : 400px;
+    width : 100%;
+    height : auto;
     float : left;
 }
 
@@ -77,13 +95,13 @@ body {
     width : 100%;
 }
 .input-div {
-    width : 400px;
+    margin-top: 1em;
+    width : 100%;
     float : left;
-    height : 400px;
-    padding : 2em;
+    height : auto;
 }
 
-.background-img {
+/*.background-img {
     position : fixed; right: 0; bottom: 0;
     min-width : 100%; min-height: 100%;
     width : auto;
@@ -95,12 +113,7 @@ body {
     -moz-opacity : 0.50;
     -khtml-opacity : 0.50;
     opacity : 0.50;
-}
-
-#headerNav {
-    background-color: rgba(0, 0, 0, 0.80);
-    border-bottom: solid 3px #c0291f;
-}
+}*/
 
 .tips {
     font-family: 微软雅黑;

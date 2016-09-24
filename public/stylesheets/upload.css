@@ -1,18 +1,22 @@
 body {
     font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
     min-height:100%;
+    background-color: #dcdcdc;
 }
-
+html {
+    height:100%;
+    font-size: 16px;
+}
 .total {
     border: double 4px #767676;
     min-height: 600px;
     height: auto;
     margin-top: 1em;
-    background-color: rgba(227, 227, 227, 0.8);
+    background-color: rgba(88, 138, 198, 0.24);
     margin-bottom: 2em;
 }
 
-.background-img {
+/*.background-img {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -25,7 +29,7 @@ body {
     -moz-opacity:0.20;
     -khtml-opacity: 0.20;
     opacity: 0.20;
-}
+}*/
 
 .total p {
     font-weight: bold;
@@ -58,11 +62,6 @@ body {
 .progress-bar {
     height: 100%;
     background-color: #238eae;
-}
-
-#headerNav {
-    background-color: rgba(0, 0, 0, 0.80);
-    border-bottom: solid 3px #c0291f;
 }
 
 .tips {

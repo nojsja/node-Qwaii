@@ -653,6 +653,45 @@ Articles.updateHot = function (type, callback) {
 /* 预览简略文章列表 */
 Articles.getPreviewData = function (condition, callback) {
 
+    dbAction.dbInit(function (err, db) {
+        if(err){
+            callback(err, null);
+        }else {
+            db.collection('QARTICLE', function (err, collection) {
+               if(err){
+                   dbAction.dbLogout(db);
+                   return callback(err, null)
+               }
+                collection.find({
+                   "author" : condition.author
+                }, function (err, cursor) {
+                    if(err){
+                        return dbAction.dbLogout(db);
+                    }
+                    var articleList = [];
+                    cursor.each(function (err, item) {
+                       if(err){
+                           cursor.close();
+                           dbAction.dbLogout(db);
+                           return callback(err, articleList);
+                       }
+                        if(item){
+                            articleList.push({
+                                "title" : item.title,
+                                "author" : item.author,
+                                "date" : item.date
+                            });
+                        }else {
+                            cursor.close();
+                            dbAction.dbLogout(db);
+                            return callback(null, articleList);
+                        }
+
+                    });
+                });
+            });
+        }
+    });
 };
 
 module.exports = Articles;

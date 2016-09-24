@@ -1,43 +1,51 @@
 <!--顶部导航-->
 <header>
-    <nav class="navbar navbar-inner" role="navigation" id="headerNav"
-         style="background-color: rgba(0, 0, 0, 0.80);border-bottom: solid 3px #c0291f;">
-        <div class="navbar-header"><a class="navbar-brand" href="#" id="Brand" name="top"><b>Q站</b></a></div>
-        <ul class="nav navbar-nav">
-            <li><a href="/" id="home">主页</a></li>
-            <li><a href="/other/about" id="about">关于Qwaii</a></li>
-            <li><a href="/other/contact" id="contact">联系站长</a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="userName"> 游客 <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li id="loginLi"><a tabindex="-1" href="javascript:void(0)">登录/注册</a></li>
-                    <li class="divider" role="presentation"></li>
-                    <li class="disabled" id="selfLi"><a tabindex="-1" id="self" href="javascript:void(0)">个人中心</a></li>
-                    <li class="disabled" id="logoutLi"><a tabindex="-1" id="logout" href="javascript:void(0)">注销</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown">我要投稿<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="/post">发表贴文</a></li>
-                    <li><a tabindex="-1" href="/post?from=bilibili">b 站转载</a></li>
-                    <li class="divider" role="presentation"></li>
-                    <li><a tabindex="-1" href="/upload/video">上载视频</a></li>
-                    <li><a tabindex="-1" href="/upload/picture">上载图集</a></li>
-                    <li><a tabindex="-1" href="/upload/music">上载音乐</a></li>
-                </ul>
-            </li>
-            <form class="navbar-form navbar-right" role="search">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="站内搜索">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-search" id="searchSpan"></span>
-                        </span>
+    <nav class="navbar navbar-inverse" role="navigation" id="headerNav">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" id="Brand" name="top"><b>Q站</b></a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/" id="home">主页</a></li>
+                <li><a href="/other/about" id="about">关于Qwaii</a></li>
+                <li><a href="/other/contact" id="contact">联系站长</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="userName"> 游客 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li id="loginLi"><a tabindex="-1" href="javascript:void(0)">登录/注册</a></li>
+                        <li class="divider" role="presentation"></li>
+                        <li class="disabled" id="selfLi"><a tabindex="-1" id="self" href="javascript:void(0)">个人中心</a></li>
+                        <li class="disabled" id="logoutLi"><a tabindex="-1" id="logout" href="javascript:void(0)">注销</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">我要投稿<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="/post">发表贴文</a></li>
+                        <li><a tabindex="-1" href="/post?from=bilibili">b 站转载</a></li>
+                        <li class="divider" role="presentation"></li>
+                        <li><a tabindex="-1" href="/upload/video">上载视频</a></li>
+                        <li><a tabindex="-1" href="/upload/picture">上载图集</a></li>
+                        <li><a tabindex="-1" href="/upload/music">上载音乐</a></li>
+                    </ul>
+                </li>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="站内搜索">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-search" id="searchSpan"></span>
+                            </span>
+                        </div>
                     </div>
-
-                </div>
-            </form>
-        </ul>
+                </form>
+            </ul>
+        </div>
     </nav>
 </header>

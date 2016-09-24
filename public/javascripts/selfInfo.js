@@ -19,10 +19,10 @@ var selfAction = {};
 $(function () {
     selfAction.uploadInit();
     //绑定事件
-    $('#video > h4').click(selfAction.getVideoList());
-    $('#picture > h4').click(selfAction.getPictureList());
-    $('#article > h4').click(selfAction.getArticleList());
-    $('#music > h4').click(selfAction.getMusicList());
+    $('#video > h4').click(selfAction.getVideoList);
+    $('#picture > h4').click(selfAction.getPictureList);
+    $('#article > h4').click(selfAction.getArticleList);
+    $('#music > h4').click(selfAction.getMusicList);
 
 });
 
@@ -147,10 +147,40 @@ selfAction.getPictureList = function () {
 /* 得到个人贴文数据 */
 selfAction.getArticleList = function() {
 
+    $.post('/preview/article', function (data) {
+       var jsonData = JSON.parse(data);
+        if(jsonData.err){
+            return selfAction.modalWindow(jsonData.statusText);
+        }
+
+        var $contentPreview = $('.article-content');
+        $contentPreview.children().remove();
+        if(!jsonData.data.length){
+            return $contentPreview.append($('<p style="text-align: center"></p>').text('你还没有上传任何数据!'));
+        }
+        $.each(jsonData.data, function (index, article) {
+            var $articlePreviewDiv = $('<div></div>');
+            $articlePreviewDiv.prop('class', 'article-preview-div');
+            var $p = $('<a></a>');
+            $p.text(++index + ". " + article.title + " - " + article.date + " ")
+                .append($('<span class="glyphicon glyphicon-pencil" style="color : red"></span>'))
+                .prop({'class' : 'article-preview'});
+            //加入超链接
+            var hrefArray = [];
+            hrefArray.push('/article/', article.author, '/', article.title, '/', article.date);
+            $p.prop('openHref', hrefArray.join(''));
+            $p.click(function() {
+                window.open( $(this).attr('openHref') );
+            });
+            $articlePreviewDiv.append($p);
+            $contentPreview.append($articlePreviewDiv);
+        });
+    }, "JSON");
 };
 
 /* 得到个人音乐数据 */
 selfAction.getMusicList = function () {
+    
     $.post('/preview/music', function(data) {
         var jsonData = JSON.parse(data);
         if(jsonData.err){

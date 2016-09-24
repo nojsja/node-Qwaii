@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <!--通知 IE 采用其所支持的最新的模式-->
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
     <!--<script type="text/javascript" src="/javascripts/lib/jquery.lazyload.js"></script>-->
     <link rel="stylesheet" href="/stylesheets/lib/bootstrap.min.css">
@@ -34,10 +35,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-1 col-md-offset-5">
+        <div class="up-div">
             <a class="glyphicon glyphicon-thumbs-up" id="up"><span class="badge"></span></a>
         </div>
-        <div class="col-md-1">
+        <div class="down-div">
             <a class="glyphicon glyphicon-thumbs-down" id="down"><span class="badge"></span></a>
 
         </div>
@@ -65,7 +66,7 @@
 </div>
 <%- include pageAnchor%>
 <!--模态弹窗口组件-->
-<%-include modalWindow.ejs%>
+<%-include modalWindow%>
 <%- include footer%>
 </body>
 </html>

@@ -10,6 +10,8 @@ define('header',['jquery'], function () {
 
 //初始化函数
 function headerInit() {
+
+
     headerAction.updateUser();
     $('#loginLi').click(function () {
         if($('#loginLi').attr('class') == "disabled"){

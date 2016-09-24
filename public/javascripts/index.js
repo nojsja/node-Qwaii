@@ -155,7 +155,7 @@ pageAction.updatePage = function(JSONdata) {
         //文章父组件
         var $articleList = $('#articleList');
         $.each(Articles.articles, function (index, article) {
-            var $row = $('<div class="col-md-12">');
+            var $row = $('<div>');
             //文章主要内容
             var $article = $('<div class="col-md-12 article-view"></div>');
             var $title = $('<div class="col-md-12 article-title"></div>');
@@ -201,9 +201,9 @@ pageAction.updatePage = function(JSONdata) {
 
             //阅读信息
             var $info = $('<div class="col-md-12 article-read"></div>');
-            var $readNumber = $('<div class="col-md-2 col-md-offset-4"></div>');
+            var $readNumber = $('<div class="read-number"></div>');
             $readNumber.text('阅读: ' + article.readNumber).appendTo($info);
-            var $commentNumber = $('<div class="col-md-2"></div>');
+            var $commentNumber = $('<div class="comment-number"></div>');
             $commentNumber.text('评论: ' + article.commentNumber).appendTo($info);
             $info.appendTo($row);
 

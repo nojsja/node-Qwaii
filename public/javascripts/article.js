@@ -41,7 +41,7 @@ function articleInit(){
     //滚动侦测动态加载
     $(window).scroll(scrollCheck);
     //3秒后进行检测,防止页面卡住的情况
-    setTimeout(scrollCheck,3000);
+    setTimeout(scrollCheck,3000 );
 
     function scrollCheck() {
         //滚动的Y轴距离

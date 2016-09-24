@@ -30,6 +30,9 @@ function postInit() {
         $('.content-preview').slideDown();
         pageAction.contentPreview("picture");
     });
+    $('.type-other').click(function () {
+       $('.content-preview').slideUp();
+    });
 
     //标签选定检测
     $('.tag').click(function() {

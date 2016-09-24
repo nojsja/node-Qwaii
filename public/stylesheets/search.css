@@ -1,13 +1,18 @@
 body {
     font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
     min-height:100%;
+    background-color: #dcdcdc;
+}
+html {
+    height:100%;
+    font-size: 16px;
 }
 
 .search-div {
     margin-top: 1em;
 }
 
-.background-img {
+/*.background-img {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -20,6 +25,13 @@ body {
     -moz-opacity:0.20;
     -khtml-opacity: 0.20;
     opacity: 0.20;
+}*/
+
+.read-number, .comment-number {
+    width: 50%;
+    float: left;
+    text-align: center;
+    background-color: #353846;
 }
 
 .type-tabs {
@@ -82,11 +94,6 @@ body {
     -webkit-box-shadow: 0 0 5px 4px #395980;
     -moz-box-shadow: 0 0 5px 4px #395980;
     box-shadow: 0 0 5px 4px #395980;
-}
-
-#headerNav {
-    background-color: rgba(0, 0, 0, 0.80);
-    border-bottom: solid 3px #c0291f;
 }
 
 .tips {
