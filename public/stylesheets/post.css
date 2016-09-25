@@ -1,7 +1,7 @@
 body {
     font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
     min-height:100%;
-    background-color: #dcdcdc;
+    background-color: #FFFFFF;
 }
 html {
     height:100%;
@@ -209,12 +209,21 @@ html {
     word-spacing: 8px;
     letter-spacing: 1px;
 }
+.copyright a {
+    color: #FFFFFF;
+}
 
+.footer-div {
+    background-color: rgb(42,42,42);
+    border-top: solid 2px #a20812;
+}
+
+/*版权标识*/
 .copyright {
-    color: #395980;
+    color: #FFFFFF;
     text-align: center;
     font-size: 1em;
-    background-color: rgba(245, 245, 245, 0.5);
+    background-color: rgba(88, 138, 198, 0.43);
     margin-top: 1em;
     box-shadow: 0px 0px 5px #661611 inset;
 }

@@ -1,8 +1,11 @@
 body {
     font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
     min-height:100%;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
 }
-/* 背景图片 */
+/*!* 背景图片 *!
 .background-img {
     width: 100%;
     height: 100%;
@@ -16,9 +19,12 @@ body {
     -moz-opacity : 0.35;
     -khtml-opacity : 0.35;
     opacity : 0.35;
-}
+}*/
 
 /* 主要内容区域 */
+/*word-wrap属性控制换行,当去break-word时强制换行,
+但是英文中不能截断一个长单词,所以配合word-break来
+控制非亚洲语言的强制换行,英文即使是一个单词也会被强制截断开*/
 #total {
     border: double 3px #000000;
     min-height: 600px;
@@ -27,6 +33,14 @@ body {
     background-color: rgba(57, 89, 128, 0.52);
     color: rgb(236, 236, 236);
     height: auto;
+    border-radius: 10px;
+   /* -webkit-box-shadow: inset hoff voff blur color;W
+    -moz-box-shadow: inset hoff voff blur color;*/
+    box-shadow: 0 5px 8px #464646;
+
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 /* 标题 */
@@ -40,4 +54,40 @@ body {
 /* 内容 */
 .content {
     font-size: 1.5em;
+}
+
+.footer-div {
+    background-color: rgb(42,42,42);
+    border-top: solid 2px #a20812;
+    width: 100%;
+}
+
+.fill-content {
+    flex: 1;
+    width: 100%;
+}
+
+.copyright a {
+    color: #FFFFFF;
+}
+
+/*版权标识*/
+.copyright {
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 1em;
+    background-color: rgba(88, 138, 198, 0.43);
+    margin-top: 1em;
+    box-shadow: 0px 0px 5px #661611 inset;
+}
+
+/*文字特效*/
+.box1 {
+    text-shadow:
+            0px 0px 0 rgb(188,178,188),1px 0px 0 rgb(173,163,173),
+            2px 0px 0 rgb(157,147,157),3px 0px 0 rgb(142,132,142),
+            4px 0px 0 rgb(126,116,126),5px 0px 0 rgb(111,101,111),
+            6px 0px 0 rgb(95,85,95), 7px 0px 0 rgb(79,69,79),
+            8px 0px 7px rgba(0,0,0,0.35),8px 0px 1px rgba(0,0,0,0.5),
+            0px 0px 7px rgba(0,0,0,.2);
 }

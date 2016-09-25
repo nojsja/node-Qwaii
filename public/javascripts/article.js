@@ -38,12 +38,15 @@ function articleInit(){
     $('#makeComment span').click(function(){
         pageAction.insertComment();
     });
-    //滚动侦测动态加载
+    //获取文章其它信息
+    pageAction.getUpAndDown();
+    pageAction.getArticleInfo();
+    /*//滚动侦测动态加载
     $(window).scroll(scrollCheck);
     //3秒后进行检测,防止页面卡住的情况
-    setTimeout(scrollCheck,3000 );
+    setTimeout(scrollCheck,3000 );*/
 
-    function scrollCheck() {
+    /*function scrollCheck() {
         //滚动的Y轴距离
         var scrollTop = $(this).scrollTop();
         //文档总长度
@@ -57,7 +60,7 @@ function articleInit(){
             //获取文章评论
             pageAction.getArticleInfo();
         }
-    }
+    }*/
 }
 
 /* 页面动作对象 */

@@ -1,30 +1,29 @@
 body {
     font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
     min-height:100%;
-    background-color: #dcdcdc;
+    /*background-color: #dcdcdc;*/
+    /*background-color: rgb(243,243,243);*/
+    background-color: #F3F0EB;
 }
 html {
     height:100%;
     font-size: 16px;
 }
+
 a {
     color: #00B7FF;
 }
+
 header {
     margin: auto;
 }
-/*版权标识*/
-.copyright {
-    color: #395980;
-    text-align: center;
-    font-size: 1em;
-    background-color: rgba(245, 245, 245, 0.5);
-    margin-top: 1em;
-    box-shadow: 0px 0px 5px #661611 inset;
+
+/*小电视*/
+.icon {
+    position: relative;
+    margin-top: -3rem;
 }
-.border {
-    border: solid 1px red;
-}
+
 .icon-border {
     -webkit-box-shadow:0 0 20px #0CC;
     -moz-box-shadow:0 0 20px #0CC;
@@ -47,7 +46,10 @@ header {
     -o-transform:translate(0,-10px);
     -ms-transform:translate(0,-10px);
 }
+
+/*内容导航*/
 .nav-border {
+    margin-top: 1rem;
     border-radius: 5px;
     padding: 0.5em;
     font-size: 0;
@@ -69,6 +71,8 @@ header {
     -o-transform:scale(1.4);
     -ms-transform:scale(1.4);
 }
+
+/*内容导航条目*/
 .nav-content {
     display: inline-block;
     width: 25%;
@@ -79,7 +83,7 @@ header {
     font-size: 1.3rem;
     text-align: center;
     padding: 2px;
-    font-family: 方正兰亭超细黑简体;
+    font-family: 宋体;
     color: rgba(0, 0, 0, 0.74);
     font-weight: bold;
 
@@ -100,7 +104,7 @@ header {
     -ms-transform: scale(1.4);
 }
 
-/*图片是内联元素*/
+/*注意图片是内联元素*/
 .icon > img {
     display: block;
     margin: 0 auto;
@@ -110,6 +114,8 @@ header {
     max-height: 5em;
     margin-bottom: 1em;
 }
+
+/*热门推荐区域*/
 #hotArticleSpan,
 #hotPictureSpan,
 #hotVideoSpan {
@@ -206,22 +212,16 @@ header {
     float: left;
     background-color: #353846;
 }
-/*.background-img {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
+
+/*顶部背景图设置*/
+.background-img {
+    width: 100%;
+    min-height: 7em;
     height: auto;
-    z-index: -100;
-    background: url("/images/pictures/pugongying.jpg") no-repeat;
+    background: url("/images/pictures/Qwaii.png") no-repeat;
     background-size: cover;
-    filter:alpha(opacity=20);
-    -moz-opacity:0.20;
-    -khtml-opacity: 0.20;
-    opacity: 0.40;
-}*/
+    background-position: center;
+}
 /*热门标签*/
 .hot-tag-div,
 .friend-link-div {
@@ -277,10 +277,15 @@ header {
     box-shadow: 0px 0px 8px #395980;
 }
 
+/*文章区域总布局*/
 .total {
-    background-color: rgba(57, 89, 128, 0.32);
+    /*background-color: rgba(57, 89, 128, 0.32);*/
+    /*background-color: rgba(88, 138, 198, 0.5);*/
+    background-color: white;
+    margin-top: 2rem;
 }
 
+/*回到顶部或底部锚点*/
 .page-anchor {
     position: fixed;
     right: 1em;
@@ -289,12 +294,41 @@ header {
     opacity: 0.7;
 }
 
+/*footer叠加层*/
+.footer-div {
+    background-color: rgb(42,42,42);
+    border-top: solid 2px #a20812;
+}
+
+
+/*版权标识*/
+.copyright {
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 1em;
+    background-color: rgba(88, 138, 198, 0.43);
+    margin-top: 1em;
+    box-shadow: 0px 0px 5px #661611 inset;
+}
+
+/*自定义导航栏去除底部空白*/
+#headerNav {
+    margin-bottom: 0;
+}
+
+.copyright a {
+    color: #FFFFFF;
+}
+
+/*弹出框文字格式*/
 .tips {
     font-family: 微软雅黑;
     font-size: 1.3em;
     word-spacing: 8px;
     letter-spacing: 1px;
 }
+
+/*字符间距*/
 .spacing {
     word-spacing: 8px;
     letter-spacing: 1px;

@@ -234,27 +234,27 @@ pageAction.pageNavbarAction = function() {
         getList();
     });
     //点击页数按钮
-    $('.pageNumber').click(function() {
+    $('.page-number').click(function() {
         if($(this).prop('class') == "active page-number"){
             return;
         }
-        $('.pageNumber[class="active page-number"]').prop('class', 'page-Number');
-        $(this).prop('class', 'active pageNumber');
+        $('.page-number[class="active page-number"]').prop('class', 'page-number');
+        $(this).prop('class', 'active page-number');
         pageStart = ($(this).children(0).text() - 1) * pageLimit;
         getList();
     });
 
     //点击翻页按钮
     $('#next').click(function() {
-        $('.pageNumber[class="active pageNumber"]').prop('class', 'pageNumber');
-        var $pageNumber = $('.pageNumber');
+        $('.page-number[class="active page-number"]').prop('class', 'page-number');
+        var $pageNumber = $('.page-number');
         $.each($pageNumber.children(0), function (index, item) {
             $(item).text( parseInt($(item).text()) + 10 );
         });
     });
 
     $('#last').click(function() {
-        $('.pageNumber[class="active page-number"]').prop('class', 'page-number');
+        $('.page-number[class="active page-number"]').prop('class', 'page-number');
         var $pageNumber = $('.page-number');
         $.each($pageNumber.children(0), function (index, item) {
             var $num = parseInt($(item).text());
