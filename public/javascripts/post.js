@@ -49,17 +49,21 @@ function postInit() {
             $('.content-preview').slideUp();
         }
         $('.type > div').css({"background-color" : "rgba(0,0,0,0)"});
-        $(this).css({"background-color" : "#b5dccc"});
+        $(this).css({"background-color" : "#e1ebfd"});
     });
     //初始化
-    $('.type > div:eq(1)').css({"background-color":"#b5dccc"});
+    $('.type > div:eq(1)').css({"background-color":"#e1ebfd"});
 
     //判断文章是转载的还是原创的
     pageAction.article.from = ($('#bilibiliAV').length > 0) ? "bilibili" : "Qwaii";
     //刷新事件绑定
-    /*window.addEventListener("beforeunload", function(event) {
+    window.addEventListener("beforeunload", function(event) {
         event.returnValue = "警告";
-    });*/
+    });
+
+    //顶部和底部跳转
+    $('#top').click(pageAction.goTop);
+    $('#bottom').click(pageAction.goBottom);
 }
 
 /* 页面动作 */
@@ -328,4 +332,18 @@ pageAction.sendPost = function() {
         }
     },
     "JSON");
+};
+
+/* 页面底部和底部跳转 */
+pageAction.goTop = function goTop() {
+    $('html, body').animate({scrollTop: 0}, 'slow');
+};
+
+pageAction.goDiv = function goDiv(div) {
+    var a = $("#" + div).offset().top;
+    $("html, body").animate({scrollTop: a}, 'slow');
+};
+
+pageAction.goBottom = function goBottom() {
+    window.scrollTo(0, document.documentElement.scrollHeight - document.documentElement.clientHeight);
 };

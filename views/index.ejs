@@ -21,31 +21,36 @@
   <!--class的优先级低于ID低于内联-->
   <%- include header%>
 
-  <div id="backgroundImg"></div>
+  <div id="backgroundImg" class="background-img"></div>
+
+  <div class="container">
+      <!--小电视-->
+      <div class="icon">
+          <img src="/images/icon/nico.jpg" class="icon-border" id="iconPopover" data-container="body"
+               data-toggle="popover" data-original-title="Qwaii" data-trigger="click"
+               data-placement="bottom" data-content="Q站是个人开发的兴趣小站...">
+      </div>
+  </div>
 
   <!--内容导航-->
-  <div class="container" id="navContent">
-      <div class="row">
-          <div class="col-md-2">
-              <div class="icon col-md-12">
-                  <img src="/images/icon/nico.jpg" class="icon-border" id="iconPopover" data-container="body"
-                       data-toggle="popover" data-original-title="Qwaii" data-trigger="click"
-                       data-placement="bottom" data-content="Q站是个人开发的兴趣小站...">
+  <div class="nav-container">
+      <div class="container" id="navContent">
+          <div class="row">
+              <div class="col-md-12 nav-border">
+                  <div class="nav-content nav-content-width">全部</div>
+                  <div class="nav-content nav-content-width">番剧</div>
+                  <div class="nav-content nav-content-width">视频</div>
+                  <div class="nav-content nav-content-width">音乐</div>
+                  <div class="nav-content nav-content-width">图片</div>
+                  <div class="nav-content nav-content-width">贴文</div>
+                  <div class="nav-content nav-content-width">萌物</div>
+                  <div class="nav-content nav-content-width">漫画</div>
+                  <div class="nav-content nav-content-width">其它</div>
               </div>
-          </div>
-          <div class="col-md-10 nav-border">
-              <div class="nav-content">全部</div>
-              <div class="nav-content">番剧</div>
-              <div class="nav-content">视频</div>
-              <div class="nav-content">音乐</div>
-              <div class="nav-content">图片</div>
-              <div class="nav-content">贴文</div>
-              <div class="nav-content">萌物</div>
-              <div class="nav-content">漫画</div>
-              <div class="nav-content">其它</div>
           </div>
       </div>
   </div>
+
 <!--热点导航-->
   <div class="container" id="hotView">
       <div class="row">

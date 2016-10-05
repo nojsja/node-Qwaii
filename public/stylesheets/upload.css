@@ -8,28 +8,14 @@ html {
     font-size: 16px;
 }
 .total {
-    border: double 4px #767676;
     min-height: 600px;
     height: auto;
     margin-top: 1em;
     background-color: rgba(88, 138, 198, 0.24);
     margin-bottom: 2em;
+    padding: 1em;
 }
 
-/*.background-img {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -100;
-    background: url("/images/pictures/miku.jpg") no-repeat;
-    background-size: cover;
-    filter:alpha(opacity=20);
-    -moz-opacity:0.20;
-    -khtml-opacity: 0.20;
-    opacity: 0.20;
-}*/
 
 .total p {
     font-weight: bold;

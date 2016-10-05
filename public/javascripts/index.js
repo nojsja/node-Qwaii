@@ -36,18 +36,6 @@ function indexInit() {
             },
             "JSON");
     });
-    $('.nav-content').click(function () {
-        $('.nav-content').css({
-            'box-shadow' : '',
-            '-webkit-box-shadow' : '',
-            '-moz-box-shadow' : ''
-        });
-        $(this).css({
-            'box-shadow' : '0px 0px 8px grey',
-            '-webkit-box-shadow' : '0px 0px 8px grey',
-            '-moz-box-shadow' : '0px 0px 8px grey'
-        });
-    });
 
     //热门内容获取和刷新
     //注意this的作用域会动态绑定, 绑定对象是调用者的执行环境
@@ -57,6 +45,10 @@ function indexInit() {
 
     //分页导航事件绑定
     pageAction.pageNavbarAction();
+
+    //顶部和底部跳转
+    $('#top').click(pageAction.goTop);
+    $('#bottom').click(pageAction.goBottom);
 }
 
 /* 页面对象 */
@@ -275,5 +267,19 @@ pageAction.pageNavbarAction = function() {
             }, "JSON"
         );
     }
+};
+
+/* 页面底部和底部跳转 */
+pageAction.goTop = function goTop() {
+    $('html, body').animate({scrollTop: 0}, 'slow');
+};
+
+pageAction.goDiv = function goDiv(div) {
+    var a = $("#" + div).offset().top;
+    $("html, body").animate({scrollTop: a}, 'slow');
+};
+
+pageAction.goBottom = function goBottom() {
+    window.scrollTo(0, document.documentElement.scrollHeight - document.documentElement.clientHeight);
 };
 

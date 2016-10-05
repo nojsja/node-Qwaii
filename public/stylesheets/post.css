@@ -81,22 +81,6 @@ html {
     height: 300px;
 }
 
-/*背景图片*/
-/*.background-img {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -100;
-    background: url("/images/pictures/liya2.jpg") no-repeat;
-    background-size: cover;
-    filter:alpha(opacity=50);
-    -moz-opacity:0.50;
-    -khtml-opacity: 0.50;
-    opacity: 0.50;
-}*/
-
 .type {
     margin-bottom: 1em;
     /*消除inline-box缝隙*/
@@ -158,10 +142,16 @@ html {
 .type > div {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    box-shadow:0px 0px 8px rgba(0, 0, 0, 0.51) inset;
-    -moz-box-shadow:0px 0px 8px rgba(0, 0, 0, 0.51) inset;
-    -o-box-shadow:0px 0px 8px rgba(0, 0, 0, 0.51) inset;
-    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.51) inset;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    border: solid 2px #e1ebfd;
+    box-shadow:0px 0px 10px #ffffff inset;
+    -moz-box-shadow:0px 0px 10px #ffffff inset;
+    -o-box-shadow:0px 0px 10px #ffffff inset;
+    -webkit-box-shadow: 0px 0px 10px #ffffff inset;
+
     padding: 0.5em;
     font-family: 华文中宋;
     color: #767676;
@@ -179,14 +169,18 @@ html {
     display: inline-block;
     width: 25%;
     text-align: center;
-    border-left: double 1px #238eae;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: double 1px #238eae;
     padding: 0.5em;
     font-family: 微软雅黑;
     color: #238eae;
 }
 
 .type > div:hover {
-    background-color: #b5dccc;
+    background-color: #e1ebfd;
 }
 
 #sendDiv {
