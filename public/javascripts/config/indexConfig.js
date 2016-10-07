@@ -22,7 +22,9 @@ requirejs(['index', 'header', 'bootstrap'], function (index, header) {
     index.indexInit();
     index.readArticleList();
     //背景图片很大,单独载入
-    /*index.getBackgroundImg();*/
+    index.getBackgroundImg();
+    //更新热门文章
+    index.updateHot();
 
     header.headerInit();
 });

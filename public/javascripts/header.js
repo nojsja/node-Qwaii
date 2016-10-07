@@ -3,6 +3,7 @@
  */
 //定义RequireJs模块
 define('header',['jquery'], function () {
+
    return {
        headerInit: headerInit
    };
@@ -10,7 +11,6 @@ define('header',['jquery'], function () {
 
 //初始化函数
 function headerInit() {
-
 
     headerAction.updateUser();
     $('#loginLi').click(function () {

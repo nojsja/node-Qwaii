@@ -20,7 +20,6 @@ requirejs(['post','header','bootstrap'], function (post,header) {
     //初始化页面
     //三个函数是异步执行的,互相不影响
     post.postInit();
-    post.getBackgroundImg();
 
     header.headerInit();
 });

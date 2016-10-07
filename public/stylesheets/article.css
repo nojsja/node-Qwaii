@@ -9,38 +9,18 @@ html {
 }
 
 /*防止Ueditor插入的图片破坏布局*/
-img, video {
-    width: 100% !important;
+img.img-own,
+video {
+    display: block;
+    width: 70% !important;
     height: auto !important;
+    margin: 0 auto !important;
 }
-
-
 
 #articleTitle {
     text-align : center;
     border-bottom : solid 1px #c5cede;
 }
-
-.page-anchor {
-    position: fixed;
-    right: 1em;
-    bottom: 5em;
-}
-
-/*.background-img {
-    position : fixed;
-    bottom : 0;
-    right : 0;
-    min-width : 100%;
-    min-height : 100%;
-    z-index : -100;
-    background : url("/images/pictures/rem.jpg") no-repeat;
-    background-size : cover;
-    filter : alpha(opacity=20);
-    -moz-opacity : 0.20;
-    -khtml-opacity : 0.20;
-    opacity : 0.20;
-}*/
 
 .total-background {
     background-color : #ededed;
@@ -57,7 +37,7 @@ img, video {
     background-color : whitesmoke;
     border-top : dashed 1px #395980;
     border-bottom : dashed 1px #395980;
-    padding : 1.5em;
+    padding : .5em;
     overflow-x: hidden;
     -ms-word-wrap: break-word;
     word-wrap: break-word;
@@ -164,14 +144,6 @@ img, video {
     }
 }
 
-.page-anchor {
-    position: fixed;
-    right: 1em;
-    bottom: 2em;
-    z-index: 100;
-    opacity: 0.7;
-}
-
 #up,
 #down {
     margin-top : 0.5em;
@@ -199,6 +171,15 @@ img, video {
     color: #FFFFFF;
 }
 
+.page-anchor {
+    display: none;
+    position: fixed;
+    right: 1em;
+    bottom: 2em;
+    z-index: 100;
+    opacity: 0.7;
+}
+
 /*版权标识*/
 .copyright {
     color: #FFFFFF;
@@ -220,4 +201,14 @@ img, video {
 .spacing {
     word-spacing: 8px;
     letter-spacing: 1px;
+}
+
+/* 媒体查询 */
+@media  screen and (max-width: 768px) {
+
+    /*防止Ueditor插入的图片破坏布局*/
+    img.img-own, video {
+        width: 100% !important;
+        height: auto !important;
+    }
 }

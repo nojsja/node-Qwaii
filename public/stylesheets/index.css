@@ -20,6 +20,7 @@ header {
 .icon {
     position: relative;
     margin-top: -3rem;
+    display: none;
 }
 
 .icon-border {
@@ -157,6 +158,12 @@ header {
     border-left: groove 1px;
     border-right: groove 1px;
     background-color: rgba(255,255,255,1);
+    -webkit-box-shadow:0 0 4px black;
+    -moz-box-shadow:0 0 4px black;
+    box-shadow:0 0 4px black;
+}
+
+.article-view:hover {
     -webkit-box-shadow:0 0 8px black;
     -moz-box-shadow:0 0 8px black;
     box-shadow:0 0 8px black;
@@ -205,9 +212,9 @@ header {
     background-color: #353846;
     color: whitesmoke;
     text-align: center;
-    -webkit-box-shadow:0 0 8px black;
-    -moz-box-shadow:0 0 8px black;
-    box-shadow:0 0 8px black;
+    -webkit-box-shadow:0 0 4px black;
+    -moz-box-shadow:0 0 4px black;
+    box-shadow:0 0 4px black;
 }
 
 .read-number, .comment-number {
@@ -216,16 +223,19 @@ header {
     background-color: #353846;
 }
 
+/* 背景图片容器 */
+#backgroundImg {
+    width: 100%;
+    height: auto;
+}
+
 /*顶部背景图设置*/
 .background-img {
-    display: block;
     width: 100%;
-    min-height: 7em;
-    height: auto;
-    background: url("/images/pictures/Qwaii.png") no-repeat;
-    background-size: cover;
-    background-position: center;
+    height: 100%;
+    display: none;
 }
+
 /*热门标签*/
 .hot-tag-div,
 .friend-link-div {
@@ -291,15 +301,6 @@ header {
     padding-bottom: 1em;
 }
 
-/*回到顶部或底部锚点*/
-.page-anchor {
-    position: fixed;
-    right: 1em;
-    bottom: 2em;
-    z-index: 100;
-    opacity: 0.7;
-}
-
 /*footer叠加层*/
 .footer-div {
     background-color: rgb(42,42,42);
@@ -318,12 +319,23 @@ header {
 }
 
 /*自定义导航栏去除底部空白*/
+
 #headerNav {
     margin-bottom: 0;
 }
 
 .copyright a {
     color: #FFFFFF;
+}
+
+/*回到顶部或底部锚点*/
+.page-anchor {
+    display: none;
+    position: fixed;
+    right: 1em;
+    bottom: 2em;
+    z-index: 100;
+    opacity: 0.7;
 }
 
 /*弹出框文字格式*/
@@ -342,17 +354,26 @@ header {
 
 /* 媒体查询 */
 @media screen and (max-width: 768px) {
+
+    .icon {
+        position: relative;
+        margin-top: -2rem;
+        display: none;
+    }
+
     .icon > img {
         display: block;
         margin: 0 auto;
         width: auto;
-        height: 5em;
-        max-width: 5em;
-        max-height: 5em;
+        height: 4em;
+        max-width: 4em;
+        max-height: 4em;
         margin-bottom: 1em;
     }
 
     .nav-content-width {
         width: 20%;
     }
+
+
 }

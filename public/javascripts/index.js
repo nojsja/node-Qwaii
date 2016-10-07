@@ -11,7 +11,11 @@ define('index', ['jquery'], function() {
             pageAction.readArticleList();
         },
         getBackgroundImg : function () {
-            $('#backgroundImg').prop('class', 'background-img');
+            //首页顶部图片加载
+            pageAction.imgLazyload();
+        },
+        updateHot: function () {
+            pageAction.updateHot.call($('#hotArticleSpan'));
         }
     };
 });
@@ -49,6 +53,9 @@ function indexInit() {
     //顶部和底部跳转
     $('#top').click(pageAction.goTop);
     $('#bottom').click(pageAction.goBottom);
+
+    //页面滚动侦测
+    $(window).scroll(pageAction.scrollCheck);
 }
 
 /* 页面对象 */
@@ -56,7 +63,13 @@ var pageAction = {
 
     article : {
         type : "All"
-    }
+    },
+    //检测是否是pc
+    isPc: true,
+    //检测页面滚动
+    scrollOver: false,
+    //检测上次的状态
+    lastScrollOver: false
 };
 
 /* 模态弹窗 */
@@ -84,6 +97,75 @@ pageAction.readArticleList = function () {
         }, "JSON"
     );
 
+};
+
+/* 检测是否是电脑 */
+pageAction.isPc = (function() {
+
+    var userAgentInfo = navigator.userAgent;
+    var Agents = ["Android", "iPhone",
+        "SymbianOS", "Windows Phone",
+        "iPad", "iPod"];
+    var flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+})();
+
+/* 首页图片延迟加载 */
+pageAction.imgLazyload = function () {
+
+    var imgSrc = "/images/pictures/Qwaii.png";
+    if(!pageAction.isPc) {
+        imgSrc = "/images/pictures/Qwaii2-mini.png";
+    }
+    function imgLoaded() {
+        //设置背景图片
+        $('.background-img').prop('src', imgSrc).fadeIn('fast');
+        $('.icon').fadeIn('slow');
+    }
+
+    var img = new Image();
+    img.src = imgSrc;
+    //加载完成
+    img.onload = function (){
+        imgLoaded();
+    };
+};
+
+/* 滚动侦测 */
+pageAction.scrollCheck = function () {
+
+    var $this = $(this);
+    //可见高度
+    var clientHeight = $this.height();
+    //总高度,包括不可见高度
+    var totalHeight = $(document).height();
+    //可滚动高度,只有不可见高度
+    var scrollHeight = $this.scrollTop();
+
+    //文档总长度比较短
+    if(clientHeight >= totalHeight/2){
+        return;
+    }
+
+    if(clientHeight + scrollHeight >= totalHeight/2){
+        pageAction.scrollOver = true;
+        if(pageAction.lastScrollOver !== pageAction.scrollOver){
+            $('.page-anchor').fadeIn();
+        }
+        pageAction.lastScrollOver = pageAction.scrollOver;
+    }else {
+        pageAction.scrollOver = false;
+        if(pageAction.lastScrollOver !== pageAction.scrollOver){
+            $('.page-anchor').fadeOut();
+        }
+        pageAction.lastScrollOver = pageAction.scrollOver;
+    }
 };
 
 /* 更新热门内容 */
@@ -201,8 +283,8 @@ pageAction.updatePage = function(JSONdata) {
 
             $articleList.append($row);
         });
-        //触发点击事件
-        $('#hotArticleSpan').click();
+        //触发点击事件,更新热门文章
+        /*$('#hotArticleSpan').click();*/
     }else {
         this.modalWindow("服务器发生错误,请刷新重试!");
     }

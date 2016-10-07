@@ -11,9 +11,6 @@ define('article', ['jquery'], function() {
         },
         updateReadNumber : function() {
           pageAction.updateReadNumber();
-        },
-        getBackgroundImg : function () {
-            $('#backgroundImg').prop('class', 'background-img');
         }
     };
 });
@@ -61,13 +58,24 @@ function articleInit(){
             pageAction.getArticleInfo();
         }
     }*/
+
+    //页面滚动侦测
+    $(window).scroll(pageAction.scrollCheck);
+
+    //顶部和底部跳转
+    $('#top').click(pageAction.goTop);
+    $('#bottom').click(pageAction.goBottom);
 }
 
 /* 页面动作对象 */
 var pageAction = {
     title : null,
     author : null,
-    commentLoaded : false
+    commentLoaded : false,
+    //检测页面滚动
+    scrollOver: false,
+    //检测上次的状态
+    lastScrollOver: false
 };
 
 /* 模态弹窗 */
@@ -104,6 +112,37 @@ pageAction.upOrDown = function(object){
             }
         }, "JSON"
     );
+};
+
+/* 滚动侦测 */
+pageAction.scrollCheck = function () {
+
+    var $this = $(this);
+    //可见高度
+    var clientHeight = $this.height();
+    //总高度,包括不可见高度
+    var totalHeight = $(document).height();
+    //可滚动高度,只有不可见高度
+    var scrollHeight = $this.scrollTop();
+
+    //文档总长度比较短
+    if(clientHeight >= totalHeight/2){
+        return;
+    }
+
+    if(clientHeight + scrollHeight >= totalHeight/2){
+        pageAction.scrollOver = true;
+        if(pageAction.lastScrollOver !== pageAction.scrollOver){
+            $('.page-anchor').fadeIn();
+        }
+        pageAction.lastScrollOver = pageAction.scrollOver;
+    }else {
+        pageAction.scrollOver = false;
+        if(pageAction.lastScrollOver !== pageAction.scrollOver){
+            $('.page-anchor').fadeOut();
+        }
+        pageAction.lastScrollOver = pageAction.scrollOver;
+    }
 };
 
 /* 得到一篇文章的赞同数和反对数 */
@@ -149,7 +188,7 @@ pageAction.getContent = function() {
                     'scrolling="no"></iframe>').prop('src',src)
                 );
             }
-            $("img").lazyload({effect : "fadeIn"});
+            /*$("img").lazyload({effect : "fadeIn"});*/
         }else {
             pageAction.commentLoaded = false;
             pageAction.modalWindow("读取出错!");
@@ -222,4 +261,18 @@ pageAction.updateReadNumber = function() {
     $.post(urlArray.join(''), {
         action: "updateRead"
     });
+};
+
+/* 页面底部和底部跳转 */
+pageAction.goTop = function goTop() {
+    $('html, body').animate({scrollTop: 0}, 'slow');
+};
+
+pageAction.goDiv = function goDiv(div) {
+    var a = $("#" + div).offset().top;
+    $("html, body").animate({scrollTop: a}, 'slow');
+};
+
+pageAction.goBottom = function goBottom() {
+    window.scrollTo(0, document.documentElement.scrollHeight - document.documentElement.clientHeight);
 };

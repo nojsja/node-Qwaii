@@ -17,14 +17,15 @@ requirejs.config({
 });
 
 requirejs(['article','header','bootstrap'], function (article,header) {
+
+    //所有函数是异步执行的,互相不影响
+
     //初始化页面
-    //三个函数是异步执行的,互相不影响
     article.articleInit();
     //得到文章内容
     article.getContent();
     //更新阅读量
     article.updateReadNumber();
-    article.getBackgroundImg();
-
+    //首部更新
     header.headerInit();
 });
